@@ -6,6 +6,8 @@ import spark.Request;
 import spark.Response;
 import umm3601.user.UserController;
 import umm3601.user.UserRequestHandler;
+import umm3601.tracker.TrackerController;
+import umm3601.tracker.TrackerRequestHandler;
 
 import java.io.IOException;
 
@@ -24,6 +26,9 @@ public class Server {
 
         UserController userController = new UserController(userDatabase);
         UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
+
+        TrackerController trackerController = new TrackerController(userDatabase);
+        TrackerRequestHandler trackerRequestHandler = new TrackerRequestHandler(trackerController);
 
         //Configure Spark
         port(serverPort);
@@ -66,6 +71,14 @@ public class Server {
         get("api/users", userRequestHandler::getUsers);
         get("api/users/:id", userRequestHandler::getUserJSON);
         post("api/users/new", userRequestHandler::addNewUser);
+
+        /// User Endpoints ///////////////////////////
+        /////////////////////////////////////////////
+
+        get("api/trackers", trackerRequestHandler::getTrackers);
+        get("api/trackers/:id", trackerRequestHandler::getTrackerJSON);
+        post("api/trackers/new", trackerRequestHandler::addNewTracker);
+
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.
