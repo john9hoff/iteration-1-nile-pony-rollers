@@ -15,10 +15,6 @@ import {APP_BASE_HREF} from '@angular/common';
 import {CustomModule} from './custom.module';
 import {AddUserComponent} from './users/add-user.component';
 
-import {TrackerListComponent} from './trackers/tracker-list.component';
-import {TrackerListService} from './trackers/tracker-list.service';
-import {AddTrackerComponent} from './trackers/add-tracker.component';
-
 @NgModule({
     imports: [
         BrowserModule,
@@ -30,10 +26,7 @@ import {AddTrackerComponent} from './trackers/add-tracker.component';
         AppComponent,
         HomeComponent,
         UserListComponent,
-        AddUserComponent,
-        AddTrackerComponent,
-        TrackerListComponent,
-        TrackerListService
+        AddUserComponent
     ],
     providers: [
         UserListService,
