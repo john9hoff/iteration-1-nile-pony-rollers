@@ -10,6 +10,7 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import javax.sound.midi.Track;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Date;
@@ -122,7 +123,7 @@ public class TrackerController {
 
     public static void main(String[] args) throws Exception{
         Date now = new Date();
-        System.out.println(now);
+        System.out.println(now.toString());
 
     }
 }
