@@ -31,6 +31,18 @@ export class TrackerListComponent implements OnInit {
         return tracker._id['$oid'] === this.highlightedID['$oid'];
     }
 
+    addEmoji(newEmoji: string): void {
+        const newTracker: Tracker = {_id: '', emoji: newEmoji, date: ''};
+        this.trackerListService.addNewEmoji(newTracker).subscribe(
+            trackers => {
+                this.refreshTrackers();
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
     public filterTrackers(searchEmoji: string, searchTime: any): Tracker[] {
 
         this.filteredTrackers = this.trackers;
@@ -44,7 +56,7 @@ export class TrackerListComponent implements OnInit {
             });
         }
 
-        // Filter by age
+        // Filter by time
         if (searchTime != null) {
             this.filteredTrackers = this.filteredTrackers.filter(tracker => {
                 return !searchTime || tracker.date == searchTime;

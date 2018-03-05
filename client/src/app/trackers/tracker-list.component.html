@@ -13,7 +13,7 @@
                         <mat-panel-title >{{tracker.date}}</mat-panel-title>
 
                     </mat-expansion-panel-header>
-                    <mat-panel-description>ID: {{tracker._id['$oid']}} years old</mat-panel-description>
+                    <mat-panel-description>ID: {{tracker._id['$oid']}}</mat-panel-description>
                     <mat-panel-description >Emoji selected: {{tracker.emoji}}</mat-panel-description>
                 </mat-expansion-panel>
                 </mat-accordion>
@@ -30,4 +30,11 @@
             </mat-card-content>
         </mat-card>
     </div>
+
+    <div class="button-row">
+        <button mat-raised-button color="primary"(click)="addEmoji('happy')">Primary</button>
+        <button mat-raised-button color="accent" (click)="addEmoji('neutral')">Accent</button>
+        <button mat-raised-button color="warn"   (click)="addEmoji('sad')">Warn</button>
+    </div>
+
 </div>
