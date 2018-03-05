@@ -107,7 +107,7 @@ public class TrackerController {
         Document newTracker = new Document();
         newTracker.append("emoji", emoji);
         Date now = new Date();
-        newTracker.append("date", now);
+        newTracker.append("date", now.toString());
 
         try {
             trackerCollection.insertOne(newTracker);
