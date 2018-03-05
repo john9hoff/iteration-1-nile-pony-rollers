@@ -47,7 +47,7 @@ export class TrackerListComponent implements OnInit {
         // Filter by age
         if (searchTime != null) {
             this.filteredTrackers = this.filteredTrackers.filter(tracker => {
-                return !searchTime || tracker.time == searchTime;
+                return !searchTime || tracker.date == searchTime;
             });
         }
 

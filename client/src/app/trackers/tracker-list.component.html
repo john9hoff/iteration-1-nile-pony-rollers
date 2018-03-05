@@ -10,7 +10,7 @@
                 <mat-accordion *ngIf="trackers; else trackersError" >
                 <mat-expansion-panel #elem class="trackers" [id]="tracker._id['$oid']" [expanded]="this.isHighlighted(tracker)" *ngFor="let tracker of this.filterTrackers(trackerEmoji, trackerTime)">
                     <mat-expansion-panel-header>
-                        <mat-panel-title >{{tracker.time}}</mat-panel-title>
+                        <mat-panel-title >{{tracker.date}}</mat-panel-title>
 
                     </mat-expansion-panel-header>
                     <mat-panel-description>ID: {{tracker._id['$oid']}} years old</mat-panel-description>
