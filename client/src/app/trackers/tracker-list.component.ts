@@ -17,7 +17,9 @@ export class TrackerListComponent implements OnInit {
     // These are the target values used in searching.
     // We should rename them to make that clearer.
     public trackerEmoji: string;
-    public trackerTime: any;
+    public trackerTime: string;
+
+
 
     // The ID of the
     private highlightedID: {'$oid': string} = { '$oid': '' };
@@ -43,7 +45,7 @@ export class TrackerListComponent implements OnInit {
         );
     }
 
-    public filterTrackers(searchEmoji: string, searchTime: any): Tracker[] {
+    public filterTrackers(searchEmoji: string, searchTime: string): Tracker[] {
 
         this.filteredTrackers = this.trackers;
 

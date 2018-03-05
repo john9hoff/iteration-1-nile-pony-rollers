@@ -1,5 +1,5 @@
 export interface Tracker {
     _id: string;
     emoji: string;
-    date: any;
+    date: string;
 }
