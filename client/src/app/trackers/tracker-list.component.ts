@@ -35,7 +35,7 @@ export class TrackerListComponent implements OnInit {
 
         this.filteredTrackers = this.trackers;
 
-        // Filter by name
+        // Filter by emoji
         if (searchEmoji != null) {
             searchEmoji = searchEmoji.toLocaleLowerCase();
 
