@@ -15,7 +15,7 @@ export class TrackerListComponent implements OnInit {
     public filteredTrackers: Tracker[];
 
     // These are the target values used in searching.
-    // We should rename them to make that clearer.
+    // We should rename them to make that clearer. 
     public trackerEmoji: string;
     public trackerTime: any;
 
