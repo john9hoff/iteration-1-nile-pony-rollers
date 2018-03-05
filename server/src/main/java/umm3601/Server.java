@@ -8,6 +8,8 @@ import umm3601.user.UserController;
 import umm3601.user.UserRequestHandler;
 import umm3601.tracker.TrackerController;
 import umm3601.tracker.TrackerRequestHandler;
+import umm3601.journal.JournalController;
+import umm3601.journal.JournalRequestHandler;
 
 import java.io.IOException;
 
@@ -18,6 +20,7 @@ import static spark.debug.DebugScreen.enableDebugScreen;
 public class Server {
     private static final String userDatabaseName = "dev";
     private static final String trackerDatabaseName = "dev";
+    private static final String journalDatabaseName = "dev";
 
     private static final int serverPort = 4567;
 
@@ -26,12 +29,16 @@ public class Server {
         MongoClient mongoClient = new MongoClient();
         MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
         MongoDatabase trackerDatabase = mongoClient.getDatabase(trackerDatabaseName);
+        MongoDatabase journalDatabase = mongoClient.getDatabase(journalDatabaseName);
 
         UserController userController = new UserController(userDatabase);
         UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
 
         TrackerController trackerController = new TrackerController(trackerDatabase);
         TrackerRequestHandler trackerRequestHandler = new TrackerRequestHandler(trackerController);
+
+        JournalController journalController = new JournalController(journalDatabase);
+        JournalRequestHandler journalRequestHandler = new JournalRequestHandler(journalController);
 
         //Configure Spark
         port(serverPort);
@@ -81,6 +88,13 @@ public class Server {
         get("api/trackers", trackerRequestHandler::getTrackers);
         get("api/trackers/:id", trackerRequestHandler::getTrackerJSON);
         post("api/trackers/new", trackerRequestHandler::addNewTracker);
+
+        /// Journal Endpoints ///////////////////////////
+        /////////////////////////////////////////////
+
+        get("api/journals", journalRequestHandler::getJournals);
+        get("api/journals/:id", journalRequestHandler::getJournalJSON);
+        post("api/journals/new", journalRequestHandler::addNewJournal);
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.
