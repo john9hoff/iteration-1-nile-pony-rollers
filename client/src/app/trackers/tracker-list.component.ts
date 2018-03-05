@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {TrackerListService} from './tracker-list.service';
 import {Tracker} from './tracker';
 import {Observable} from 'rxjs/Observable';
-import {MatDialog} from '@angular/material';
-import {AddTrackerComponent} from './add-tracker.component';
 
 @Component({
     selector: 'app-tracker-list-component',
@@ -18,15 +16,14 @@ export class TrackerListComponent implements OnInit {
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
-    public trackerName: string;
-    public trackerAge: number;
-    public trackerCompany: string;
+    public trackerEmoji: string;
+    public trackerTime: any;
 
     // The ID of the
     private highlightedID: {'$oid': string} = { '$oid': '' };
 
     // Inject the TrackerListService into this component.
-    constructor(public trackerListService: TrackerListService, public dialog: MatDialog) {
+    constructor(public trackerListService: TrackerListService) {
 
     }
 
@@ -34,46 +31,25 @@ export class TrackerListComponent implements OnInit {
         return tracker._id['$oid'] === this.highlightedID['$oid'];
     }
 
-    openDialog(): void {
-        const newTracker: Tracker = {_id: '', emotion: '', time: 1996-12-12};
-        const dialogRef = this.dialog.open(AddTrackerComponent, {
-            width: '500px',
-            data: { tracker: newTracker }
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            this.trackerListService.addNewTracker(result).subscribe(
-                addTrackerResult => {
-                    this.highlightedID = addTrackerResult;
-                    this.refreshTrackers();
-                },
-                err => {
-                    // This should probably be turned into some sort of meaningful response.
-                    console.log('There was an error adding the tracker.');
-                    console.log('The error was ' + JSON.stringify(err));
-                });
-        });
-    }
-
-    public filterTrackers(searchName: string, searchAge: number): Tracker[] {
+    public filterTrackers(searchEmoji: string, searchTime: any): Tracker[] {
 
         this.filteredTrackers = this.trackers;
 
         // Filter by name
-        if (searchName != null) {
-            searchName = searchName.toLocaleLowerCase();
+        if (searchEmoji != null) {
+            searchEmoji = searchEmoji.toLocaleLowerCase();
 
             this.filteredTrackers = this.filteredTrackers.filter(tracker => {
-                return !searchName || tracker.emotion.toLowerCase().indexOf(searchName) !== -1;
+                return !searchEmoji || tracker.emoji.toLowerCase().indexOf(searchEmoji) !== -1;
             });
         }
 
-        /*// Filter by age
-        if (searchAge != null) {
+        // Filter by age
+        if (searchTime != null) {
             this.filteredTrackers = this.filteredTrackers.filter(tracker => {
-                return !searchAge || tracker.time == searchAge;
+                return !searchTime || tracker.time == searchTime;
             });
-        }*/
+        }
 
         return this.filteredTrackers;
     }
@@ -93,7 +69,7 @@ export class TrackerListComponent implements OnInit {
         trackerListObservable.subscribe(
             trackers => {
                 this.trackers = trackers;
-                this.filterTrackers(this.trackerName, this.trackerAge);
+                this.filterTrackers(this.trackerEmoji, this.trackerTime);
             },
             err => {
                 console.log(err);
@@ -103,7 +79,7 @@ export class TrackerListComponent implements OnInit {
 
 
     loadService(): void {
-        this.trackerListService.getTrackers(this.trackerCompany).subscribe(
+        this.trackerListService.getTrackers(this.trackerEmoji).subscribe(
             trackers => {
                 this.trackers = trackers;
                 this.filteredTrackers = this.trackers;
