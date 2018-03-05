@@ -17,21 +17,19 @@ import {AddUserComponent} from './users/add-user.component';
 
 import {TrackerListComponent} from './trackers/tracker-list.component';
 import {TrackerListService} from './trackers/tracker-list.service';
-import {AddTrackerComponent} from './trackers/add-tracker.component';
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpClientModule,
         Routing,
-        CustomModule,
+        CustomModule
     ],
     declarations: [
         AppComponent,
         HomeComponent,
         UserListComponent,
         AddUserComponent,
-        AddTrackerComponent,
         TrackerListComponent,
         TrackerListService
     ],
@@ -41,7 +39,7 @@ import {AddTrackerComponent} from './trackers/add-tracker.component';
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
     entryComponents: [
-      AddUserComponent,
+      AddUserComponent
     ],
     bootstrap: [AppComponent]
 })
