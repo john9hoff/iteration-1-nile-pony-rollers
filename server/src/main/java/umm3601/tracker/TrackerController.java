@@ -9,6 +9,8 @@ import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import javax.sound.midi.Track;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Date;
@@ -71,9 +73,12 @@ public class TrackerController {
 
         Document filterDoc = new Document();
 
-        if (queryParams.containsKey("emotion")) {
-            int targetAge = Integer.parseInt(queryParams.get("emotion")[0]);
-            filterDoc = filterDoc.append("emotion", targetAge);
+        if (queryParams.containsKey("emoji")) {
+            String targetContent = (queryParams.get("emoji")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("emoji", contentRegQuery);
         }
 
         if (queryParams.containsKey("date")) {
@@ -94,25 +99,31 @@ public class TrackerController {
     /**
      * Helper method which appends received tracker information to the to-be added document
      *
-     * @param emotion
-     * @param time
+     * @param emoji
      * @return boolean after successfully or unsuccessfully adding a tracker
      */
-    public String addNewTracker(String emotion, Date time) {
+    public String addNewTracker(String emoji) {
 
         Document newTracker = new Document();
-        newTracker.append("emotion", emotion);
-        newTracker.append("time", time);
+        newTracker.append("emoji", emoji);
+        Date now = new Date();
+        newTracker.append("date", now);
 
         try {
             trackerCollection.insertOne(newTracker);
             ObjectId id = newTracker.getObjectId("_id");
-            System.err.println("Successfully added new tracker [_id=" + id + ", emotion=" + emotion + ", time=" + time + ']');
+            System.err.println("Successfully added new tracker [_id=" + id + ", emoji=" + emoji + ", date=" + now + ']');
             // return JSON.serialize(newTracker);
             return JSON.serialize(id);
         } catch(MongoException me) {
             me.printStackTrace();
             return null;
         }
+    }
+
+    public static void main(String[] args) throws Exception{
+        Date now = new Date();
+        System.out.println(now.toString());
+
     }
 }

@@ -81,13 +81,13 @@ public class TrackerRequestHandler {
                 try {
                     BasicDBObject dbO = (BasicDBObject) o;
 
-                    String emotion = dbO.getString("emotion");
+                    String emoji = dbO.getString("emoji");
                     //For some reason age is a string right now, caused by angular.
                     //This is a problem and should not be this way but here ya go
-                    Date time = dbO.getDate("time");
+                    Date date = dbO.getDate("datte");
 
-                    System.err.println("Adding new tracker [emotion=" + emotion + ", time=" + time + ']');
-                    return trackerController.addNewTracker(emotion, time).toString();
+                    System.err.println("Adding new tracker [emoji=" + emoji + ", date=" + date + ']');
+                    return trackerController.addNewTracker(emoji).toString();
                 }
                 catch(NullPointerException e)
                 {
