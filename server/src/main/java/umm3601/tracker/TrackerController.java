@@ -72,8 +72,11 @@ public class TrackerController {
         Document filterDoc = new Document();
 
         if (queryParams.containsKey("emotion")) {
-            int targetAge = Integer.parseInt(queryParams.get("emotion")[0]);
-            filterDoc = filterDoc.append("emotion", targetAge);
+            String targetContent = (queryParams.get("emotion")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("emotion", contentRegQuery);
         }
 
         if (queryParams.containsKey("date")) {
