@@ -42,7 +42,7 @@ public class JournalController {
             Document user = iterator.next();
             return user.toJson();
         } else {
-            // We didn't find the desired user
+            // We didn't find the desired journal
             return null;
         }
     }
@@ -72,16 +72,18 @@ public class JournalController {
         return JSON.serialize(matchingJournals);
     }
 
-    public String addNewJournal(String subject, String body, Date time) {
+    public String addNewJournal(String subject, String body) {
         Document newJournal = new Document();
         newJournal.append("subject",subject);
         newJournal.append("body",body);
-        newJournal.append("Date", time);
+
+        Date now = new Date();
+        newJournal.append("date", now.toString());
 
         try {
             journalCollection.insertOne(newJournal);
             ObjectId id = newJournal.getObjectId("_id");
-            System.err.println("Successfully added new journal [_id=" + id + ", subject=" + subject + ", body=" + ']');
+            System.err.println("Successfully added new journal [_id=" + id + ", subject=" + subject + ", body=" + body + ", date=" + now + ']');
             return JSON.serialize(id);
         } catch(MongoException me) {
             me.printStackTrace();

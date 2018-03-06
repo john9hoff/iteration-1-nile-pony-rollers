@@ -65,14 +65,14 @@ public class JournalRequestHandler {
                     String body = dbO.getString("body");
 
 
-                    Date date = dbO.getDate("date");
+                    //Date date = dbO.getDate("date");
 
                     System.err.println("Adding new journal [subject=" + subject + ", body=" + body + ']');
-                    return journalController.addNewJournal(subject, body, date).toString();
+                    return journalController.addNewJournal(subject, body).toString();
                 }
                 catch(NullPointerException e)
                 {
-                    System.err.println("A value was malformed or omitted, new user request failed.");
+                    System.err.println("A value was malformed or omitted, new journal request failed.");
                     return null;
                 }
 
