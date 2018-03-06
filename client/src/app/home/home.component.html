@@ -1,5 +1,17 @@
-        <div layout = "row" layout-align="space-around stretch">
-            <button mat-raised-button color="primary"(click)="addEmotion('happy')">Happy</button>
-            <button mat-raised-button color="accent" (click)="addEmotion('neutral')">Neutral</button>
-            <button mat-raised-button color="warn"   (click)="addEmotion('sad')">Sad</button>
-        </div>
+        <img layout = "row" layout-align="space-around stretch">
+            <button (click)="addEmotion('happy')">
+            <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/samsung/128/smiling-face-with-smiling-eyes_1f60a.png" id="happy">
+            </button>
+            <button (click)="addEmotion('neutral')">
+                <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/samsung/128/neutral-face_1f610.png" id="neutral">
+            </button>
+            <button (click)="addEmotion('sad')">
+                <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/samsung/128/worried-face_1f61f.png" id="sad">
+            </button>
+        <button (click)="addEmotion('angry')">
+            <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/samsung/128/angry-face_1f620.png" id="angry">
+        </button>
+        <button (click)="addEmotion('crying')">
+            <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/samsung/128/crying-face_1f622.png" id="crying">
+        </button>
+
