@@ -113,5 +113,5 @@ public class JournalControllerSpec
         List<String> expectedSubjects = Arrays.asList("Wednesday");
         assertEquals("Subjects should match", expectedSubjects, subjects);
     }
-    //add testing for adding new journals 
+    //add testing for adding new journals
 }
