@@ -1,6 +1,6 @@
 <div class="container text-center">
     <div class="mood-buttons text-center">
-        <button (click)="addEmotion(slideIndex)">
+        <button (click)="addEmotion(slideIndex); openDialog();">
             <img [attr.src]="image">
         </button>
     </div>

@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {TrackerListService} from "../trackers/tracker-list.service";
 import {Tracker} from "../trackers/tracker";
+import {MatDialog} from '@angular/material';
+import {ResponseComponent} from "./response.component";
 
 @Component({
     selector: 'app-home-list-component',
@@ -11,9 +13,11 @@ export class HomeComponent {
     public slideIndex = 1;
     public emojis: string[] = ["./assets/grinning.png", "./assets/slightly-smiling.png", "./assets/confused-face.png",
         "./assets/slightly-frowning-face.png", "./assets/angry-face.png", "./assets/crying-face.png"];
+
     public emojisString: string[] = ["grinning", "smiling", "confused", "frowning", "angry", "crying"];
     public image = this.emojis[this.slideIndex];
-    constructor(public trackerListService: TrackerListService) {
+
+    constructor(public trackerListService: TrackerListService, public dialog: MatDialog) {
 
     }
 
@@ -41,5 +45,13 @@ export class HomeComponent {
         console.log(this.slideIndex + ' index');
         console.log(this.image);
         this.image = this.emojis[this.slideIndex];
+    }
+
+    openDialog(): void {
+        const dialogRef = this.dialog.open(ResponseComponent, {
+            width: '800px',
+            height: '800px'
+        });
+
     }
 }
