@@ -23,6 +23,8 @@ import {JournalListComponent} from "./journals/journal-list.component";
 import {JournalListService} from "./journals/journal-list.service";
 import {AddJournalComponent} from './journals/add-journal.component';
 
+import {ResponseComponent} from './home/response.component';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -37,7 +39,10 @@ import {AddJournalComponent} from './journals/add-journal.component';
         AddUserComponent,
         AddJournalComponent,
         TrackerListComponent,
-        JournalListComponent
+        JournalListComponent,
+        ResponseComponent
+
+
     ],
     providers: [
         UserListService,
@@ -48,7 +53,10 @@ import {AddJournalComponent} from './journals/add-journal.component';
     ],
     entryComponents: [
         AddUserComponent,
-        AddJournalComponent
+        AddJournalComponent,
+        ResponseComponent
+
+
     ],
     bootstrap: [AppComponent]
 })
