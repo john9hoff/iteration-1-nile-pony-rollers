@@ -1,1 +1,27 @@
+.mood-buttons button {
+    background-color: transparent;
+    border: none;
+    color: transparent;
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer;
+    float:none;
+    display:inline-block;
+    vertical-align:middle;
+    margin-right:-4px;
+}
 
+.mood-buttons button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.mood-buttons:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Add a background color on hover */
+.mood-buttons button:hover {
+    background-color: #3e8e41;
+}

@@ -1,17 +1,11 @@
-        <img layout = "row" layout-align="space-around stretch">
-            <button (click)="addEmotion('happy')">
-            <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/samsung/128/smiling-face-with-smiling-eyes_1f60a.png" id="happy">
-            </button>
-            <button (click)="addEmotion('neutral')">
-                <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/samsung/128/neutral-face_1f610.png" id="neutral">
-            </button>
-            <button (click)="addEmotion('sad')">
-                <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/samsung/128/worried-face_1f61f.png" id="sad">
-            </button>
-        <button (click)="addEmotion('angry')">
-            <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/samsung/128/angry-face_1f620.png" id="angry">
+<div class="container text-center">
+    <div class="mood-buttons text-center">
+        <button (click)="addEmotion(slideIndex)">
+            <img [attr.src]="image">
         </button>
-        <button (click)="addEmotion('crying')">
-            <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/samsung/128/crying-face_1f622.png" id="crying">
-        </button>
+    </div>
 
+    <a mat-raised-button type="button" class="prev" (click)="plusSlides(-1)"><mat-icon>chevron_left</mat-icon></a>
+    <a mat-raised-button type="button" class="next" (click)="plusSlides(1)"><mat-icon>chevron_right</mat-icon></a>
+
+</div>
