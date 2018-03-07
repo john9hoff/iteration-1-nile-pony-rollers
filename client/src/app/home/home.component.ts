@@ -9,10 +9,10 @@ import {Tracker} from "../trackers/tracker";
 })
 export class HomeComponent {
     public slideIndex = 1;
-    public image = "./assets/angry-face.png";
     public emojis: string[] = ["./assets/grinning.png", "./assets/slightly-smiling.png", "./assets/confused-face.png",
         "./assets/slightly-frowning-face.png", "./assets/angry-face.png", "./assets/crying-face.png"];
     public emojisString: string[] = ["grinning", "smiling", "confused", "frowning", "angry", "crying"];
+    public image = this.emojis[this.slideIndex];
     constructor(public trackerListService: TrackerListService) {
 
     }
