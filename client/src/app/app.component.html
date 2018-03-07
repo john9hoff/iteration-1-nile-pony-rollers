@@ -1,16 +1,34 @@
 <td-layout #layout>
-    <td-navigation-drawer flex sidenavTitle="Lab 4" >
+    <nav mat-tab-nav-bar flex sidenavTitle="Lab 4" >
         <mat-nav-list>
-            <a mat-list-item [routerLink]="['/']" (click)="layout.close()" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon>home</mat-icon>Home</a>
-            <a mat-list-item [routerLink]="['/users']" (click)="layout.close()" routerLinkActive="nav-active"><mat-icon>account_box</mat-icon>Users</a>
-            <a mat-list-item [routerLink]="['/trackers']" (click)="layout.close()" routerLinkActive="nav-active"><mat-icon>account_box</mat-icon>Trackers</a>
-            <a mat-list-item [routerLink]="['/journals']" (click)="layout.close()" routerLinkActive="nav-active"><mat-icon>account_box</mat-icon>Journals</a>
+            &ensp;&ensp;&ensp;  &ensp;&ensp;&ensp;  &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+            <a mat-tab-link [routerLink]="['/']"  routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon>tag_faces</mat-icon>Home</a>
+            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+          <mat-menu>
+
+          </mat-menu>
+            <a mat-tab-link [routerLink]="['/users']"  routerLinkActive="nav-active"><mat-icon>add_circle</mat-icon>Users</a>
+            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+
+            <a mat-tab-link [routerLink]="['/trackers']"  routerLinkActive="nav-active"><mat-icon>timeline</mat-icon>Trackers</a>
+            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+
+            <a mat-tab-link [routerLink]="['/journals']"  routerLinkActive="nav-active"><mat-icon>timeline</mat-icon>Journals</a>
         </mat-nav-list>
-    </td-navigation-drawer>
-    <td-layout-nav  toolbarTitle="Menu" navigationRoute="/">
-        <button mat-icon-button td-menu-button tdLayoutToggle>
-            <mat-icon>menu</mat-icon>
-        </button>
-        <router-outlet></router-outlet>
-    </td-layout-nav>
+    </nav>
+    <router-outlet></router-outlet>
+    <!--<td-layout-nav >-->
+    <!--<button mat-icon-button td-toolbar-content>-->
+    <!--<a mat-tab-link [routerLink]="['/']"  routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon>home</mat-icon>Home</a>-->
+    <!--</button>-->
+    <!--&ensp;-->
+    <!--<button mat-icon-button td-toolbar-content>-->
+    <!--<a mat-tab-link [routerLink]="['/users']"  routerLinkActive="nav-active"><mat-icon>account_box</mat-icon>Trackers</a>-->
+    <!--</button>-->
+    <!--&ensp;-->
+    <!--<button mat-icon-button td-toolbar-content>-->
+    <!--<a mat-tab-link [routerLink]="['/trackers']"  routerLinkActive="nav-active"><mat-icon>account_box</mat-icon>Trackers</a>-->
+    <!--</button>-->
+    <!--<router-outlet></router-outlet>-->
+    <!--</td-layout-nav>-->
 </td-layout>
