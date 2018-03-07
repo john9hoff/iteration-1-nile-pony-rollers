@@ -71,8 +71,6 @@ public class Server {
         // Redirects for the "home" page
         redirect.get("", "/");
 
-        redirect.get("/", "http://localhost:9000");
-
         /// User Endpoints ///////////////////////////
         /////////////////////////////////////////////
 
