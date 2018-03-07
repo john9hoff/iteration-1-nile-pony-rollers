@@ -18,7 +18,7 @@
                     <input matInput id="journalBody" #input type="text" placeholder="Filter by body" (input)="journalBody = $event.target.value">
                 </mat-form-field>
 
-                <mat-accordion *ngIf="journals; else journalError" >
+                <mat-accordion *ngIf="journals; else journalsError" >
                     <mat-expansion-panel #elem class="journals" [id]="journal.body" [expanded]="this.isHighlighted(journal)" *ngFor="let journal of this.filterJournals(journalSubject, journalBody)">
                         <mat-expansion-panel-header>
                             <mat-panel-title matTooltip="subject: {{journal.subject}}" >{{journal.date}}</mat-panel-title>
