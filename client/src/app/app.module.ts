@@ -22,6 +22,7 @@ import {TrackerListService} from './trackers/tracker-list.service';
 import {JournalListComponent} from "./journals/journal-list.component";
 import {JournalListService} from "./journals/journal-list.service";
 import {AddJournalComponent} from './journals/add-journal.component';
+import {EditJournalComponent} from './journals/edit-journal.component';
 
 import {ResponseComponent} from './home/response.component';
 import {ResponseComponent2} from "./home/response-2.component";
@@ -50,7 +51,8 @@ import {EmergencyComponent} from './home/emergency.component';
         ResponseComponent3,
         ResponseComponent4,
         ResponseComponent5,
-        EmergencyComponent
+        EmergencyComponent,
+        EditJournalComponent
 
 
     ],
@@ -70,7 +72,8 @@ import {EmergencyComponent} from './home/emergency.component';
         ResponseComponent2,
         ResponseComponent3,
         ResponseComponent4,
-        ResponseComponent5
+        ResponseComponent5,
+        EditJournalComponent
 
     ],
     bootstrap: [AppComponent]
