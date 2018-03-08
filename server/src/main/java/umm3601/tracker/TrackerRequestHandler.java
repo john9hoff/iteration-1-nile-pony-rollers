@@ -84,7 +84,7 @@ public class TrackerRequestHandler {
                     String emoji = dbO.getString("emoji");
                     //For some reason age is a string right now, caused by angular.
                     //This is a problem and should not be this way but here ya go
-                    Date date = dbO.getDate("date");
+                    String date = dbO.getString("date");
 
                     System.err.println("Adding new tracker [emoji=" + emoji + ", date=" + date.toString() + ']');
                     return trackerController.addNewTracker(emoji).toString();
