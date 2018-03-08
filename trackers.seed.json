@@ -4,20 +4,48 @@
             "$oid": "58af3a600343927e48e8720f"
         },
         "emoji": "Happy",
-        "date": "March 1"
+        "date": "Thu Mar 01 13:28:28 CST 2018"
     },
     {
         "_id": {
             "$oid": "58af3a600343927e48e87215"
         },
         "emoji": "Normal",
-        "date": "March 2"
+        "date": "Fri Mar 01 17:28:14 CST 2018"
     },
     {
         "_id": {
             "$oid": "58af3a600343927e48e8722c"
         },
         "emoji": "Very Sad",
-        "date": "March 3"
+        "date": "Thu Feb 22 15:28:56 CST 2018"
+    },
+    {
+        "_id": {
+            "$oid": "5aa18ede4cd5a50733f4f1f3"
+        },
+        "emoji": "Sad",
+        "date": "Fri Feb 27 17:58:28 CST 2018"
+    },
+    {
+        "_id": {
+            "$oid": "5aa1902a4cd5a50733f4f1f7"
+        },
+        "emoji": "Normal",
+        "date": "Fri Mar 01 17:28:28 CST 2018"
+    },
+    {
+        "_id": {
+            "$oid": "5aa18ee04cd5a50733f4f1f4"
+        },
+        "emoji": "Very Happy",
+        "date": "Thu Feb 22 15:28:28 CST 2018"
+    },
+    {
+        "_id": {
+            "$oid": "5aa18ee44cd5a50733f4f1f6"
+        },
+        "emoji": "Happy",
+        "date": "Sat Jan 27 13:36:47 CST 2018"
     }
 ]
