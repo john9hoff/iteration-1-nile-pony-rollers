@@ -21,7 +21,24 @@
     display: table;
 }
 
-/* Add a background color on hover */
+/* Add a background color on hover
 .mood-buttons button:hover {
-    background-color: #3e8e41;
+    background-color: crimson;
+}*/
+
+body {
+    background-image: url("https://i.ytimg.com/vi/ZgJfXlSVDxY/maxresdefault.jpg");
 }
+
+.Emergency {
+    padding-top: 30px;
+    padding-left: 30px;
+
+
+}
+.mood-buttons button{
+    padding-top:200px;
+    size: 200px;
+}
+
+mat-card{padding-top:200px;}

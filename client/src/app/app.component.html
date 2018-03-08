@@ -1,4 +1,5 @@
-<td-layout #layout>
+<body>
+
     <nav mat-tab-nav-bar flex sidenavTitle="Lab 4" >
         <mat-nav-list>
             <a mat-tab-link [routerLink]="['/']"  routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon>tag_faces</mat-icon>Home</a>
@@ -7,8 +8,8 @@
         </mat-nav-list>
     </nav>
     <router-outlet></router-outlet>
-</td-layout>
 
+</body>
 
 
 <!--<input matInput #input id="nameField" placeholder="Name" [(ngModel)]="data.user.name">-->

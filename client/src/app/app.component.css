@@ -1,9 +1,9 @@
-nav{
+/*nav{
     background-color:cyan;
     font-size: 200%;
     font-family:"erewhon"
 
-}
+}*/
 
 mat-nav-list {
     word-spacing: 600px;
@@ -11,4 +11,12 @@ mat-nav-list {
     padding-right:100px;
     font-family:cursive;
 }
+body{
+    background-color:whitesmoke;
+    font-size:200%;
+    font-family:cursive;
+    /*background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQIwzIMUxsB7FlnCKS-uhiXHV5IQ6m6dCnXARCx0n1tMDvZUK69w");
 
+*/
+
+}
