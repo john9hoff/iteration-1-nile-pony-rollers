@@ -90,5 +90,30 @@ public class JournalController {
             return null;
         }
     }
+
+    public String editJournal(String id, String subject, String body){
+        System.out.println("Right here again");
+        Document newJournal = new Document();
+        newJournal.append("subject", subject);
+        newJournal.append("body", body);
+        Document setQuery = new Document();
+        setQuery.append("$set", newJournal);
+
+        Document searchQuery = new Document().append("_id", new ObjectId(id));
+
+        System.out.println(id);
+
+
+
+        try {
+            journalCollection.updateOne(searchQuery, setQuery);
+            ObjectId id1 = searchQuery.getObjectId("_id");
+            System.err.println("Successfully updated journal [_id=" + id1 + ", subject=" + subject + ", body=" + body + ']');
+            return JSON.serialize(id1);
+        } catch(MongoException me) {
+            me.printStackTrace();
+            return null;
+        }
+    }
 }
 

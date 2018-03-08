@@ -89,4 +89,44 @@ public class JournalRequestHandler {
             return null;
         }
     }
+
+    public String editJournal(Request req, Response res)
+    {
+        System.out.println("Right here");
+        res.type("application/json");
+        Object o = JSON.parse(req.body());
+        try {
+            if(o.getClass().equals(BasicDBObject.class))
+            {
+                try {
+                    BasicDBObject dbO = (BasicDBObject) o;
+
+                    String id = dbO.getString("_id");
+                    String subject = dbO.getString("subject");
+                    String body = dbO.getString("body");
+
+
+
+                    System.err.println("Editing journal [ id=" + id + ", subject=" + subject + ", body=" + body + ']');
+                    return journalController.editJournal(id, subject, body).toString();
+                }
+                catch(NullPointerException e)
+                {
+                    System.err.println("A value was malformed or omitted, new journal request failed.");
+                    return null;
+                }
+
+            }
+            else
+            {
+                System.err.println("Expected BasicDBObject, received " + o.getClass());
+                return null;
+            }
+        }
+        catch(RuntimeException ree)
+        {
+            ree.printStackTrace();
+            return null;
+        }
+    }
 }

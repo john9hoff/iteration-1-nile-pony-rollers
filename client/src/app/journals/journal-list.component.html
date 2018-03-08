@@ -18,18 +18,19 @@
                     <input matInput id="journalBody" #input type="text" placeholder="Filter by body" (input)="journalBody = $event.target.value">
                 </mat-form-field>
 
-                <mat-accordion *ngIf="journals; else journalError" >
-                    <mat-expansion-panel #elem class="journal" [id]="journal.body" [expanded]="this.isHighlighted(journal)" *ngFor="let journal of this.filterJournals(journalSubject, journalBody)">
+                <mat-accordion *ngIf="journals; else journalsError" >
+                    <mat-expansion-panel #elem class="journals" [id]="journal.body" [expanded]="this.isHighlighted(journal)" *ngFor="let journal of this.filterJournals(journalSubject, journalBody)">
                         <mat-expansion-panel-header>
-                            <mat-panel-title matTooltip="ID: {{journal._id['$oid']}}" >{{journal.date}}</mat-panel-title>
+                            <mat-panel-title >{{journal.subject}}</mat-panel-title>
 
                         </mat-expansion-panel-header>
-                        <mat-panel-description>Subject: {{journal.subject}}</mat-panel-description>
                         <mat-panel-description>Body: {{journal.body}}</mat-panel-description>
+                        <mat-panel-description>Date: {{journal.date}}</mat-panel-description>
+                        <mat-panel-description><button mat-raised-button (click)="openDialogReview(journal._id['$oid'], journal.subject, journal.body, journal.date)">Edit Journal</button> </mat-panel-description>
                     </mat-expansion-panel>
                 </mat-accordion>
                 <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
-                <ng-template #journalError>
+                <ng-template #journalsError>
                     <mat-error>
                         There was a problem loading the journals. Possibly the server is down or perhaps there are network
                         issues.
