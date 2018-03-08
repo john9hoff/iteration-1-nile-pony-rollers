@@ -21,7 +21,7 @@
 }
 
 .mood-buttons button:hover {
-    background-color: crimson;
+    background-color: transparent;
 }
 
 .mood-buttons button{
@@ -29,3 +29,7 @@
 }
 
 mat-card{padding-top:200px;}
+
+body {
+    background-image: url("https://i.ytimg.com/vi/ZgJfXlSVDxY/maxresdefault.jpg");
+}

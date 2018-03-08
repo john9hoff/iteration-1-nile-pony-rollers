@@ -55,35 +55,35 @@ export class HomeComponent {
         console.log(n);
         if (n == 0){
             const dialogRef = this.dialog.open(ResponseComponent,{
-                width: '500px',
-                height: '500px'
+                width: '855px',
+                height: '485px'
             });
         }
         else if(n == 1){
             const dialogRef = this.dialog.open(ResponseComponent2,{
-                width: '500px',
-                height: '500px'
+                width: '855px',
+                height: '485px'
             });
         }
 
         else if(n == 2){
             const dialogRef = this.dialog.open(ResponseComponent3,{
-                width: '500px',
-                height: '500px'
+                width: '855px',
+                height: '485px'
             });
         }
 
         else if(n == 3){
             const dialogRef = this.dialog.open(ResponseComponent4,{
-                width: '500px',
-                height: '500px'
+                width: '855px',
+                height: '485px'
             });
         }
 
         else{
             const dialogRef = this.dialog.open(ResponseComponent5,{
-                width: '500px',
-                height: '500px'
+                width: '855px',
+                height: '485px'
             });
         }
 
