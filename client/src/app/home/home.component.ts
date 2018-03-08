@@ -3,7 +3,10 @@ import {TrackerListService} from "../trackers/tracker-list.service";
 import {Tracker} from "../trackers/tracker";
 import {MatDialog} from '@angular/material';
 import {ResponseComponent} from "./response.component";
-import {EmergencyComponent} from "./emergency.component";
+import {ResponseComponent2} from "./response-2.component";
+import {ResponseComponent3} from "./response-3.component";
+import {ResponseComponent5} from "./response-5.component";
+import {ResponseComponent4} from "./response-4.component";
 
 @Component({
     selector: 'app-home-list-component',
@@ -11,11 +14,11 @@ import {EmergencyComponent} from "./emergency.component";
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-    public slideIndex = 1;
-    public emojis: string[] = ["./assets/grinning.png", "./assets/slightly-smiling.png", "./assets/confused-face.png",
-        "./assets/slightly-frowning-face.png", "./assets/angry-face.png", "./assets/crying-face.png"];
+    public slideIndex = 0;
+    public emojis: string[] = ["./assets/grinning.png", "./assets/slightly-smiling.png", "./assets/neutral-face.png",
+        "./assets/slightly-frowning-face.png", "./assets/disappointed-face.png"];
 
-    public emojisString: string[] = ["grinning", "smiling", "confused", "frowning", "angry", "crying"];
+    public emojisString: string[] = ["Verry Happy", "Happy", "Normal", "Sad", "Very Sad"];
     public image = this.emojis[this.slideIndex];
 
     constructor(public trackerListService: TrackerListService, public dialog: MatDialog) {
@@ -35,12 +38,12 @@ export class HomeComponent {
         );
     }
 
-    public plusSlides(n: number): void {
+    public plusSlides(n: number): void{
         this.slideIndex = this.slideIndex + n;
-        if (this.slideIndex == -1) {
+        if(this.slideIndex == -1){
             this.slideIndex = 0;
         }
-        if (this.slideIndex == this.emojis.length) {
+        if(this.slideIndex == this.emojis.length){
             this.slideIndex = this.emojis.length - 1;
         }
         console.log(this.slideIndex + ' index');
@@ -48,19 +51,41 @@ export class HomeComponent {
         this.image = this.emojis[this.slideIndex];
     }
 
-    openDialog(): void {
-        const dialogRef = this.dialog.open(ResponseComponent, {
-            width: '800px',
-            height: '800px'
-        });
+    openDialog(n: number): void {
+        console.log(n);
+        if (n == 0){
+            const dialogRef = this.dialog.open(ResponseComponent,{
+                width: '500px',
+                height: '500px'
+            });
+        }
+        else if(n == 1){
+            const dialogRef = this.dialog.open(ResponseComponent2,{
+                width: '500px',
+                height: '500px'
+            });
+        }
 
-    }
+        else if(n == 2){
+            const dialogRef = this.dialog.open(ResponseComponent3,{
+                width: '500px',
+                height: '500px'
+            });
+        }
 
-    openDialogg(): void {
-        const dialogRef = this.dialog.open(EmergencyComponent, {
-            width: '800px',
-            height: '330px'
+        else if(n == 3){
+            const dialogRef = this.dialog.open(ResponseComponent4,{
+                width: '500px',
+                height: '500px'
+            });
+        }
 
-        })
+        else{
+            const dialogRef = this.dialog.open(ResponseComponent5,{
+                width: '500px',
+                height: '500px'
+            });
+        }
+
     }
 }
