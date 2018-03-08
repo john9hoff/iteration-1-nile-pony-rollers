@@ -59,7 +59,7 @@ export class HomeComponent {
     openDialogg(): void {
         const dialogRef = this.dialog.open(EmergencyComponent, {
             width: '800px',
-            height: '800px'
+            height: '330px'
 
         })
     }

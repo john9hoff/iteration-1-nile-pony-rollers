@@ -5,5 +5,10 @@ nav{
 
 }
 
-
+mat-nav-list {
+    word-spacing: 600px;
+    padding-left: 100px;
+    padding-right:100px;
+    font-family:cursive;
+}
 
