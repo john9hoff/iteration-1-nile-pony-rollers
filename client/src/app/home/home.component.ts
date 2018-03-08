@@ -3,6 +3,7 @@ import {TrackerListService} from "../trackers/tracker-list.service";
 import {Tracker} from "../trackers/tracker";
 import {MatDialog} from '@angular/material';
 import {ResponseComponent} from "./response.component";
+import {ResponseComponent2} from "./response-2.component";
 
 @Component({
     selector: 'app-home-list-component',
@@ -10,11 +11,11 @@ import {ResponseComponent} from "./response.component";
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-    public slideIndex = 1;
-    public emojis: string[] = ["./assets/grinning.png", "./assets/slightly-smiling.png", "./assets/confused-face.png",
-        "./assets/slightly-frowning-face.png", "./assets/angry-face.png", "./assets/crying-face.png"];
+    public slideIndex = 0;
+    public emojis: string[] = ["./assets/grinning.png", "./assets/slightly-smiling.png", "./assets/neutral-face.png",
+        "./assets/slightly-frowning-face.png", "./assets/disappointed-face.png"];
 
-    public emojisString: string[] = ["grinning", "smiling", "confused", "frowning", "angry", "crying"];
+    public emojisString: string[] = ["Verry Happy", "Happy", "Normal", "Sad", "Very Sad"];
     public image = this.emojis[this.slideIndex];
 
     constructor(public trackerListService: TrackerListService, public dialog: MatDialog) {
@@ -47,11 +48,20 @@ export class HomeComponent {
         this.image = this.emojis[this.slideIndex];
     }
 
-    openDialog(): void {
-        const dialogRef = this.dialog.open(ResponseComponent, {
-            width: '800px',
-            height: '800px'
-        });
+    openDialog(n: number): void {
+        console.log(n);
+        if (n == 0){
+            const dialogRef = this.dialog.open(ResponseComponent,{
+                width: '500px',
+                height: '500px'
+            });
+        }
+        else{
+            const dialogRef = this.dialog.open(ResponseComponent2,{
+                width: '500px',
+                height: '500px'
+            });
+        }
 
     }
 }
