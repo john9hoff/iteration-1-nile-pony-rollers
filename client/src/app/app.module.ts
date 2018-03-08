@@ -31,12 +31,15 @@ import {ResponseComponent4} from "./home/response-4.component";
 import {ResponseComponent5} from "./home/response-5.component";
 import {EmergencyComponent} from './home/emergency.component';
 
+import {MatSelectModule} from '@angular/material/select';
+
 @NgModule({
     imports: [
         BrowserModule,
         HttpClientModule,
         Routing,
-        CustomModule
+        CustomModule,
+        MatSelectModule
     ],
     declarations: [
         AppComponent,
@@ -53,8 +56,6 @@ import {EmergencyComponent} from './home/emergency.component';
         ResponseComponent5,
         EmergencyComponent,
         EditJournalComponent
-
-
     ],
     providers: [
         UserListService,

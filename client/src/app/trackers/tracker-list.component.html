@@ -6,9 +6,17 @@
             <mat-card-title id="tracker-list-title">Trackers</mat-card-title>
             <mat-divider></mat-divider>
             <mat-card-content>
-                <mat-form-field>
-                    <input matInput id="trackerEmoji" #input type="text" placeholder="Filter by emoji" (input)="trackerEmoji = $event.target.value">
-                </mat-form-field>
+                <form>
+                    <label id="trackerEmoji">Emoji: </label>
+                    <mat-select name="dropdown" id="" (click)="trackerEmoji = trackerEmoji">
+                        <mat-option value="" (click)="trackerEmoji = null"></mat-option>
+                        <mat-option value="very happy" (click)="trackerEmoji = 'Very Happy'" >Very Happy</mat-option>
+                        <mat-option value="happy" (click)="trackerEmoji = 'Happy'">Happy</mat-option>
+                        <mat-option value="normal" (click)="trackerEmoji = 'Normal'">Normal</mat-option>
+                        <mat-option value="sad" (click)="trackerEmoji = 'Sad'" >Sad</mat-option>
+                        <mat-option value="very sad" (click)="trackerEmoji = 'Very Sad'">Very Sad</mat-option>
+                    </mat-select>
+                </form>
                 <mat-accordion *ngIf="trackers; else trackersError" >
                     <mat-expansion-panel #elem class="trackers" [id]="tracker._id['$oid']" [expanded]="this.isHighlighted(tracker)" *ngFor="let tracker of this.filterTrackers(trackerEmoji, trackerTime)">
                         <mat-expansion-panel-header>
