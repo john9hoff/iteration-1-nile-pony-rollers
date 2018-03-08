@@ -21,7 +21,10 @@ mat-nav-list {
 
 body{
     background-color:whitesmoke;
-    font-size:200%;
+    font-size:150%;
     font-family:cursive;
+}
 
+.icons{
+    font-size:140%;
 }

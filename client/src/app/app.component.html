@@ -4,13 +4,16 @@
         <div>
         <mat-nav-list>
             <div class="move">
-            <a mat-tab-link [routerLink]="['/']"  routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon>tag_faces</mat-icon>Home</a>
+            <a mat-tab-link [routerLink]="['/']"  routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon class="icons">tag_faces</mat-icon>Home</a>
             </div >
             <div class="move">
-            <a mat-tab-link [routerLink]="['/trackers']"  routerLinkActive="nav-active"><mat-icon>timeline</mat-icon>Trackers</a>
+            <a mat-tab-link [routerLink]="['/trackers']"  routerLinkActive="nav-active"><mat-icon class="icons">timeline</mat-icon>Trackers</a>
             </div>
             <div class="move">
-            <a mat-tab-link [routerLink]="['/journals']"  routerLinkActive="nav-active"><mat-icon>book</mat-icon>Journals</a>
+            <a mat-tab-link [routerLink]="['/journals']"  routerLinkActive="nav-active"><mat-icon class="icons">book</mat-icon>Journals</a>
+            </div>
+            <div class="move">
+                <button mat-raised-button color="warn" id="emergency" (click)="openDialog()"><mat-icon class="icons">local_phone</mat-icon>Emergency Contacts</button>
             </div>
         </mat-nav-list>
         </div>
@@ -18,9 +21,6 @@
 </div>
     <router-outlet></router-outlet>
 </body>
-
-
-<!--<input matInput #input id="nameField" placeholder="Name" [(ngModel)]="data.user.name">-->
 
 
 

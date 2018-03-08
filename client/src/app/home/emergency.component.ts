@@ -10,7 +10,7 @@ export class EmergencyComponent {
         public dialogRef: MatDialogRef<EmergencyComponent>) {
     }
 
-    onNooClick(): void {
+    onNoClick(): void {
         this.dialogRef.close();
     }
 }
