@@ -4,6 +4,9 @@ import {Tracker} from "../trackers/tracker";
 import {MatDialog} from '@angular/material';
 import {ResponseComponent} from "./response.component";
 import {ResponseComponent2} from "./response-2.component";
+import {ResponseComponent3} from "./response-3.component";
+import {ResponseComponent5} from "./response-5.component";
+import {ResponseComponent4} from "./response-4.component";
 
 @Component({
     selector: 'app-home-list-component',
@@ -56,8 +59,29 @@ export class HomeComponent {
                 height: '500px'
             });
         }
-        else{
+        else if(n == 1){
             const dialogRef = this.dialog.open(ResponseComponent2,{
+                width: '500px',
+                height: '500px'
+            });
+        }
+
+        else if(n == 2){
+            const dialogRef = this.dialog.open(ResponseComponent3,{
+                width: '500px',
+                height: '500px'
+            });
+        }
+
+        else if(n == 3){
+            const dialogRef = this.dialog.open(ResponseComponent4,{
+                width: '500px',
+                height: '500px'
+            });
+        }
+
+        else{
+            const dialogRef = this.dialog.open(ResponseComponent5,{
                 width: '500px',
                 height: '500px'
             });

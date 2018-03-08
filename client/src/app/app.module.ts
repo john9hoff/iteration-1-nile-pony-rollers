@@ -25,6 +25,9 @@ import {AddJournalComponent} from './journals/add-journal.component';
 
 import {ResponseComponent} from './home/response.component';
 import {ResponseComponent2} from "./home/response-2.component";
+import {ResponseComponent3} from "./home/response-3.component";
+import {ResponseComponent4} from "./home/response-4.component";
+import {ResponseComponent5} from "./home/response-5.component";
 
 @NgModule({
     imports: [
@@ -42,7 +45,10 @@ import {ResponseComponent2} from "./home/response-2.component";
         TrackerListComponent,
         JournalListComponent,
         ResponseComponent,
-        ResponseComponent2
+        ResponseComponent2,
+        ResponseComponent3,
+        ResponseComponent4,
+        ResponseComponent5
 
     ],
     providers: [
@@ -56,7 +62,10 @@ import {ResponseComponent2} from "./home/response-2.component";
         AddUserComponent,
         AddJournalComponent,
         ResponseComponent,
-        ResponseComponent2
+        ResponseComponent2,
+        ResponseComponent3,
+        ResponseComponent4,
+        ResponseComponent5
 
     ],
     bootstrap: [AppComponent]
