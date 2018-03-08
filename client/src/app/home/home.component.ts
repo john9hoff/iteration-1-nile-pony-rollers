@@ -3,6 +3,7 @@ import {TrackerListService} from "../trackers/tracker-list.service";
 import {Tracker} from "../trackers/tracker";
 import {MatDialog} from '@angular/material';
 import {ResponseComponent} from "./response.component";
+import {EmergencyComponent} from "./emergency.component";
 
 @Component({
     selector: 'app-home-list-component',
@@ -34,12 +35,12 @@ export class HomeComponent {
         );
     }
 
-    public plusSlides(n: number): void{
+    public plusSlides(n: number): void {
         this.slideIndex = this.slideIndex + n;
-        if(this.slideIndex == -1){
+        if (this.slideIndex == -1) {
             this.slideIndex = 0;
         }
-        if(this.slideIndex == this.emojis.length){
+        if (this.slideIndex == this.emojis.length) {
             this.slideIndex = this.emojis.length - 1;
         }
         console.log(this.slideIndex + ' index');
@@ -53,5 +54,13 @@ export class HomeComponent {
             height: '800px'
         });
 
+    }
+
+    openDialogg(): void {
+        const dialogRef = this.dialog.open(EmergencyComponent, {
+            width: '800px',
+            height: '800px'
+
+        })
     }
 }

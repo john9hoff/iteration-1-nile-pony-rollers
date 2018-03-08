@@ -24,6 +24,7 @@ import {JournalListService} from "./journals/journal-list.service";
 import {AddJournalComponent} from './journals/add-journal.component';
 
 import {ResponseComponent} from './home/response.component';
+import {EmergencyComponent} from './home/emergency.component';
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import {ResponseComponent} from './home/response.component';
         AddJournalComponent,
         TrackerListComponent,
         JournalListComponent,
-        ResponseComponent
+        ResponseComponent,
+        EmergencyComponent
 
 
     ],
@@ -54,7 +56,8 @@ import {ResponseComponent} from './home/response.component';
     entryComponents: [
         AddUserComponent,
         AddJournalComponent,
-        ResponseComponent
+        ResponseComponent,
+        EmergencyComponent
 
 
     ],
