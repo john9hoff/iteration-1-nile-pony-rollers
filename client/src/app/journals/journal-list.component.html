@@ -24,7 +24,9 @@
                             <mat-panel-title matTooltip="subject: {{journal.subject}}" >{{journal.date}}</mat-panel-title>
 
                         </mat-expansion-panel-header>
+                        <mat-panel-description>Body: {{journal._id['$oid']}}</mat-panel-description>
                         <mat-panel-description>Body: {{journal.body}}</mat-panel-description>
+                        <mat-panel-description><button mat-raised-button (click)="openDialogReview(journal._id['$oid'], journal.subject, journal.body, journal.date)">Edit Journal</button> </mat-panel-description>
                     </mat-expansion-panel>
                 </mat-accordion>
                 <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->

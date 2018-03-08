@@ -4,6 +4,7 @@ import {Journal} from './journal';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
 import {AddJournalComponent} from './add-journal.component';
+import {EditJournalComponent} from "./edit-journal.component";
 
 @Component({
     selector: 'app-journal-list-component',
@@ -50,6 +51,28 @@ export class JournalListComponent implements OnInit {
                 err => {
                     // This should probably be turned into some sort of meaningful response.
                     console.log('There was an error adding the journal.');
+                    console.log('The error was ' + JSON.stringify(err));
+                });
+        });
+    }
+
+    openDialogReview(_id: string, subject: string, body: string, date: string): void {
+        console.log(_id + ' ' + subject);
+        const newJournal: Journal = {_id: _id, subject: subject, body: body, date: date};
+        const dialogRef = this.dialog.open(EditJournalComponent, {
+            width: '500px',
+            data: { journal: newJournal }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            this.journalListService.editJournal(result).subscribe(
+                editJournalResult => {
+                    //this.highlightedID = editJournalResult;
+                    this.refreshJournals();
+                },
+                err => {
+                    // This should probably be turned into some sort of meaningful response.
+                    console.log('There was an error editing the journal.');
                     console.log('The error was ' + JSON.stringify(err));
                 });
         });
