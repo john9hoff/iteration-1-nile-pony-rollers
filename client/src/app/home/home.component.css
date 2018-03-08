@@ -1,0 +1,44 @@
+.mood-buttons button {
+    background-color: transparent;
+    border: none;
+    color: transparent;
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer;
+    float:none;
+    display:inline-block;
+    vertical-align:middle;
+    margin-right:-4px;
+}
+
+.mood-buttons button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.mood-buttons:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Add a background color on hover
+.mood-buttons button:hover {
+    background-color: crimson;
+}*/
+
+body {
+    background-image: url("https://i.ytimg.com/vi/ZgJfXlSVDxY/maxresdefault.jpg");
+}
+
+.Emergency {
+    padding-top: 30px;
+    padding-left: 30px;
+
+
+}
+.mood-buttons button{
+    padding-top:200px;
+    size: 200px;
+}
+
+mat-card{padding-top:200px;}

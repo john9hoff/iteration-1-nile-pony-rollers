@@ -33,7 +33,7 @@ export class TrackerListComponent implements OnInit {
         return tracker._id['$oid'] === this.highlightedID['$oid'];
     }
 
-    addEmoji(newEmoji: string): void {
+    public addEmoji(newEmoji: string): void {
         const newTracker: Tracker = {_id: '', emoji: newEmoji, date: ''};
         this.trackerListService.addNewEmoji(newTracker).subscribe(
             trackers => {

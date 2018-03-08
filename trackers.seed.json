@@ -1,0 +1,23 @@
+[
+    {
+        "_id": {
+            "$oid": "58af3a600343927e48e8720f"
+        },
+        "emoji": "Happy",
+        "date": "March 1"
+    },
+    {
+        "_id": {
+            "$oid": "58af3a600343927e48e87215"
+        },
+        "emoji": "Normal",
+        "date": "March 2"
+    },
+    {
+        "_id": {
+            "$oid": "58af3a600343927e48e8722c"
+        },
+        "emoji": "Very Sad",
+        "date": "March 3"
+    }
+]

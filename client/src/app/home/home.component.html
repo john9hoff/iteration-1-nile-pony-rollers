@@ -1,12 +1,23 @@
-<div layout-gt-sm="row">
-    <div flex-gt-sm="80" flex-offset-gt-sm="10">
-        <mat-card>
-            <mat-card-title id="hello-world">{{ this.text }}</mat-card-title>
-            <mat-card-subtitle>this is a card</mat-card-subtitle>
-            <mat-divider></mat-divider>
-            <mat-card-content>
-                card content
-            </mat-card-content>
-        </mat-card>
-    </div>
+<body>
+
+<div class="Emergency">
+    <button id = "addNewUser" mat-raised-button (click)="openDialogg()">Emergency Contacts</button>
+
 </div>
+
+
+
+
+
+<div class="container text-center">
+    <div class="mood-buttons text-center">
+        <button (click)="addEmotion(slideIndex); openDialog(slideIndex);">
+            <img [attr.src]="image">
+        </button>
+    </div>
+
+    <a mat-raised-button type="button" class="prev" (click)="plusSlides(-1)"><mat-icon>chevron_left</mat-icon></a>
+    <a mat-raised-button type="button" class="next" (click)="plusSlides(1)"><mat-icon>chevron_right</mat-icon></a>
+
+</div>
+</body>

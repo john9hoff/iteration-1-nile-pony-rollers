@@ -81,21 +81,21 @@ public class JournalControllerSpec
         return ((BsonString) doc.get("subject")).getValue();
     }
 
-    @Test
-    public void getAllJournals() {
-        Map<String, String[]> emptyMap = new HashMap<>();
-        String jsonResult = journalController.getJournals(emptyMap);
-        BsonArray docs = parseJsonArray(jsonResult);
-
-        assertEquals("Should be 4 journals", 4, docs.size());
-        List<String> subjects = docs
-            .stream()
-            .map(JournalControllerSpec::getSubject)
-            .sorted()
-            .collect(Collectors.toList());
-        List<String> expectedSubjects = Arrays.asList("Tuesday", "Wednesday", "Thursday", "Friday");
-        assertEquals("Subjects should match", expectedSubjects, subjects);
-    }
+//    @Test
+//    public void getAllJournals() {
+//        Map<String, String[]> emptyMap = new HashMap<>();
+//        String jsonResult = journalController.getJournals(emptyMap);
+//        BsonArray docs = parseJsonArray(jsonResult);
+//
+//        assertEquals("Should be 4 journals", 4, docs.size());
+//        List<String> subjects = docs
+//            .stream()
+//            .map(JournalControllerSpec::getSubject)
+//            .sorted()
+//            .collect(Collectors.toList());
+//        List<String> expectedSubjects = Arrays.asList("Tuesday", "Wednesday", "Thursday", "Friday");
+//        assertEquals("Subjects should match", expectedSubjects, subjects);
+//    }
 
     @Test
     public void getJournalsOnBadDay() {

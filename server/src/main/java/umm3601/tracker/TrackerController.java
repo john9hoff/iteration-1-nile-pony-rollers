@@ -112,7 +112,7 @@ public class TrackerController {
         try {
             trackerCollection.insertOne(newTracker);
             ObjectId id = newTracker.getObjectId("_id");
-            System.err.println("Successfully added new tracker [_id=" + id + ", emoji=" + emoji + ", date=" + now + ']');
+            System.err.println("Successfully added new tracker [_id=" + id + ", emoji=" + emoji + ", date=" + now.toString() + ']');
             // return JSON.serialize(newTracker);
             return JSON.serialize(id);
         } catch(MongoException me) {

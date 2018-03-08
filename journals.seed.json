@@ -1,0 +1,26 @@
+[
+    {
+        "_id": {
+            "$oid": "58af3a600343927e48e8720f"
+        },
+        "subject": "Monday",
+        "body": "Today was a bad day.",
+        "date": "March 1"
+    },
+    {
+        "_id": {
+            "$oid": "58af3a600343927e48e87215"
+        },
+        "subject": "Tuesday",
+        "body": "Today was a good day.",
+        "date": "March 2"
+    },
+    {
+        "_id": {
+            "$oid": "58af3a600343927e48e8722c"
+        },
+        "subject": "Wednesday",
+        "body": "Today was an okay day.",
+        "date": "March 3"
+    }
+]
