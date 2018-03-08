@@ -6,17 +6,22 @@
 }*/
 
 mat-nav-list {
-    word-spacing: 600px;
+    word-spacing: 50px;
     padding-left: 100px;
     padding-right:100px;
     font-family:cursive;
+    background-color: whitesmoke;
+    display: block;
 }
+.move { display: inline-block; }
+
+@media (max-width: 750px) {
+    .move { display: block; }
+}
+
 body{
     background-color:whitesmoke;
     font-size:200%;
     font-family:cursive;
-    /*background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQIwzIMUxsB7FlnCKS-uhiXHV5IQ6m6dCnXARCx0n1tMDvZUK69w");
-
-*/
 
 }
