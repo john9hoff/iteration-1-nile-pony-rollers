@@ -19,7 +19,7 @@
                 </mat-form-field>
 
                 <mat-accordion *ngIf="journals; else journalsError" >
-                    <mat-expansion-panel #elem class="journals" [id]="journal.body" [expanded]="this.isHighlighted(journal)" *ngFor="let journal of this.filterJournals(journalSubject, journalBody)">
+                    <mat-expansion-panel #elem class="journals" [id]="journal._id['$oid']" [expanded]="this.isHighlighted(journal)" *ngFor="let journal of this.filterJournals(journalSubject, journalBody)">
                         <mat-expansion-panel-header>
                             <mat-panel-title >{{journal.subject}}</mat-panel-title>
 

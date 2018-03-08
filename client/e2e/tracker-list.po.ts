@@ -2,6 +2,7 @@ import {browser, element, by, promise} from 'protractor';
 import {Key} from 'selenium-webdriver';
 
 export class TrackerPage {
+
     static navigateTo(): promise.Promise<any> {
         return browser.get('/trackers');
     }

@@ -54,7 +54,7 @@ export class TrackerListComponent implements OnInit {
             searchEmoji = searchEmoji.toLocaleLowerCase();
 
             this.filteredTrackers = this.filteredTrackers.filter(tracker => {
-                return !searchEmoji || tracker.emoji.toLowerCase().indexOf(searchEmoji) !== -1;
+                return !searchEmoji || tracker.emoji.toLowerCase() == searchEmoji;
             });
         }
 
