@@ -4,7 +4,7 @@
             "$oid": "58af3a600343927e48e8720f"
         },
         "subject": "My busy Saturday",
-        "body": "What a busy day today!  I never had a moment\'s rest.  The day started with my alarm clock blaring at 7am.  I had to be at the Smith’s house by 8am to baby-sit. I really didn’t want to wake up so early on a Saturday, but I’m saving money to buy a new iPod and couldn\'t say no to an all-day babysitting job.",
+        "body": "What a busy day today!  I never had a moment’s rest.  The day started with my alarm clock blaring at 7am.  I had to be at the Smith’s house by 8am to baby-sit. I really didn’t want to wake up so early on a Saturday, but I’m saving money to buy a new iPod and couldn’t say no to an all-day babysitting job.",
         "date": "Sat Jan 27 13:36:47 CST 2018"
     },
     {
@@ -12,15 +12,15 @@
             "$oid": "58af3a600343927e48e87215"
         },
         "subject": "I listened to this great song today",
-        "body": "I remember when we used to sit. In the government yard in Trenchtown. Oba, observing the hypocrites. As they would mingle with the good people we meet. Good friends we have had, oh good friends we\'ve lost along the way (way). In this bright future you can\'t forget your past. So dry your tears I say",
-        "date": "Fri Mar 01 17:28:14 CST 2018"
+        "body": "Good friends we have. Oh. Good friends we have lost along the way. Yeah! In this great future you cant forget your past. So dry your tears, I say. Yeah.",
+        "date": "March 2"
     },
     {
         "_id": {
             "$oid": "58af3a600343927e48e8722c"
         },
-        "subject": "Sunday",
-        "body": "Today was an okay day. Nothing interested happened today",
-        "date": "Sun Mar 04 18:28:14 CST 2018"
+        "subject": "Wednesday",
+        "body": "Today was an okay day.",
+        "date": "March 3"
     }
 ]
