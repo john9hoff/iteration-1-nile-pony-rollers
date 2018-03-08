@@ -4,6 +4,7 @@ import {MatDialogRef} from '@angular/material';
 @Component({
     selector: 'app-response-5.component',
     templateUrl: 'response-5.component.html',
+    styleUrls: ['./response-5.component.css'],
 })
 export class ResponseComponent5{
     public responseEmojis: string[] = ["Keep it up! Grinning", "Keep that smile! Smiling", "Need help with anything? Confused",
