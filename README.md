@@ -1,5 +1,5 @@
 # CSCI 3601 Production Template -- Spring 2018
-[![Build Status](https://travis-ci.org/UMM-CSci-3601-S18/iteration-1-nile-pony-rollers.svg?branch=master)](https://travis-ci.org/UMM-CSci-3601-S18/iteration-1-nile-pony-rollers)
+[![Build Status](https://travis-ci.org/john9hoff/iteration-2-digital-mismatch.svg?branch=master)](https://travis-ci.org/john9hoff/iteration-2-digital-mismatch)
 
 
 <!-- TOC depthFrom:1 depthTo:5 withLinks:1 updateOnSave:1 orderedList:0 -->
