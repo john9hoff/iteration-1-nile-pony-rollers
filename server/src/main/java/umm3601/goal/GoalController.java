@@ -57,12 +57,12 @@ public class GoalController {
         // "goal" will be a key to a string object, where the object is
         // what we get when people enter their goals as a text body.
         // "goal" is the purpose of the goal
-        if (queryParams.containsKey("goal")) {
-            String targetContent = (queryParams.get("goal")[0]);
+        if (queryParams.containsKey("purpose")) {
+            String targetContent = (queryParams.get("purpose")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("goal", contentRegQuery);
+            filterDoc = filterDoc.append("purpose", contentRegQuery);
         }
 
         // category is the category of the goal, also a String
@@ -92,25 +92,26 @@ public class GoalController {
     /**
      * Helper method which appends received user information to the to-be added document
      *
+     * @param purpose
+     * @param category
      * @param name
-     * @param goal
      * @return boolean after successfully or unsuccessfully adding a user
      */
     // As of now this only adds the goal, but you can separate multiple arguments
     // by commas as we add them.
-    public String addNewGoal(String goal, String category, String name) {
+    public String addNewGoal(String purpose, String category, String name) {
 
         // makes the search Document key-pairs
         Document newGoal = new Document();
-        newGoal.append("goal", name);
+        newGoal.append("purpose", purpose);
         newGoal.append("category", category);
-        newGoal.append("name", goal);
+        newGoal.append("name", name);
         // Append new goals here
 
         try {
             goalCollection.insertOne(newGoal);
             ObjectId id = newGoal.getObjectId("_id");
-            System.err.println("Successfully added new item [goal=" + goal + ", category=" + category + " name=" + name + ']');
+            System.err.println("Successfully added new item [purpose=" + purpose + ", category=" + category + " name=" + name + ']');
             // return JSON.serialize(newItem);
             return JSON.serialize(id);
         } catch(MongoException me) {
