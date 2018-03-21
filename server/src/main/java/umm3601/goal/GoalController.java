@@ -83,6 +83,11 @@ public class GoalController {
             filterDoc = filterDoc.append("name", contentRegQuery);
         }
 
+        if (queryParams.containsKey("status")) {
+            boolean targetStatus = Boolean.parseBoolean(queryParams.get("status")[0]);
+            filterDoc = filterDoc.append("status", targetStatus);
+        }
+
         // FindIterable comes from mongo, Document comes from Gson
         FindIterable<Document> matchingGoals = goalCollection.find(filterDoc);
 
@@ -99,13 +104,14 @@ public class GoalController {
      */
     // As of now this only adds the goal, but you can separate multiple arguments
     // by commas as we add them.
-    public String addNewGoal(String purpose, String category, String name) {
+    public String addNewGoal(String purpose, String category, String name, Boolean status) {
 
         // makes the search Document key-pairs
         Document newGoal = new Document();
         newGoal.append("purpose", purpose);
         newGoal.append("category", category);
         newGoal.append("name", name);
+        newGoal.append("status", status);
         // Append new goals here
 
         try {
