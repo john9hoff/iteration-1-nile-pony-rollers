@@ -21,6 +21,7 @@ import {TrackerListService} from './trackers/tracker-list.service';
 
 import {GoalsComponent} from "./goals/goals.component";
 import {GoalsService} from "./goals/goals.service";
+import {AddGoalComponent} from "./goals/add-goal.component";
 
 import {JournalListComponent} from "./journals/journal-list.component";
 import {JournalListService} from "./journals/journal-list.service";
@@ -48,8 +49,10 @@ import {MatSelectModule} from '@angular/material/select';
         AppComponent,
         HomeComponent,
         UserListComponent,
+        GoalsComponent,
         AddUserComponent,
         AddJournalComponent,
+        AddGoalComponent,
         TrackerListComponent,
         JournalListComponent,
         ResponseComponent,
@@ -59,7 +62,6 @@ import {MatSelectModule} from '@angular/material/select';
         ResponseComponent5,
         EmergencyComponent,
         EditJournalComponent,
-        GoalsComponent
     ],
     providers: [
         UserListService,
@@ -72,15 +74,7 @@ import {MatSelectModule} from '@angular/material/select';
     entryComponents: [
         AddUserComponent,
         AddJournalComponent,
-        ResponseComponent,
-        EmergencyComponent,
-        ResponseComponent,
-        ResponseComponent2,
-        ResponseComponent3,
-        ResponseComponent4,
-        ResponseComponent5,
-        EditJournalComponent,
-        GoalsComponent,
+        AddGoalComponent,
     ],
     bootstrap: [AppComponent]
 })

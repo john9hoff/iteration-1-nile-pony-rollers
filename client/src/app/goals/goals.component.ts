@@ -3,7 +3,7 @@ import {GoalsService} from './goals.service';
 import {Goal} from './goal';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
-//import {AddGoalComponent} from './add-goal.component';
+import {AddGoalComponent} from './add-goal.component';
 
 @Component({
     selector: 'app-goals-component',
@@ -34,10 +34,10 @@ export class GoalsComponent implements OnInit {
         return goal._id['$oid'] === this.highlightedID['$oid'];
     }
 
-/*    openDialog(): void {
-        const newGoal: Goal = {_id: '', goal:'', category:'', name:''};
+    openDialog(): void {
+        const newGoal: Goal = {_id: '', purpose:'', category:'', name:''};
         const dialogRef = this.dialog.open(AddGoalComponent, {
-            width: '500px',
+            width: '300px',
             data: { goal : newGoal }
         });
 
@@ -53,7 +53,7 @@ export class GoalsComponent implements OnInit {
                     console.log('The error was ' + JSON.stringify(err));
                 });
         });
-    }*/
+    }
 
     public filterGoals(searchGoal: string, searchCategory: string, searchName: string): Goal[] {
 
