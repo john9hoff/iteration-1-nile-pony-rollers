@@ -19,6 +19,9 @@ import {AddUserComponent} from './users/add-user.component';
 import {TrackerListComponent} from './trackers/tracker-list.component';
 import {TrackerListService} from './trackers/tracker-list.service';
 
+import {GoalsComponent} from "./goals/goals.component";
+import {GoalsService} from "./goals/goals.service";
+
 import {JournalListComponent} from "./journals/journal-list.component";
 import {JournalListService} from "./journals/journal-list.service";
 import {AddJournalComponent} from './journals/add-journal.component';
@@ -55,12 +58,14 @@ import {MatSelectModule} from '@angular/material/select';
         ResponseComponent4,
         ResponseComponent5,
         EmergencyComponent,
-        EditJournalComponent
+        EditJournalComponent,
+        GoalsComponent
     ],
     providers: [
         UserListService,
         TrackerListService,
         JournalListService,
+        GoalsService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
@@ -74,8 +79,8 @@ import {MatSelectModule} from '@angular/material/select';
         ResponseComponent3,
         ResponseComponent4,
         ResponseComponent5,
-        EditJournalComponent
-
+        EditJournalComponent,
+        GoalsComponent,
     ],
     bootstrap: [AppComponent]
 })
