@@ -37,13 +37,16 @@ import {EmergencyComponent} from './home/emergency.component';
 
 import {MatSelectModule} from '@angular/material/select';
 
+import {FlexLayoutModule} from "@angular/flex-layout";
+
 @NgModule({
     imports: [
         BrowserModule,
         HttpClientModule,
         Routing,
         CustomModule,
-        MatSelectModule
+        MatSelectModule, //I don't think this is in the right place
+        FlexLayoutModule,
     ],
     declarations: [
         AppComponent,

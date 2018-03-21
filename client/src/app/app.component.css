@@ -1,30 +1,5 @@
-/*nav{
-    background-color:cyan;
-    font-size: 200%;
-    font-family:"erewhon"
-
-}*/
-
-mat-nav-list {
-    word-spacing: 50px;
-    padding-left: 100px;
-    padding-right:100px;
-    font-family:cursive;
-    background-color: whitesmoke;
-    display: block;
-}
-.move { display: inline-block; }
-
-@media (max-width: 750px) {
-    .move { display: block; }
-}
-
-body{
-    background-color:whitesmoke;
-    font-size:150%;
-    font-family:cursive;
-}
-
-.icons{
-    font-size:140%;
+.fill-remaining-space {
+    /*This fills the remaining space, by using flexbox.
+   Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
 }

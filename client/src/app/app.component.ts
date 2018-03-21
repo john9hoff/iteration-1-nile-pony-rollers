@@ -8,7 +8,7 @@ import {MatDialog} from '@angular/material';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    title = 'Mongo-Angular-Spark lab';
+    title = 'My Panda';
 
     constructor(public dialog: MatDialog) {
 

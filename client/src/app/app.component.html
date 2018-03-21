@@ -1,3 +1,4 @@
+<!--
 <body>
 <div>
     <nav mat-tab-nav-bar flex sidenavTitle="Lab 4">
@@ -25,25 +26,34 @@
     <router-outlet></router-outlet>
 </body>
 
+-->
+<body>
+<mat-toolbar color="primary">
 
+    <button mat-button routerLink="/">
+        <mat-icon>home</mat-icon>
+        {{title}}</button>
 
+    <!-- This fills the remaining space of the current row -->
+    <span class="fill-remaining-space"></span>
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <a mat-tab-link [routerLink]="['/']"  routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon class="icons">tag_faces</mat-icon>Home</a>
+        <a mat-tab-link [routerLink]="['/trackers']"  routerLinkActive="nav-active"><mat-icon class="icons">timeline</mat-icon>MoodTracker</a>
+        <a mat-tab-link [routerLink]="['/journals']"  routerLinkActive="nav-active"><mat-icon class="icons">book</mat-icon>Journals</a>
+        <a mat-tab-link [routerLink]="['/goals']"  routerLinkActive="nav-active"><mat-icon class="icons">done</mat-icon>Goals</a>
+    </div>
+    <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+    </button>
 
+</mat-toolbar>
 
-
-
-
-
-<!--<td-layout-nav >-->
-<!--<button mat-icon-button td-toolbar-content>-->
-<!--<a mat-tab-link [routerLink]="['/']"  routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon>home</mat-icon>Home</a>-->
-<!--</button>-->
-<!--&ensp;-->
-<!--<button mat-icon-button td-toolbar-content>-->
-<!--<a mat-tab-link [routerLink]="['/users']"  routerLinkActive="nav-active"><mat-icon>account_box</mat-icon>Trackers</a>-->
-<!--</button>-->
-<!--&ensp;-->
-<!--<button mat-icon-button td-toolbar-content>-->
-<!--<a mat-tab-link [routerLink]="['/trackers']"  routerLinkActive="nav-active"><mat-icon>account_box</mat-icon>Trackers</a>-->
-<!--</button>-->
-<!--<router-outlet></router-outlet>-->
-<!--</td-layout-nav>-->
+<!-- Mobile Navbar -->
+<mat-menu x-position="before" #menu="matMenu">
+    <button mat-menu-item routerLink="/trackers">Trackers</button>
+    <button mat-menu-item routerLink="/journals">Journals</button>
+    <button mat-menu-item routerLink="/goals">Goals</button>
+    <!--<button mat-menu-item>Help</button>-->
+</mat-menu>
+    <router-outlet></router-outlet>
+</body>
