@@ -72,9 +72,22 @@ import {MatSelectModule} from '@angular/material/select';
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
     entryComponents: [
+        AppComponent,
+        HomeComponent,
+        UserListComponent,
+        GoalsComponent,
         AddUserComponent,
         AddJournalComponent,
         AddGoalComponent,
+        TrackerListComponent,
+        JournalListComponent,
+        ResponseComponent,
+        ResponseComponent2,
+        ResponseComponent3,
+        ResponseComponent4,
+        ResponseComponent5,
+        EmergencyComponent,
+        EditJournalComponent,
     ],
     bootstrap: [AppComponent]
 })
