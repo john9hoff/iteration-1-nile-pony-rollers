@@ -141,25 +141,5 @@ export class GoalsComponent implements OnInit {
         this.refreshGoals();
         this.loadService();
     }
-
-    // The following code is for grid responsiveness
-    // init this var with the default number of columns
-    test: any = 3;
-
-    onResize(event) {
-        const element = event.target.innerWidth;
-        console.log(element);
-
-        if (element < 950) {
-            this.test = 2;
-        }
-
-        if (element > 950) {
-            this.test = 3;
-        }
-
-        if (element < 700) {
-            this.test = 1;
-        }
-    }
+    
 }

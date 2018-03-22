@@ -2,30 +2,36 @@
     "_id": "1",
     "purpose": "To have a more sanitary living environment.",
     "category": "Chores",
-    "name": "Wash the dishes.",
+    "name": "Wash the dishes",
     "status": false
 }, {
     "_id": "2",
-    "purpose": "To improve my relationship with my mom.",
+    "purpose": "To improve my relationship with my mom",
     "category": "Family",
     "name": "Call my mom.",
     "status": true
 }, {
     "_id": "3",
-    "purpose": "To have a better connection with my brother.",
+    "purpose": "To have a better connection with my brother",
     "category": "Family",
-    "name": "Write letter to brother.",
+    "name": "Write letter to brother",
     "status": false
 }, {
     "_id": "4",
-    "purpose": "To get some more sleep.",
-    "category": "Personal health.",
+    "purpose": "To get some more sleep",
+    "category": "Personal Health",
     "name": "Go to bed early.",
     "status": true
 }, {
     "_id": "5",
-    "purpose": "To have a safer driveway and sidewalk.",
+    "purpose": "To have a safer driveway and sidewalk",
     "category": "Chores",
     "name": "Shovel the snow.",
     "status": false
+}, {
+    "_id": "6",
+    "purpose": "To make myself more relaxed",
+    "category": "Personal Health",
+    "name": "Meditate for 5 minutes",
+    "status": true
 }]
