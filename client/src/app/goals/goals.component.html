@@ -53,8 +53,20 @@
     <div>
     <mat-card class="sub-category-grid" (window:resize)="onResize($event)">
         <mat-card-title class="your-goals-title">Your Goals</mat-card-title>
-        <mat-grid-list gutterSize="25" cols="{{test}}" rowHeight="250" >
-            <mat-grid-tile *ngFor="let goal of this.filterGoals(goalPurpose, goalCategory, goalName, goalStatus)">{{goal.purpose}}</mat-grid-tile>
+        <mat-grid-list  gutterSize="15" cols="{{test}}">
+            <mat-grid-tile
+                *ngFor="let goal of this.filterGoals(goalPurpose, goalCategory, goalName, goalStatus)">
+                <mat-card  class="goal-card">
+                    <mat-card-title class="goal-title">{{goal.name}}</mat-card-title>
+                    <mat-card-content class="goal-content">
+                        <p>Category: {{goal.category}}</p>
+                        <p>Purpose: {{goal.purpose}}</p>
+                        Status:
+                        <b *ngIf="goal.status" id="goal-complete">Complete</b>
+                        <b *ngIf="!goal.status" id="goal-incomplete">Incomplete</b>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
         </mat-grid-list>
     </mat-card>
     </div>

@@ -63,5 +63,24 @@ mat-grid-tile {
 }
 
 .sub-category-grid {
-    padding: 25px;
+    padding: 15px;
+}
+
+.goal-title {
+    text-align: center;
+}
+
+.goal-subtitle {
+    align: center;
+}
+
+#goal-complete {
+    color: green;
+}
+
+#goal-incomplete {
+    color: red;
+}
+
+.goal-card {
 }

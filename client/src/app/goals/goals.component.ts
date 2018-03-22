@@ -36,7 +36,7 @@ export class GoalsComponent implements OnInit {
     }
 
     openDialog(): void {
-        const newGoal: Goal = {_id: '', purpose:'', category:'', name:'', status: false};
+        const newGoal: Goal = {_id: '', name:'', category:'', purpose:'', status: false};
         const dialogRef = this.dialog.open(AddGoalComponent, {
             width: '300px',
             data: { goal : newGoal }
@@ -56,7 +56,8 @@ export class GoalsComponent implements OnInit {
         });
     }
 
-    public filterGoals(searchPurpose: string, searchCategory: string, searchName: string, searchStatus: string): Goal[] {
+    public filterGoals(searchPurpose: string, searchCategory: string,
+                       searchName: string, searchStatus: string): Goal[] {
 
         this.filteredGoals = this.goals;
 
@@ -143,12 +144,11 @@ export class GoalsComponent implements OnInit {
 
     // The following code is for grid responsiveness
     // init this var with the default number of columns
-    test: any = 2;
+    test: any = 3;
 
     onResize(event) {
         const element = event.target.innerWidth;
         console.log(element);
-
 
         if (element < 950) {
             this.test = 2;
@@ -158,7 +158,7 @@ export class GoalsComponent implements OnInit {
             this.test = 3;
         }
 
-        if (element < 750) {
+        if (element < 700) {
             this.test = 1;
         }
     }
