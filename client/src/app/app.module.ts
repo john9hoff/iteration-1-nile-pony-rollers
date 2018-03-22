@@ -34,6 +34,7 @@ import {ResponseComponent3} from "./home/response-3.component";
 import {ResponseComponent4} from "./home/response-4.component";
 import {ResponseComponent5} from "./home/response-5.component";
 import {EmergencyComponent} from './home/emergency.component';
+import {ResourcesComponent} from "./resources/resources.component";
 
 import {MatSelectModule} from '@angular/material/select';
 
@@ -62,6 +63,7 @@ import {MatSelectModule} from '@angular/material/select';
         ResponseComponent5,
         EmergencyComponent,
         EditJournalComponent,
+        ResourcesComponent
     ],
     providers: [
         UserListService,
