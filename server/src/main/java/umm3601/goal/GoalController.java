@@ -104,10 +104,11 @@ public class GoalController {
      */
     // As of now this only adds the goal, but you can separate multiple arguments
     // by commas as we add them.
-    public String addNewGoal(String purpose, String category, String name, Boolean status) {
+    public String addNewGoal(String id, String purpose, String category, String name, Boolean status) {
 
         // makes the search Document key-pairs
         Document newGoal = new Document();
+        newGoal.append("_id", id);
         newGoal.append("purpose", purpose);
         newGoal.append("category", category);
         newGoal.append("name", name);
@@ -116,10 +117,36 @@ public class GoalController {
 
         try {
             goalCollection.insertOne(newGoal);
-            ObjectId id = newGoal.getObjectId("_id");
-            System.err.println("Successfully added new item [purpose=" + purpose + ", category=" + category + " name=" + name + ']');
+            ObjectId id1 = newGoal.getObjectId("_id");
+            System.err.println("Successfully added new goal [purpose=" + purpose + ", category=" + category + " name=" + name + " id=" + id + ']');
             // return JSON.serialize(newItem);
-            return JSON.serialize(id);
+            return JSON.serialize(id1);
+        } catch(MongoException me) {
+            me.printStackTrace();
+            return null;
+        }
+    }
+
+    public String editGoal(String id, String purpose, String category, String name, Boolean status){
+        System.out.println("Right here again");
+        Document newGoal = new Document();
+        newGoal.append("purpose", purpose);
+        newGoal.append("category", category);
+        newGoal.append("name", name);
+        newGoal.append("status", true);
+        Document setQuery = new Document();
+        setQuery.append("$set", newGoal);
+
+        Document searchQuery = new Document().append("_id", new ObjectId(id));
+
+        System.out.println(id);
+
+        try {
+            goalCollection.insertOne(newGoal);
+            ObjectId newId = newGoal.getObjectId("_id");
+            System.err.println("Successfully edited goal [purpose=" + purpose + ", category=" + category + " name=" + name + ']');
+            // return JSON.serialize(newItem);
+            return JSON.serialize(newId);
         } catch(MongoException me) {
             me.printStackTrace();
             return null;

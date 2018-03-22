@@ -18,6 +18,7 @@ export class GoalsComponent implements OnInit {
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
+    public goalID: string;
     public goalPurpose: string;
     public goalCategory: string;
     public goalName: string;
@@ -56,9 +57,18 @@ export class GoalsComponent implements OnInit {
         });
     }
 
-/*    setToTrue() {
-        this.goalStatus = "true";
-        return goalStatus;
+/*    goalSatisfied() {
+        const updatedGoal: Goal = {_id: this.goalID, name: this.goalName, category: this.goalCategory, purpose: this.goalPurpose, status: true};
+            this.goalService.editGoal(result).subscribe(
+                editGoalResult => {
+                    this.highlightedID = editGoalResult;
+                    this.refreshGoals();
+                },
+                err => {
+                    // This should probably be turned into some sort of meaningful response.
+                    console.log('There was an error editing the journal.');
+                    console.log('The error was ' + JSON.stringify(err));
+                });
     }*/
 
     public filterGoals(searchPurpose: string, searchCategory: string,
