@@ -56,6 +56,11 @@ export class GoalsComponent implements OnInit {
         });
     }
 
+/*    setToTrue() {
+        this.goalStatus = "true";
+        return goalStatus;
+    }*/
+
     public filterGoals(searchPurpose: string, searchCategory: string,
                        searchName: string, searchStatus: string): Goal[] {
 
@@ -141,5 +146,5 @@ export class GoalsComponent implements OnInit {
         this.refreshGoals();
         this.loadService();
     }
-    
+
 }
