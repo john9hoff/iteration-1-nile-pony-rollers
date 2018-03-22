@@ -18,6 +18,9 @@
             <div class="move">
                 <button mat-raised-button color="warn" id="emergency" (click)="openDialog()"><mat-icon class="icons">local_phone</mat-icon>Emergency Contacts</button>
             </div>
+            <div class="move">
+            <a mat-tab-link [routerLink]="['/reports']"  routerLinkActive="nav-active"><mat-icon class="icons">done</mat-icon>Reports</a>
+            </div>
         </mat-nav-list>
         </div>
     </nav>
