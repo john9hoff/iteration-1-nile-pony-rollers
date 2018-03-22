@@ -14,21 +14,26 @@ import {ResponseComponent4} from "./response-4.component";
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+
     public slideIndex = 0;
     public emojis: string[] = ["./assets/grinning.png", "./assets/slightly-smiling.png", "./assets/neutral-face.png",
         "./assets/slightly-frowning-face.png", "./assets/disappointed-face.png"];
 
     public emojisString: string[] = ["Very Happy", "Happy", "Normal", "Sad", "Very Sad"];
     public image = this.emojis[this.slideIndex];
+    public emojiRating: number = -1;
 
     constructor(public trackerListService: TrackerListService, public dialog: MatDialog) {
-
     }
 
     public addEmotion(index: number): void {
 
         console.log(this.emojisString[index]);
-        const newTracker: Tracker = {_id: '', emoji: this.emojisString[index], date: ''};
+        console.log("emojiRating: " + this.emojiRating);
+        const newTracker: Tracker = {_id: '',
+            rating:this.emojiRating,
+            emoji: this.emojisString[index],
+            date: ''};
         this.trackerListService.addNewEmoji(newTracker).subscribe(
             trackers => {
             },

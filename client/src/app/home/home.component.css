@@ -30,6 +30,10 @@
 
 mat-card{padding-top:200px;}
 
+mat-slider {
+    width: 300px;
+}
+
 body {
     background-image: url("https://i.ytimg.com/vi/ZgJfXlSVDxY/maxresdefault.jpg");
 }

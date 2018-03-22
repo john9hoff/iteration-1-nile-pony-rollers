@@ -23,6 +23,7 @@
             </body>
             </body>
         </div>
+
         <div class="mood-buttons text-center">
             <button (click)="addEmotion(slideIndex); openDialog(slideIndex);">
                 <img [attr.src]="image">
@@ -31,6 +32,23 @@
 
         <a mat-raised-button type="button" class="next" (click)="plusSlides(-1)"><mat-icon>chevron_left</mat-icon></a>
         <a mat-raised-button type="button" class="previous" (click)="plusSlides(1)"><mat-icon>chevron_right</mat-icon></a>
+
+        <p>How would you rate the intensity of your feelings?</p>
+        <p>(1 means a little, 5 means extremely)</p>
+
+            <mat-slider
+            class="slider"
+            max="5"
+            min="1"
+            step="1"
+            thumb-label="thumbLabel"
+            [(ngModel)]="emojiRating"
+            (input)="emojiRating=$event.value">
+            </mat-slider>
+        <p>test end</p>
+
+
+
 
     </div>
 </body>
