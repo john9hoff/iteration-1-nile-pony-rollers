@@ -18,6 +18,7 @@ export class TrackerListComponent implements OnInit {
     // We should rename them to make that clearer.
     public trackerEmoji: string;
     public trackerTime: string;
+    public trackerRating: number;
 
 
 
@@ -33,8 +34,8 @@ export class TrackerListComponent implements OnInit {
         return tracker._id['$oid'] === this.highlightedID['$oid'];
     }
 
-    public addEmoji(newEmoji: string): void {
-        const newTracker: Tracker = {_id: '', emoji: newEmoji, date: ''};
+    public addEmoji(newEmoji: string, newRating:number): void {
+        const newTracker: Tracker = {_id: '',rating:newRating, emoji: newEmoji, date: ''};
         this.trackerListService.addNewEmoji(newTracker).subscribe(
             trackers => {
                 this.refreshTrackers();
@@ -45,7 +46,7 @@ export class TrackerListComponent implements OnInit {
         );
     }
 
-    public filterTrackers(searchEmoji: string, searchTime: string): Tracker[] {
+    public filterTrackers(searchEmoji: string, searchTime: string, searchRating:number): Tracker[] {
 
         this.filteredTrackers = this.trackers;
 
@@ -63,6 +64,13 @@ export class TrackerListComponent implements OnInit {
             this.filteredTrackers = this.filteredTrackers.filter(tracker => {
                 return !searchTime || tracker.date == searchTime;
             });
+        }
+
+        //Filter by rating
+        if (searchRating != null){
+            this.filteredTrackers = this.filteredTrackers.filter(tracker => {
+                return !searchRating || tracker.rating == searchRating;
+            })
         }
 
         return this.filteredTrackers;
@@ -83,7 +91,7 @@ export class TrackerListComponent implements OnInit {
         trackerListObservable.subscribe(
             trackers => {
                 this.trackers = trackers;
-                this.filterTrackers(this.trackerEmoji, this.trackerTime);
+                this.filterTrackers(this.trackerEmoji, this.trackerTime, this.trackerRating);
             },
             err => {
                 console.log(err);
