@@ -21,6 +21,7 @@ export class GoalsComponent implements OnInit {
     public goalPurpose: string;
     public goalCategory: string;
     public goalName: string;
+    public goalStatus: string;
 
     // The ID of the goal
     private highlightedID: {'$oid': string} = { '$oid': '' };
@@ -35,7 +36,7 @@ export class GoalsComponent implements OnInit {
     }
 
     openDialog(): void {
-        const newGoal: Goal = {_id: '', purpose:'', category:'', name:''};
+        const newGoal: Goal = {_id: '', purpose:'', category:'', name:'', status: false};
         const dialogRef = this.dialog.open(AddGoalComponent, {
             width: '300px',
             data: { goal : newGoal }
@@ -55,16 +56,16 @@ export class GoalsComponent implements OnInit {
         });
     }
 
-    public filterGoals(searchGoal: string, searchCategory: string, searchName: string): Goal[] {
+    public filterGoals(searchPurpose: string, searchCategory: string, searchName: string, searchStatus: string): Goal[] {
 
         this.filteredGoals = this.goals;
 
-        // Filter by goal
-        if (searchGoal != null) {
-            searchGoal = searchGoal.toLocaleLowerCase();
+        // Filter by purpose
+        if (searchPurpose != null) {
+            searchPurpose = searchPurpose.toLocaleLowerCase();
 
             this.filteredGoals = this.filteredGoals.filter(goal => {
-                return !searchGoal || goal.purpose.toLowerCase().indexOf(searchGoal) !== -1;
+                return !searchPurpose || goal.purpose.toLowerCase().indexOf(searchPurpose) !== -1;
             });
         }
 
@@ -86,6 +87,15 @@ export class GoalsComponent implements OnInit {
             });
         }
 
+        // Filter by status
+        if (searchStatus != null) {
+            searchStatus = searchStatus.toLocaleLowerCase();
+
+            this.filteredGoals = this.filteredGoals.filter(goal => {
+                return !searchStatus || goal.name.toLowerCase().indexOf(searchStatus) !== -1;
+            });
+        }
+
         return this.filteredGoals;
     }
 
@@ -104,7 +114,7 @@ export class GoalsComponent implements OnInit {
         goalObservable.subscribe(
             goals => {
                 this.goals = goals;
-                this.filterGoals(this.goalPurpose, this.goalCategory, this.goalName);
+                this.filterGoals(this.goalPurpose, this.goalCategory, this.goalName, this.goalStatus);
             },
             err => {
                 console.log(err);
@@ -129,5 +139,27 @@ export class GoalsComponent implements OnInit {
     ngOnInit(): void {
         this.refreshGoals();
         this.loadService();
+    }
+
+    // The following code is for grid responsiveness
+    // init this var with the default number of columns
+    test: any = 2;
+
+    onResize(event) {
+        const element = event.target.innerWidth;
+        console.log(element);
+
+
+        if (element < 950) {
+            this.test = 2;
+        }
+
+        if (element > 950) {
+            this.test = 3;
+        }
+
+        if (element < 750) {
+            this.test = 1;
+        }
     }
 }

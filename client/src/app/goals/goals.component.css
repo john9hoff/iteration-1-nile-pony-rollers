@@ -57,3 +57,11 @@
 .goal-button {
     font-size: 25px;
 }
+
+mat-grid-tile {
+    background: lightblue;
+}
+
+.sub-category-grid {
+    padding: 25px;
+}
