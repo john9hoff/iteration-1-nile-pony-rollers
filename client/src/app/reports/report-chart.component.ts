@@ -43,7 +43,8 @@ export class ReportChartComponent implements AfterViewInit {
                     // getfifteen function from above is used here to reflect 15
                     data: [ReportChartComponent.getfifteen(), 7, 12, 6, 9],
 
-                    backgroundColor: ['rgba(127,63,191,0.5)', 'rgba(63, 191, 63,.5)', '#ffff00', '#ff8000', '#cc0000'],
+                    backgroundColor: ['rgba(127,63,191,0.8)', 'rgba(63,191,63,0.8)',
+                        'rgba(248,248,63,0.8)', 'rgba(244,135,26,0.8)', 'rgb(244,26,26,0.8)'],
 
                     borderWidth: 1,
 
