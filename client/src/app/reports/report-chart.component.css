@@ -1,0 +1,13 @@
+canvas {
+    border: 1px solid black;
+    background-color: lightblue;
+}
+
+.chart-container {
+    position: relative;
+    margin: auto;
+    /* padding messes with the navbar, might want to fix?
+    padding: 3%;
+    */
+
+}

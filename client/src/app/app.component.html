@@ -1,49 +1,34 @@
 <body>
-<div>
-    <nav mat-tab-nav-bar flex sidenavTitle="Lab 4">
-        <div>
-        <mat-nav-list>
-            <div class="move">
-            <a mat-tab-link [routerLink]="['/']"  routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon class="icons">tag_faces</mat-icon>Home</a>
-            </div >
-            <div class="move">
-            <a mat-tab-link [routerLink]="['/trackers']"  routerLinkActive="nav-active"><mat-icon class="icons">timeline</mat-icon>MoodTracker</a>
-            </div>
-            <div class="move">
-            <a mat-tab-link [routerLink]="['/journals']"  routerLinkActive="nav-active"><mat-icon class="icons">book</mat-icon>Journals</a>
-            </div>
-            <div class="move">
-                <a mat-tab-link [routerLink]="['/goals']"  routerLinkActive="nav-active"><mat-icon class="icons">done</mat-icon>Goals</a>
-            </div>
-            <div class="move">
-                <button mat-raised-button color="warn" id="emergency" (click)="openDialog()"><mat-icon class="icons">local_phone</mat-icon>Emergency Contacts</button>
-            </div>
-        </mat-nav-list>
-        </div>
-    </nav>
-</div>
+<mat-toolbar color="primary">
+
+    <!-- Web Navbar -->
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <button mat-button routerLink="/" class="web-title">
+            {{title}}</button>
+        <!--<a mat-tab-link [routerLink]="['/']"  routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon class="icons">tag_faces</mat-icon>Home</a>-->
+        <ul class="nav-things">
+            <li><a  [routerLink]="['/trackers']"  routerLinkActive="nav-active">MoodTracker</a></li>
+            <li><a  [routerLink]="['/journals']"  routerLinkActive="nav-active">Journals</a></li>
+            <li><a  [routerLink]="['/goals']"  routerLinkActive="nav-active">Goals</a></li>
+            <li><a  [routerLink]="['/reports']"  routerLinkActive="nav-active">Reports</a></li>
+        </ul>
+    </div>
+    <button mat-button fxHide="false"
+            fxHide.gt-sm routerLink="/" class="web-title">
+        <mat-icon>home</mat-icon>
+    </button>
+    <button mat-button [mat-menu-trigger-for]="menu"
+            fxHide="false" fxHide.gt-sm class="menu-button">
+        <mat-icon>menu</mat-icon>
+    </button>
+</mat-toolbar>
+
+    <!-- Mobile Navbar -->
+    <mat-menu x-position="before" #menu="matMenu">
+        <button mat-menu-item routerLink="/trackers">Trackers</button>
+        <button mat-menu-item routerLink="/journals">Journals</button>
+        <button mat-menu-item routerLink="/goals">Goals</button>
+        <button mat-menu-item routerLink="/reports">Reports</button>
+    </mat-menu>
     <router-outlet></router-outlet>
 </body>
-
-
-
-
-
-
-
-
-
-<!--<td-layout-nav >-->
-<!--<button mat-icon-button td-toolbar-content>-->
-<!--<a mat-tab-link [routerLink]="['/']"  routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon>home</mat-icon>Home</a>-->
-<!--</button>-->
-<!--&ensp;-->
-<!--<button mat-icon-button td-toolbar-content>-->
-<!--<a mat-tab-link [routerLink]="['/users']"  routerLinkActive="nav-active"><mat-icon>account_box</mat-icon>Trackers</a>-->
-<!--</button>-->
-<!--&ensp;-->
-<!--<button mat-icon-button td-toolbar-content>-->
-<!--<a mat-tab-link [routerLink]="['/trackers']"  routerLinkActive="nav-active"><mat-icon>account_box</mat-icon>Trackers</a>-->
-<!--</button>-->
-<!--<router-outlet></router-outlet>-->
-<!--</td-layout-nav>-->

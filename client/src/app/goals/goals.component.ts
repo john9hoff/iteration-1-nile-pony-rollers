@@ -61,7 +61,6 @@ export class GoalsComponent implements OnInit {
     }
 
     goalSatisfied(_id: string, thePurpose: string, theCategory: string, theName) {
-        //const updatedGoal: Goal = {_id: this.goalID, name: this.goalName, category: this.goalCategory, purpose: this.goalPurpose, status: true};
         const updatedGoal: Goal = {_id: _id, purpose: thePurpose, category: theCategory, name: theName, status: true};
         this.goalService.editGoal(updatedGoal).subscribe(
                 editGoalResult => {
@@ -69,11 +68,9 @@ export class GoalsComponent implements OnInit {
                     this.refreshGoals();
                 },
                 err => {
-                    // This should probably be turned into some sort of meaningful response.
-                    console.log('There was an error editing the journal.');
+                    console.log('There was an error editing the goal.');
                     console.log('The error was ' + JSON.stringify(err));
                 });
-
     }
 
     public filterGoals(searchPurpose: string, searchCategory: string,

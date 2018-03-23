@@ -37,13 +37,15 @@ import {EmergencyComponent} from './home/emergency.component';
 
 import {MatSelectModule} from '@angular/material/select';
 
+import {ReportChartComponent} from './reports/report-chart.component'
+
 @NgModule({
     imports: [
         BrowserModule,
         HttpClientModule,
         Routing,
         CustomModule,
-        MatSelectModule
+        MatSelectModule,
     ],
     declarations: [
         AppComponent,
@@ -62,6 +64,7 @@ import {MatSelectModule} from '@angular/material/select';
         ResponseComponent5,
         EmergencyComponent,
         EditJournalComponent,
+        ReportChartComponent
     ],
     providers: [
         UserListService,
@@ -88,6 +91,7 @@ import {MatSelectModule} from '@angular/material/select';
         ResponseComponent5,
         EmergencyComponent,
         EditJournalComponent,
+        ReportChartComponent
     ],
     bootstrap: [AppComponent]
 })
