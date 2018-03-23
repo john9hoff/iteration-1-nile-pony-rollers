@@ -94,7 +94,7 @@ import {ReportChartComponent} from "./reports/report-chart.component";
         ResponseComponent5,
         EmergencyComponent,
         EditJournalComponent,
-        ReportChartComponent,
+        ReportChartComponent
     ],
     bootstrap: [AppComponent]
 })
