@@ -37,9 +37,7 @@ import {EmergencyComponent} from './home/emergency.component';
 
 import {MatSelectModule} from '@angular/material/select';
 
-import {FlexLayoutModule} from "@angular/flex-layout";
-
-import {ReportChartComponent} from "./reports/report-chart.component";
+import {ReportChartComponent} from './reports/report-chart.component'
 
 @NgModule({
     imports: [
@@ -47,8 +45,7 @@ import {ReportChartComponent} from "./reports/report-chart.component";
         HttpClientModule,
         Routing,
         CustomModule,
-        MatSelectModule, //I don't think this is in the right place
-        FlexLayoutModule,
+        MatSelectModule,
     ],
     declarations: [
         AppComponent,
