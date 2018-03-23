@@ -8,7 +8,7 @@ import {MatDialog} from '@angular/material';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    title = 'My Panda';
+    title = 'Home';
 
     constructor(public dialog: MatDialog) {
 

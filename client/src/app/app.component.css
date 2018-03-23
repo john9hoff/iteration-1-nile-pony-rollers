@@ -1,5 +1,35 @@
-.fill-remaining-space {
-    /*This fills the remaining space, by using flexbox.
-   Every toolbar row uses a flexbox row layout. */
-    flex: 1 1 auto;
+.web-title {
+    font-size: 24px;
+    vertical-align: bottom;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: transparent;
+    text-align: center;
+}
+
+li {
+    display: inline-block;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 25px 50px;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+li a:hover {
+    /* original color was 111*/
+    background-color: #4CAF50;
+}
+
+.active {
+    background-color: #4CAF50;
 }

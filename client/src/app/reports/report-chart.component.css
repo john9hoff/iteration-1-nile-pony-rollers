@@ -6,6 +6,8 @@ canvas {
 .chart-container {
     position: relative;
     margin: auto;
+    /* padding messes with the navbar, might want to fix?
     padding: 3%;
+    */
 
 }
