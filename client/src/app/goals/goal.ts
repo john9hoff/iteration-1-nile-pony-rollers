@@ -3,4 +3,5 @@ export interface Goal {
     purpose: string;
     category: string;
     name: string;
+    status: boolean;
 }
