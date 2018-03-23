@@ -39,6 +39,8 @@ import {MatSelectModule} from '@angular/material/select';
 
 import {FlexLayoutModule} from "@angular/flex-layout";
 
+import {ReportChartComponent} from "./reports/report-chart.component";
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -65,6 +67,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         ResponseComponent5,
         EmergencyComponent,
         EditJournalComponent,
+        ReportChartComponent
     ],
     providers: [
         UserListService,
@@ -91,6 +94,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         ResponseComponent5,
         EmergencyComponent,
         EditJournalComponent,
+        ReportChartComponent,
     ],
     bootstrap: [AppComponent]
 })

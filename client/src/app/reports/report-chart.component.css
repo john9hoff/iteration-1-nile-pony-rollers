@@ -1,0 +1,11 @@
+canvas {
+    border: 1px solid black;
+    background-color: lightblue;
+}
+
+.chart-container {
+    position: relative;
+    margin: auto;
+    padding: 3%;
+
+}
