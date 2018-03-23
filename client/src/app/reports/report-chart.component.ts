@@ -11,6 +11,8 @@ export class ReportChartComponent implements AfterViewInit {
     constructor() {
     }
 
+    // dummy function for figuring out how to reflect functions return values
+    // for each bar/emotion
     public static getfifteen(){
         return 15;
     }
@@ -37,7 +39,7 @@ export class ReportChartComponent implements AfterViewInit {
                     label: 'Total times logged',
 
                     // dummy data, this should be where our actual data should be
-                    data: [ReportChartComponent.getfifteen(), 7, 2, 6, 9],
+                    data: [ReportChartComponent.getfifteen(), 7, 12, 6, 9],
 
                     backgroundColor: ['#6600cc', '#33cc00', '#ffff00', '#ff8000', '#cc0000'],
 
@@ -86,5 +88,39 @@ export class ReportChartComponent implements AfterViewInit {
                 display: true
             }
         });
+
+        // Defining a plugin to provide data labels
+        Chart.plugins.register({
+            afterDatasetsDraw: function(chart) {
+                let ctx = chart.ctx;
+
+                chart.data.datasets.forEach(function (dataset, i) {
+                    let meta = chart.getDatasetMeta(i);
+                    if (!meta.hidden) {
+                        meta.data.forEach(function(element, index) {
+
+                            // properties for text above each bar
+                            ctx.fillStyle = 'black';
+                            let fontSize = 16;
+                            let fontStyle = 'normal';
+                            let fontFamily = 'Helvetica Neue';
+                            ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+
+                            // Just naively convert to string for now
+                            let dataString = dataset.data[index].toString();
+
+                            // alignment properties for the numbers above each bar
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'middle';
+
+                            let padding = 5;
+                            let position = element.tooltipPosition();
+                            ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+                        });
+                    }
+                });
+            }
+        });
+
     }
 }
