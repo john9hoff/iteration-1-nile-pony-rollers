@@ -63,7 +63,7 @@ import {MatSelectModule} from '@angular/material/select';
         ResponseComponent5,
         EmergencyComponent,
         EditJournalComponent,
-        ResourcesComponent
+        ResourcesComponent,
     ],
     providers: [
         UserListService,

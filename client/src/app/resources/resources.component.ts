@@ -11,47 +11,42 @@ import {AddResourcesComponent} from "./add-resources.component";
     templateUrl: 'resources.component.html',
     styleUrls: ['./resources.component.css'],
 })
-export class ResourcesComponent {
-    public title: string;
 
-    constructor() {
-        this.title = 'Resources';
-    }
-}
-export class ResourceComponent implements OnInit {
+
+export class ResourcesComponent implements OnInit {
     // These are public so that tests can reference them (.spec.ts)
-    public resourcess: resources[];
-    public filteredResources: resources[];
+    public resource: resources[];
+    public filteredGoals: resources[];
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
-    public resourcePurpose: string;
-    public resourcePhone: string;
-    public resourceName: string;
+    public goalPurpose: string;
+    public goalCategory: string;
+    public goalName: string;
 
     // The ID of the goal
     private highlightedID: {'$oid': string} = { '$oid': '' };
 
-    // Inject the GoalsService into this component.
-    constructor(public resourceService: ResourcesService, public dialog: MatDialog) {
+    // Inject the ResourcesService into this component.
+    constructor(public goalService: ResourcesService, public dialog: MatDialog) {
 
     }
 
-    isHighlighted(resource: resources): boolean {
-        return resource.resourceName['$oid'] === this.highlightedID['$oid'];
+    isHighlighted(goal: resources): boolean {
+        return goal._id['$oid'] === this.highlightedID['$oid'];
     }
 
     openDialog(): void {
-        const newGoal: resources = {resourceName: '', resourceBody:'', resourcePhone:'', resourcesUrl:''};
+        const newGoal: resources = {_id: '', purpose:'', category:'', name:''};
         const dialogRef = this.dialog.open(AddResourcesComponent, {
             width: '300px',
             data: { goal : newGoal }
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            this.resourceService.addNewresource(result).subscribe(
-                addResourceResult => {
-                    this.highlightedID = addResourceResult;
+            this.goalService.addNewGoal(result).subscribe(
+                addGoalResult => {
+                    this.highlightedID = addGoalResult;
                     this.refreshGoals();
                 },
                 err => {
@@ -62,9 +57,9 @@ export class ResourceComponent implements OnInit {
         });
     }
 
-    /**public filterresources(searchresources: string, searchCategory: string, searchName: string): resources[] {
+    public filterGoals(searchGoal: string, searchCategory: string, searchName: string): resources[] {
 
-        this.filteredGoals = this.goals;
+        this.filteredGoals = this.resource;
 
         // Filter by goal
         if (searchGoal != null) {
@@ -80,7 +75,7 @@ export class ResourceComponent implements OnInit {
             searchCategory = searchCategory.toLocaleLowerCase();
 
             this.filteredGoals = this.filteredGoals.filter(goal => {
-                return !searchCategory || goal.category.toLowerCase().indexOf(searchCategory) !== -1;
+                return !searchCategory || resource.category.toLowerCase().indexOf(searchCategory) !== -1;
             });
         }
 
@@ -96,11 +91,17 @@ export class ResourceComponent implements OnInit {
         return this.filteredGoals;
     }
 
-
-    refreshGoals(): Observable<Goal[]> {
-
-
-        const goalObservable: Observable<Goal[]> = this.goalService.getGoals();
+    /**
+     * Starts an asynchronous operation to update the goals list
+     *
+     */
+    refreshGoals(): Observable<resources[]> {
+        // Get Goals returns an Observable, basically a "promise" that
+        // we will get the data from the server.
+        //
+        // Subscribe waits until the data is fully downloaded, then
+        // performs an action on it (the first lambda)
+        const goalObservable: Observable<resources[]> = this.goalService.getGoals();
         goalObservable.subscribe(
             goals => {
                 this.goals = goals;
@@ -110,13 +111,14 @@ export class ResourceComponent implements OnInit {
                 console.log(err);
             });
         return goalObservable;
-    } */
+    }
 
-    /*loadService(): void {
-        this.resourceService.getresources(this.resourcePhone).subscribe(
-            resource => {
-                this.resourcess = resource;
-                this.filteredresource = this.goals;
+
+    loadService(): void {
+        this.goalService.getGoals(this.goalCategory).subscribe(
+            goals => {
+                this.goals = goals;
+                this.filteredGoals = this.goals;
             },
             err => {
                 console.log(err);
@@ -129,4 +131,4 @@ export class ResourceComponent implements OnInit {
         this.refreshGoals();
         this.loadService();
     }
-}*/
+}
