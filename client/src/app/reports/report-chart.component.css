@@ -6,5 +6,6 @@ canvas {
 .chart-container {
     position: relative;
     margin: auto;
-    padding: 1%;
+    padding: 3%;
+
 }

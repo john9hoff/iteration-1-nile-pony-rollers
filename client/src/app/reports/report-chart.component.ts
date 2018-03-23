@@ -75,8 +75,8 @@ export class ReportChartComponent implements AfterViewInit {
                     padding: {
                         // commented out because it doesn't scale well
                         //top: 100,
-                        //left: 100,
-                        //right: 100,
+                       // left: 400,
+                       // right: 400,
                     }
                 },
                 toolTips: {
