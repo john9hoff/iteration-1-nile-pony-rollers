@@ -22,7 +22,7 @@ export class ReportChartComponent implements AfterViewInit {
 
         Chart.defaults.global.defaultFontFamily = 'lato';
         Chart.defaults.global.defaultFontColor = 'black';
-        //Chart.defaults.global.defaultFontSize = 18;
+        Chart.defaults.global.defaultFontSize = 18;
 
         let myChart = new Chart(this.ctx, {
             type: 'horizontalBar',
@@ -63,11 +63,15 @@ export class ReportChartComponent implements AfterViewInit {
                 },
                 layout: {
                     // stuff can go here
+                    padding: {
+                        left: 100,
+                        right: 100,
+                    }
                 },
                 toolTips: {
                     enabled: true,
                 },
-                responsive: false,
+                responsive: true,
                 display: true
             }
         });
