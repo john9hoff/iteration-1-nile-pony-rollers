@@ -4,6 +4,9 @@ import {Goal} from './goal';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
 import {AddGoalComponent} from './add-goal.component';
+/*
+import {MatButton} from '@angular/material';
+*/
 
 @Component({
     selector: 'app-goals-component',
@@ -28,7 +31,7 @@ export class GoalsComponent implements OnInit {
     private highlightedID: {'$oid': string} = { '$oid': '' };
 
     // Inject the GoalsService into this component.
-    constructor(public goalService: GoalsService, public dialog: MatDialog) {
+    constructor(public goalService: GoalsService, public dialog: MatDialog/*, public button: MatButton*/) {
 
     }
 
@@ -57,9 +60,9 @@ export class GoalsComponent implements OnInit {
         });
     }
 
-/*    goalSatisfied() {
+    goalSatisfied() {
         const updatedGoal: Goal = {_id: this.goalID, name: this.goalName, category: this.goalCategory, purpose: this.goalPurpose, status: true};
-            this.goalService.editGoal(result).subscribe(
+        this.goalService.editGoal(updatedGoal).subscribe(
                 editGoalResult => {
                     this.highlightedID = editGoalResult;
                     this.refreshGoals();
@@ -69,7 +72,8 @@ export class GoalsComponent implements OnInit {
                     console.log('There was an error editing the journal.');
                     console.log('The error was ' + JSON.stringify(err));
                 });
-    }*/
+
+    }
 
     public filterGoals(searchPurpose: string, searchCategory: string,
                        searchName: string, searchStatus: string): Goal[] {
