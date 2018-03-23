@@ -38,10 +38,12 @@ export class ReportChartComponent implements AfterViewInit {
                 datasets: [{
                     label: 'Total times logged',
 
+                    /*fill: false,*/
                     // dummy data, this should be where our actual data should be
+                    // getfifteen function from above is used here to reflect 15
                     data: [ReportChartComponent.getfifteen(), 7, 12, 6, 9],
 
-                    backgroundColor: ['#6600cc', '#33cc00', '#ffff00', '#ff8000', '#cc0000'],
+                    backgroundColor: ['rgba(127,63,191,0.5)', 'rgba(63, 191, 63,.5)', '#ffff00', '#ff8000', '#cc0000'],
 
                     borderWidth: 1,
 
