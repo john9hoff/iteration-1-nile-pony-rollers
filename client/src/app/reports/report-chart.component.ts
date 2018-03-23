@@ -11,6 +11,10 @@ export class ReportChartComponent implements AfterViewInit {
     constructor() {
     }
 
+    public static getfifteen(){
+        return 15;
+    }
+
     canvas: any;
     ctx: any;
 
@@ -19,23 +23,23 @@ export class ReportChartComponent implements AfterViewInit {
         this.ctx = this.canvas.getContext('2d');
 
         //global options
-
         Chart.defaults.global.defaultFontFamily = 'lato';
         Chart.defaults.global.defaultFontColor = 'black';
         Chart.defaults.global.defaultFontSize = 18;
 
         let myChart = new Chart(this.ctx, {
-            type: 'horizontalBar',
+            type: 'bar',
 
             data: {
                 labels: ['Radiant', 'Happy', 'Meh', 'Down', 'Sad'],
 
                 datasets: [{
-                    label: 'Total Emotions Logged',
+                    label: 'Total times logged',
 
-                    data: [5, 7, 2, 6, 9],
+                    // dummy data, this should be where our actual data should be
+                    data: [ReportChartComponent.getfifteen(), 7, 2, 6, 9],
 
-                    backgroundColor: ['blue', 'green', 'yellow', 'orange', 'red'],
+                    backgroundColor: ['#6600cc', '#33cc00', '#ffff00', '#ff8000', '#cc0000'],
 
                     borderWidth: 1,
 
@@ -45,27 +49,34 @@ export class ReportChartComponent implements AfterViewInit {
                 }]
             },
             options: {
+                maintainAspectRatio: true,
                 scales: {
-                    xAxes: [{
+                    yAxes: [{
                         ticks: {
                             beginAtZero: true,
-                        }
+                        },
+                        gridLines: {
+                            display: true,
+                            color: 'black',
+                        },
+
                     }]
                 },
                 title: {
                     display: true,
                     text: 'Emotion Graph',
-                    fontSize: 30,
+                    fontSize: 24,
                 },
                 legend: {
                     position: 'bottom',
                     display: false,
                 },
                 layout: {
-                    // stuff can go here
                     padding: {
-                        left: 100,
-                        right: 100,
+                        // commented out because it doesn't scale well
+                        //top: 100,
+                        //left: 100,
+                        //right: 100,
                     }
                 },
                 toolTips: {
