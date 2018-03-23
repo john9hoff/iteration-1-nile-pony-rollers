@@ -12,7 +12,6 @@ import umm3601.journal.JournalController;
 import umm3601.journal.JournalRequestHandler;
 import umm3601.goal.GoalController;
 import umm3601.goal.GoalRequestHandler;
-
 import java.io.IOException;
 
 
@@ -108,6 +107,7 @@ public class Server {
         get("api/goals", goalRequestHandler::getGoals);
         get("api/goals/:id", goalRequestHandler::getGoalJSON);
         post("api/goals/new", goalRequestHandler::addNewGoal);
+        post("api/goals/edit", goalRequestHandler::editGoal);
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.

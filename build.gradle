@@ -28,6 +28,11 @@ task seedTrackerData(type: Exec) {
     args = ["-d", "dev", "-c", "trackers", "--file", "trackers.seed.json", "--jsonArray"]
 }
 
+task seedGoalData(type: Exec) {
+    executable = "mongoimport"
+    args = ["-d", "dev", "-c", "goals", "--file", "goals.seed.json", "--jsonArray"]
+}
+
 task seedMongoDB {
     group = "application"
 }
@@ -36,3 +41,4 @@ seedMongoDB.dependsOn(seedToDoData)
 seedMongoDB.dependsOn(seedUserData)
 seedMongoDB.dependsOn(seedJournalData)
 seedUserData.dependsOn(seedTrackerData)
+seedUserData.dependsOn(seedGoalData)
