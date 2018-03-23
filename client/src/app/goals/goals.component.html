@@ -34,8 +34,7 @@
                     <button mat-raised-button class="button delete-button">
                         <mat-icon>delete</mat-icon>
                     </button>
-                    <!--(click)="goalSatisfied()"-->
-                    <button mat-raised-button class="button complete-button" (click)="goalSatisfied()">
+                    <button mat-raised-button class="button complete-button" (click)="goalSatisfied(goal._id['$oid'], goal.purpose, goal.category, goal.name)">
                         <mat-icon>done</mat-icon>
                     </button>
                 </div>

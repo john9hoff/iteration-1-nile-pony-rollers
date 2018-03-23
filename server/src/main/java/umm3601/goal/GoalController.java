@@ -143,7 +143,7 @@ public class GoalController {
         try {
             goalCollection.updateOne(searchQuery, setQuery);
             ObjectId id1 = searchQuery.getObjectId("_id");
-            System.err.println("Successfully updated journal [_id=" + id1 + ", purpose=" + purpose +
+            System.err.println("Successfully updated goal [_id=" + id1 + ", purpose=" + purpose +
                 ", category=" + category + ", name=" + name + ", status=" + status + ']');
             return JSON.serialize(id1);
         } catch(MongoException me) {

@@ -60,8 +60,9 @@ export class GoalsComponent implements OnInit {
         });
     }
 
-    goalSatisfied() {
-        const updatedGoal: Goal = {_id: this.goalID, name: this.goalName, category: this.goalCategory, purpose: this.goalPurpose, status: true};
+    goalSatisfied(_id: string, thePurpose: string, theCategory: string, theName) {
+        //const updatedGoal: Goal = {_id: this.goalID, name: this.goalName, category: this.goalCategory, purpose: this.goalPurpose, status: true};
+        const updatedGoal: Goal = {_id: _id, purpose: thePurpose, category: theCategory, name: theName, status: true};
         this.goalService.editGoal(updatedGoal).subscribe(
                 editGoalResult => {
                     this.highlightedID = editGoalResult;
