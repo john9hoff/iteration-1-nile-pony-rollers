@@ -2,14 +2,28 @@ package umm3601;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.util.JSON;
+import org.bson.Document;
 import spark.Request;
 import spark.Response;
+import spark.Route;
 import umm3601.user.UserController;
 import umm3601.user.UserRequestHandler;
 import umm3601.tracker.TrackerController;
 import umm3601.tracker.TrackerRequestHandler;
 import umm3601.journal.JournalController;
 import umm3601.journal.JournalRequestHandler;
+import umm3601.Authentication.*;
+
+import java.io.*;
+import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
+import java.util.Map;
+import java.util.Properties;
+
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.http.Part;
 
 import java.io.IOException;
 
@@ -21,10 +35,14 @@ public class Server {
     private static final String userDatabaseName = "dev";
     private static final String trackerDatabaseName = "dev";
     private static final String journalDatabaseName = "dev";
+    private static String clientId;
+    private static String clientSecret;
+    private static  String publicURL;
+    private static String callbackURL;
 
     private static final int serverPort = 4567;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
 
         MongoClient mongoClient = new MongoClient();
         MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
@@ -46,6 +64,8 @@ public class Server {
 
         // Specify where assets like images will be "stored"
         staticFiles.location("/public");
+
+        Auth auth = new Auth(clientId, clientSecret, callbackURL);
 
         options("/*", (request, response) -> {
 
@@ -70,6 +90,86 @@ public class Server {
 
         // Redirects for the "home" page
         redirect.get("", "/");
+
+        Route notFoundRoute = (req, res) -> {
+            res.type("text");
+            res.status(404);
+            return "Sorry, we couldn't find that!";
+        };
+
+        get("callback", (req, res) ->{
+            Map<String, String[]> params = req.queryMap().toMap();
+            String[] states = params.get("state");
+            String[] codes = params.get("code");
+            String[] errors = params.get("error");
+            if (null == states) {
+                // we REQUIRE that we be passed a state
+                halt(400);
+                return ""; // never reached
+            }
+            if (null == codes ) {
+                if (null == errors) {
+                    // we don't have codes, but we don't have an error either, so this a garbage request
+                    halt(400);
+                    return ""; // never reached
+                }
+                else if ("access_denied".equals(errors[0])) {
+                    // the user clicked "deny", so send them to the visitor page
+                    res.redirect(publicURL);
+                    return ""; // send an empty body back on redirect
+                }
+                else {
+                    // an unknown error was passed to us, so we halt
+                    halt(400);
+                    return ""; // not reached
+                }
+            }
+            String state = states[0];
+            String code = codes[0];
+            try {
+                String originatingURL = auth.verifyCallBack(state, code);
+                if (null != originatingURL) {
+                    Cookie c = auth.getCookie();
+                    res.cookie(c.name, c.value, c.max_age);
+                    res.redirect(originatingURL);
+                    System.out.println("good");
+                    return ""; // not reached
+                } else {
+                    System.out.println("bad");
+                    res.status(403);
+                    return "?????";
+                }
+            } catch (UnauthorizedUserException e) {
+                res.redirect(publicURL + "/admin/incorrectAccount");
+                return ""; // not reached
+            } catch (ExpiredTokenException e) {
+                // send the user to a page to tell them to login faster
+                res.redirect(publicURL + "/admin/slowLogin");
+                return ""; // send empty body on redirect
+            }
+        });
+
+        get("api/check-authorization", (req, res) -> {
+            res.type("application/json");
+            res.header("Cache-Control","no-cache, no-store, must-revalidate");
+            String cookie = req.cookie("ddg");
+            Document returnDoc = new Document();
+            returnDoc.append("authorized", auth.authorized(cookie));
+            return JSON.serialize(returnDoc);
+        });
+
+        get("api/authorize", (req,res) -> {
+            String originatingURLs[] = req.queryMap().toMap().get("originatingURL");
+            String originatingURL;
+            if (originatingURLs == null) {
+                originatingURL = publicURL;
+            } else {
+                originatingURL = originatingURLs[0];
+            }
+            res.redirect(auth.getAuthURL(originatingURL));
+            // I think we could return an arbitrary value since the redirect prevents this from being used
+            return res;
+        });
 
         /// User Endpoints ///////////////////////////
         /////////////////////////////////////////////
