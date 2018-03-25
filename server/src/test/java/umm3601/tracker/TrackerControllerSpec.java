@@ -80,11 +80,30 @@ public class TrackerControllerSpec
     public void getAllEmojis() {
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = trackerController.getTrackers(emptyMap);
+
         BsonArray docs = parseJsonArray(jsonResult);
 
         assertEquals("Should be 4 trackers", 4, docs.size());
 
     }
+    @Test
+    public void getAllReportsByEmail() {
+        Map<String, String[]> argMap = new HashMap<>();
+        argMap.put("email", new String[] { "smiling" });
+        String jsonResult = trackerController.getTrackers(argMap);
+        BsonArray docs = parseJsonArray(jsonResult);
+
+        assertEquals("Should be 1 tracker", 1, docs.size());
+        List<String> emojis = docs
+            .stream()
+            .map(TrackerControllerSpec::getEmoji)
+            .sorted()
+            .collect(Collectors.toList());
+        List<String> expectedEmojis = Arrays.asList("smiling");
+        assertEquals("Emojis should match", expectedEmojis, emojis);
+
+    }
+
 
     @Test
     public void getSmilingTrackers() {
