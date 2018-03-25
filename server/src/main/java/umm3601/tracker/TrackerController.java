@@ -102,17 +102,19 @@ public class TrackerController {
      * @param emoji
      * @return boolean after successfully or unsuccessfully adding a tracker
      */
-    public String addNewTracker(String emoji) {
+    public String addNewTracker(String emoji, int rating) {
 
         Document newTracker = new Document();
         newTracker.append("emoji", emoji);
+        newTracker.append("rating",rating);
         Date now = new Date();
         newTracker.append("date", now.toString());
+
 
         try {
             trackerCollection.insertOne(newTracker);
             ObjectId id = newTracker.getObjectId("_id");
-            System.err.println("Successfully added new tracker [_id=" + id + ", emoji=" + emoji + ", date=" + now.toString() + ']');
+            System.err.println("Successfully added new tracker [_id=" + id + ", emoji=" + emoji + ", date=" + now.toString() + "rating = " + rating +']');
             // return JSON.serialize(newTracker);
             return JSON.serialize(id);
         } catch(MongoException me) {

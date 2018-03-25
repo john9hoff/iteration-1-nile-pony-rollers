@@ -7,6 +7,7 @@ import {ResponseComponent2} from "./response-2.component";
 import {ResponseComponent3} from "./response-3.component";
 import {ResponseComponent5} from "./response-5.component";
 import {ResponseComponent4} from "./response-4.component";
+import {ResponseThanksComponent} from "./responseThanks.component";
 
 @Component({
     selector: 'app-home-list-component',
@@ -22,17 +23,18 @@ export class HomeComponent {
     public emojisString: string[] = ["Very Happy", "Happy", "Normal", "Sad", "Very Sad"];
     public image = this.emojis[this.slideIndex];
     public emojiRating: number = -1;
+    thumbLabel = true;
 
     constructor(public trackerListService: TrackerListService, public dialog: MatDialog) {
     }
 
-    public addEmotion(index: number): void {
+    public addEmotion(emojiIndex: number): void {
 
-        console.log(this.emojisString[index]);
+        console.log("emojiString:"+ this.emojisString[emojiIndex]);
         console.log("emojiRating: " + this.emojiRating);
         const newTracker: Tracker = {_id: '',
             rating:this.emojiRating,
-            emoji: this.emojisString[index],
+            emoji: this.emojisString[emojiIndex],
             date: ''};
         this.trackerListService.addNewEmoji(newTracker).subscribe(
             trackers => {
@@ -42,6 +44,7 @@ export class HomeComponent {
             }
         );
     }
+
 
     public plusSlides(n: number): void{
         this.slideIndex = this.slideIndex + n;
@@ -54,6 +57,13 @@ export class HomeComponent {
         console.log(this.slideIndex + ' index');
         console.log(this.image);
         this.image = this.emojis[this.slideIndex];
+    }
+
+    openThanks():void{
+        const dialogRef = this.dialog.open(ResponseThanksComponent,{
+            width: '855px',
+            height: '485px'
+        })
     }
 
     openDialog(n: number): void {

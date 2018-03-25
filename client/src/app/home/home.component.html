@@ -27,7 +27,7 @@
         </div>
 
         <div class="mood-buttons text-center">
-            <button (click)="addEmotion(slideIndex); openDialog(slideIndex);">
+            <button >
                 <img [attr.src]="image">
             </button>
         </div>
@@ -48,7 +48,15 @@
             (input)="emojiRating=$event.value">
             </mat-slider>
 
+        <div>
+            <button type="button" id="addEmotionWithIntensity" (click)="addEmotion(slideIndex); openThanks();">
+            submit
+            </button>
 
+            <button type="button" id="thanks" (click)="openDialog(slideIndex);">
+                relaxing videos
+            </button>
+        </div>
 
 
 

@@ -85,9 +85,10 @@ public class TrackerRequestHandler {
                     //For some reason age is a string right now, caused by angular.
                     //This is a problem and should not be this way but here ya go
                     String date = dbO.getString("date");
+                    int rating = dbO.getInt("rating");
 
-                    System.err.println("Adding new tracker [emoji=" + emoji + ", date=" + date.toString() + ']');
-                    return trackerController.addNewTracker(emoji).toString();
+                    System.err.println("Adding new tracker [emoji=" + emoji + ", date=" + date.toString() + " " + "rating = " + rating + ']');
+                    return trackerController.addNewTracker(emoji, rating).toString();
                 }
                 catch(NullPointerException e)
                 {

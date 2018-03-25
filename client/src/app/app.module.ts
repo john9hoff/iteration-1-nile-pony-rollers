@@ -33,6 +33,7 @@ import {ResponseComponent2} from "./home/response-2.component";
 import {ResponseComponent3} from "./home/response-3.component";
 import {ResponseComponent4} from "./home/response-4.component";
 import {ResponseComponent5} from "./home/response-5.component";
+import {ResponseThanksComponent} from "./home/responseThanks.component";
 import {EmergencyComponent} from './home/emergency.component';
 
 import {MatSelectModule} from '@angular/material/select';
@@ -62,6 +63,7 @@ import {ReportChartComponent} from './reports/report-chart.component'
         ResponseComponent3,
         ResponseComponent4,
         ResponseComponent5,
+        ResponseThanksComponent,
         EmergencyComponent,
         EditJournalComponent,
         ReportChartComponent
@@ -91,7 +93,8 @@ import {ReportChartComponent} from './reports/report-chart.component'
         ResponseComponent5,
         EmergencyComponent,
         EditJournalComponent,
-        ReportChartComponent
+        ReportChartComponent,
+        ResponseThanksComponent
     ],
     bootstrap: [AppComponent]
 })

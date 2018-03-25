@@ -6,10 +6,7 @@ import { CovalentLayoutModule, CovalentStepsModule, CovalentCommonModule /*, any
 import {
     MatListModule, MatButtonModule, MatCardModule, MatIconModule,
     MatInputModule, MatMenuModule, MatSidenavModule, MatToolbarModule,
-
-    MatExpansionModule, MatTooltipModule, MatDialogModule, MatSliderModule
-
-    MatExpansionModule, MatTooltipModule, MatDialogModule, MatGridListModule,
+    MatExpansionModule, MatTooltipModule, MatDialogModule, MatSliderModule, MatGridListModule,
 } from '@angular/material';
 
 import { FlexLayoutModule, } from '@angular/flex-layout';
