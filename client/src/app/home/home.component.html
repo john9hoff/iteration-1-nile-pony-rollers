@@ -1,5 +1,6 @@
 <body>
     <div class="container text-center">
+
         <div>
             <body>
             <head>
@@ -24,14 +25,15 @@
             </body>
             </body>
         </div>
+
         <div class="mood-buttons text-center">
             <button (click)="addEmotion(slideIndex); openDialog(slideIndex);">
                 <img [attr.src]="image">
             </button>
         </div>
-
         <a mat-raised-button type="button" class="next" (click)="plusSlides(-1)"><mat-icon>chevron_left</mat-icon></a>
         <a mat-raised-button type="button" class="previous" (click)="plusSlides(1)"><mat-icon>chevron_right</mat-icon></a>
+
 
         <p>How would you rate the intensity of your feelings?</p>
         <p style="font-size:70%">(1 means a little, 5 means extremely)</p>

@@ -1,30 +1,35 @@
-/*nav{
-    background-color:cyan;
-    font-size: 200%;
-    font-family:"erewhon"
+.web-title {
+    font-size: 24px;
+    vertical-align: bottom;
+}
 
-}*/
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: transparent;
+    text-align: center;
+}
 
-mat-nav-list {
-    word-spacing: 50px;
-    padding-left: 100px;
-    padding-right:100px;
-    font-family:cursive;
-    background-color: whitesmoke;
+li {
+    display: inline-block;
+}
+
+li a {
     display: block;
-}
-.move { display: inline-block; }
-
-@media (max-width: 750px) {
-    .move { display: block; }
-}
-
-body{
-    background-color:whitesmoke;
-    font-size:150%;
-    font-family:cursive;
+    color: white;
+    text-align: center;
+    padding: 25px 50px;
+    text-decoration: none;
+    font-size: 25px;
 }
 
-.icons{
-    font-size:140%;
+li a:hover {
+    /* original color was 111*/
+    background-color: #4CAF50;
+}
+
+.active {
+    background-color: #4CAF50;
 }

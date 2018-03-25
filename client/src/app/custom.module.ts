@@ -6,7 +6,10 @@ import { CovalentLayoutModule, CovalentStepsModule, CovalentCommonModule /*, any
 import {
     MatListModule, MatButtonModule, MatCardModule, MatIconModule,
     MatInputModule, MatMenuModule, MatSidenavModule, MatToolbarModule,
+
     MatExpansionModule, MatTooltipModule, MatDialogModule, MatSliderModule
+
+    MatExpansionModule, MatTooltipModule, MatDialogModule, MatGridListModule,
 } from '@angular/material';
 
 import { FlexLayoutModule, } from '@angular/flex-layout';
@@ -35,7 +38,11 @@ const MATERIAL_MODULES: any[] = [
     MatExpansionModule,
     MatTooltipModule,
     MatDialogModule,
+
     MatSliderModule,
+
+    MatGridListModule
+
 ];
 
 const COVALENT_MODULES: any[] = [

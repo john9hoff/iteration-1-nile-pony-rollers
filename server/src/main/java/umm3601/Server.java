@@ -10,7 +10,8 @@ import umm3601.tracker.TrackerController;
 import umm3601.tracker.TrackerRequestHandler;
 import umm3601.journal.JournalController;
 import umm3601.journal.JournalRequestHandler;
-
+import umm3601.goal.GoalController;
+import umm3601.goal.GoalRequestHandler;
 import java.io.IOException;
 
 
@@ -21,6 +22,7 @@ public class Server {
     private static final String userDatabaseName = "dev";
     private static final String trackerDatabaseName = "dev";
     private static final String journalDatabaseName = "dev";
+    private static final String goalDatabaseName = "dev";
 
     private static final int serverPort = 4567;
 
@@ -30,6 +32,7 @@ public class Server {
         MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
         MongoDatabase trackerDatabase = mongoClient.getDatabase(trackerDatabaseName);
         MongoDatabase journalDatabase = mongoClient.getDatabase(journalDatabaseName);
+        MongoDatabase goalDatabase = mongoClient.getDatabase(goalDatabaseName);
 
         UserController userController = new UserController(userDatabase);
         UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
@@ -39,6 +42,9 @@ public class Server {
 
         JournalController journalController = new JournalController(journalDatabase);
         JournalRequestHandler journalRequestHandler = new JournalRequestHandler(journalController);
+
+        GoalController goalController = new GoalController(goalDatabase);
+        GoalRequestHandler goalRequestHandler = new GoalRequestHandler(goalController);
 
         //Configure Spark
         port(serverPort);
@@ -94,6 +100,14 @@ public class Server {
         get("api/journals/:id", journalRequestHandler::getJournalJSON);
         post("api/journals/new", journalRequestHandler::addNewJournal);
         post("api/journals/edit", journalRequestHandler::editJournal);
+
+        /// Goal Endpoints ///////////////////////////
+        /////////////////////////////////////////////
+
+        get("api/goals", goalRequestHandler::getGoals);
+        get("api/goals/:id", goalRequestHandler::getGoalJSON);
+        post("api/goals/new", goalRequestHandler::addNewGoal);
+        post("api/goals/edit", goalRequestHandler::editGoal);
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.

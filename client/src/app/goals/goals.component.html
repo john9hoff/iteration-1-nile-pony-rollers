@@ -1,0 +1,57 @@
+<body class="whole-body" >
+<header>
+    <div class ="main-top" id="goal-main-title">Goals</div>
+</header>
+
+<main>
+    <div layout="column" [ngStyle]="{'background-color':'lightgreen'}">
+
+    <!-- Managing Goals Card -->
+    <div class="first-sec">
+        <mat-card> <mat-card-title class="goal-title">Managing Goals</mat-card-title>
+            <mat-card-subtitle class="goal-subtitle"></mat-card-subtitle>
+            <mat-card-content class="goal-content">
+                <li class="content-item" id="addNewGoal"><button mat-raised-button (click)="openDialog()" class="goal-button"><mat-icon id="add-icon">add</mat-icon>Create</button></li>
+                <br>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <!-- Grid Section for Goals -->
+    <div class="grid-goals-section" >
+        <div class='md-padding' layout="row" layout-wrap>
+            <mat-card class="goals-card"
+                      *ngFor="let goal of this.filterGoals(goalPurpose, goalCategory, goalName, goalStatus)">
+                <div class ="goals-image">
+                    <img *ngIf="goal.category == 'Family'" src="../../assets/family.png"
+                        class="goal-card-image" height="100">
+                    <img *ngIf="goal.category == 'Chores'" src="../../assets/chores.png"
+                        class="goal-card-image" height="100">
+                    <img *ngIf="goal.category == 'Personal Health'" src="../../assets/health.png"
+                        class="goal-card-image" height="100">
+                </div>
+                <div class="goals-buttons">
+                    <button mat-raised-button class="button delete-button">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-raised-button class="button complete-button" (click)="goalSatisfied(goal._id['$oid'], goal.purpose, goal.category, goal.name)">
+                        <mat-icon>done</mat-icon>
+                    </button>
+                </div>
+                <div class="goals-card-info">
+                <mat-card-content class="goal-info">
+                    <h2 id="goal-name">{{goal.name}}</h2>
+                    <p>Purpose: {{goal.purpose}}</p>
+                    <p>Status:
+                        <b *ngIf="goal.status" id="goal-complete">Complete</b>
+                        <b *ngIf="!goal.status" id="goal-incomplete">Incomplete</b>
+                    </p>
+                </mat-card-content>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+
+    </div>
+</main>
+</body>

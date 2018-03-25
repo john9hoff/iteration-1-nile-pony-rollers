@@ -19,6 +19,10 @@ import {AddUserComponent} from './users/add-user.component';
 import {TrackerListComponent} from './trackers/tracker-list.component';
 import {TrackerListService} from './trackers/tracker-list.service';
 
+import {GoalsComponent} from "./goals/goals.component";
+import {GoalsService} from "./goals/goals.service";
+import {AddGoalComponent} from "./goals/add-goal.component";
+
 import {JournalListComponent} from "./journals/journal-list.component";
 import {JournalListService} from "./journals/journal-list.service";
 import {AddJournalComponent} from './journals/add-journal.component';
@@ -33,20 +37,24 @@ import {EmergencyComponent} from './home/emergency.component';
 
 import {MatSelectModule} from '@angular/material/select';
 
+import {ReportChartComponent} from './reports/report-chart.component'
+
 @NgModule({
     imports: [
         BrowserModule,
         HttpClientModule,
         Routing,
         CustomModule,
-        MatSelectModule
+        MatSelectModule,
     ],
     declarations: [
         AppComponent,
         HomeComponent,
         UserListComponent,
+        GoalsComponent,
         AddUserComponent,
         AddJournalComponent,
+        AddGoalComponent,
         TrackerListComponent,
         JournalListComponent,
         ResponseComponent,
@@ -55,27 +63,35 @@ import {MatSelectModule} from '@angular/material/select';
         ResponseComponent4,
         ResponseComponent5,
         EmergencyComponent,
-        EditJournalComponent
+        EditJournalComponent,
+        ReportChartComponent
     ],
     providers: [
         UserListService,
         TrackerListService,
         JournalListService,
+        GoalsService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
     entryComponents: [
+        AppComponent,
+        HomeComponent,
+        UserListComponent,
+        GoalsComponent,
         AddUserComponent,
         AddJournalComponent,
-        ResponseComponent,
-        EmergencyComponent,
+        AddGoalComponent,
+        TrackerListComponent,
+        JournalListComponent,
         ResponseComponent,
         ResponseComponent2,
         ResponseComponent3,
         ResponseComponent4,
         ResponseComponent5,
-        EditJournalComponent
-
+        EmergencyComponent,
+        EditJournalComponent,
+        ReportChartComponent
     ],
     bootstrap: [AppComponent]
 })
