@@ -19,6 +19,7 @@ import {AddUserComponent} from './users/add-user.component';
 import {TrackerListComponent} from './trackers/tracker-list.component';
 import {TrackerListService} from './trackers/tracker-list.service';
 
+
 import {GoalsComponent} from "./goals/goals.component";
 import {GoalsService} from "./goals/goals.service";
 import {AddGoalComponent} from "./goals/add-goal.component";
@@ -38,6 +39,7 @@ import {EmergencyComponent} from './home/emergency.component';
 import {MatSelectModule} from '@angular/material/select';
 
 import {ReportChartComponent} from './reports/report-chart.component'
+import {ReportChartService} from "./reports/report-chart.service";
 
 @NgModule({
     imports: [
@@ -71,6 +73,7 @@ import {ReportChartComponent} from './reports/report-chart.component'
         TrackerListService,
         JournalListService,
         GoalsService,
+        ReportChartService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],

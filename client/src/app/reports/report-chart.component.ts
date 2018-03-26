@@ -1,26 +1,46 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, OnInit, AfterContentInit} from '@angular/core';
 /* import {Chart} from 'chart.js'; */
 import * as Chart from 'chart.js';
+import {Tracker} from "../trackers/tracker";
+import {ReportChartService} from "./report-chart.service";
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'report-chart-component',
     templateUrl: 'report-chart.component.html',
     styleUrls: ['./report-chart.component.css'],
 })
-export class ReportChartComponent implements AfterViewInit {
-    constructor() {
+export class ReportChartComponent implements AfterContentInit, OnInit {
+    // Inject the JournalListService into this component.
+    constructor(public reportChartService: ReportChartService) {
+
     }
+
+    // These are public so that tests can reference them (.spec.ts)
+    public reports: Tracker[];
+    public filteredReports: Tracker[];
+    public reportSubject: string;
+    public reportBody: string;
+    public searchEmoji: string;
 
     // dummy function for figuring out how to reflect functions return values
     // for each bar/emotion
     public static getfifteen(){
+
+
+
         return 15;
     }
 
     canvas: any;
     ctx: any;
 
-    ngAfterViewInit() {
+    ngAfterContentInit() {
+
+        console.log("here21");
+        console.log(this.reports)
+        console.log(this.filteredReports)
+        console.log("here21");
         this.canvas = document.getElementById('myChart');
         this.ctx = this.canvas.getContext('2d');
 
@@ -41,7 +61,7 @@ export class ReportChartComponent implements AfterViewInit {
                     /*fill: false,*/
                     // dummy data, this should be where our actual data should be
                     // getfifteen function from above is used here to reflect 15
-                    data: [ReportChartComponent.getfifteen(), 7, 12, 6, 9],
+                    data: [14, 7, 12, 6, 9],
 
                     backgroundColor: ['rgba(127,63,191,0.8)', 'rgba(63,191,63,0.8)',
                         'rgba(248,248,63,0.8)', 'rgba(244,135,26,0.8)', 'rgb(244,26,26,0.8)'],
@@ -125,5 +145,63 @@ export class ReportChartComponent implements AfterViewInit {
             }
         });
 
+    }
+
+
+    public filterReports(searchEmoji: string): Tracker[] {
+
+        this.filteredReports = this.reports;
+        // Filter by subject
+        if (searchEmoji != null) {
+            searchEmoji = searchEmoji.toLocaleLowerCase();
+
+            this.filteredReports = this.filteredReports.filter(tracker => {
+                return !searchEmoji || tracker.emoji.toLowerCase().indexOf(searchEmoji) !== -1;
+            });
+        }
+        console.log("here");
+        console.log(this.reports)
+        console.log(this.filteredReports)
+
+        return this.filteredReports;
+    }
+    /**
+     * Starts an asynchronous operation to update the journals list
+     *
+     */
+    refreshReports(): Observable<Tracker[]> {
+        // Get Journals returns an Observable, basically a "promise" that
+        // we will get the data from the server.
+        //
+        // Subscribe waits until the data is fully downloaded, then
+        // performs an action on it (the first lambda)
+
+        const reportListObservable: Observable<Tracker[]> = this.reportChartService.getReports();
+        reportListObservable.subscribe(
+            journals => {
+                this.reports = journals;
+                this.filterReports(this.searchEmoji);
+            },
+            err => {
+                console.log(err);
+            });
+        return reportListObservable;
+    }
+
+
+    loadService(): void {
+        this.reportChartService.getReports().subscribe(
+            reports => {
+                this.reports = reports;
+                this.filteredReports = this.reports;
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
+    ngOnInit(): void {
+        this.refreshReports();
+        this.loadService();
     }
 }
