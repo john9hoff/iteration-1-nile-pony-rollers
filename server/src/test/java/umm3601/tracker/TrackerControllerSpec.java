@@ -36,19 +36,19 @@ public class TrackerControllerSpec
         List<Document> testTrackers= new ArrayList<>();
         testTrackers.add(Document.parse("{\n" +
             "                    emoji: \"grinning\",\n" +
-            "                    intensity: 2,\n" +
+            "                    rating: 2,\n" +
         "                }"));
         testTrackers.add(Document.parse("{\n" +
             "                    emoji: \"smiling\",\n" +
-            "                    intensity: 4,\n" +
+            "                    rating: 4,\n" +
             "                }"));
         testTrackers.add(Document.parse("{\n" +
             "                    emoji: \"confused\",\n" +
-            "                    intensity: 3,\n" +
+            "                    rating: 3,\n" +
             "                }"));
         testTrackers.add(Document.parse("{\n" +
             "                    emoji: \"angry\",\n" +
-            "                    intensity: 1,\n" +
+            "                    rating: 1,\n" +
             "                }"));
 
 
@@ -87,6 +87,25 @@ public class TrackerControllerSpec
         BsonArray docs = parseJsonArray(jsonResult);
 
         assertEquals("Should be 4 trackers", 4, docs.size());
+
+    }
+
+    @Test
+    public void getTrackerByIntensity(){
+        Map<String, String[]> argMap = new HashMap<>();
+        argMap.put("rating", new String[] { "1" });
+        String jsonResult = trackerController.getTrackers(argMap);
+        BsonArray docs = parseJsonArray(jsonResult);
+
+        assertEquals("Should be 1 tracker", 1, docs.size());
+
+        List<String> emojis = docs
+            .stream()
+            .map(TrackerControllerSpec::getEmoji)
+            .sorted()
+            .collect(Collectors.toList());
+        List<String> expectedEmojis = Arrays.asList("angry");
+        assertEquals("Rating should match", expectedEmojis, emojis);
 
     }
 

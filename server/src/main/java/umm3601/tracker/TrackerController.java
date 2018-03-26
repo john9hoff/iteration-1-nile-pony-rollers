@@ -89,6 +89,11 @@ public class TrackerController {
             filterDoc = filterDoc.append("date", contentRegQuery);
         }
 
+        if (queryParams.containsKey("rating")) {
+            int targetAge = Integer.parseInt(queryParams.get("rating")[0]);
+            filterDoc = filterDoc.append("rating", targetAge);
+        }
+
         //FindIterable comes from mongo, Document comes from Gson
         FindIterable<Document> matchingTrackers = trackerCollection.find(filterDoc);
 
