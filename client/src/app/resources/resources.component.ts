@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ResourcesService} from "./resources.service";
 import {resources} from './resources';
-
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
 import {AddResourcesComponent} from "./add-resources.component";
+import {resource} from "selenium-webdriver/http";
 
 @Component({
     selector: 'resources-component',
@@ -15,38 +15,38 @@ import {AddResourcesComponent} from "./add-resources.component";
 
 export class ResourcesComponent implements OnInit {
     // These are public so that tests can reference them (.spec.ts)
-    public resource: resources[];
-    public filteredGoals: resources[];
+    public resources: resources[];
+    public filteredResource: resources[];
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
-    public goalPurpose: string;
-    public goalCategory: string;
-    public goalName: string;
+    public resourceUrl: string;
+    public resourceBody: string;
+    public resourcePhone: string;
 
     // The ID of the goal
     private highlightedID: {'$oid': string} = { '$oid': '' };
 
     // Inject the ResourcesService into this component.
-    constructor(public goalService: ResourcesService, public dialog: MatDialog) {
+    constructor(public resourceService: ResourcesService, public dialog: MatDialog) {
 
     }
 
-    isHighlighted(goal: resources): boolean {
-        return goal._id['$oid'] === this.highlightedID['$oid'];
+    isHighlighted(resource: resources): boolean {
+        return resource.resourceName['$oid'] === this.highlightedID['$oid'];
     }
 
     openDialog(): void {
-        const newGoal: resources = {_id: '', purpose:'', category:'', name:''};
+        const newRESOURCES: resources = {resourceName: '', resourceBody:'', resourcePhone:'', resourcesUrl:''};
         const dialogRef = this.dialog.open(AddResourcesComponent, {
             width: '300px',
-            data: { goal : newGoal }
+            data: { Resources : newRESOURCES }
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            this.goalService.addNewGoal(result).subscribe(
-                addGoalResult => {
-                    this.highlightedID = addGoalResult;
+            this.resourceService.addNewresource(result).subscribe(
+                addresourceResult => {
+                    this.highlightedID = addresourceResult;
                     this.refreshGoals();
                 },
                 err => {
@@ -57,25 +57,25 @@ export class ResourcesComponent implements OnInit {
         });
     }
 
-    public filterGoals(searchGoal: string, searchCategory: string, searchName: string): resources[] {
+    public filterResources(searchBody: string, searchPhone: string, searchName: string): resources[] {
 
-        this.filteredGoals = this.resource;
+        this.filteredResource = this.resource;
 
-        // Filter by goal
-        if (searchGoal != null) {
-            searchGoal = searchGoal.toLocaleLowerCase();
+        // Filter by resources
+        if (searchBody != null) {
+            searchBody = searchBody.toLocaleLowerCase();
 
-            this.filteredGoals = this.filteredGoals.filter(goal => {
-                return !searchGoal || goal.purpose.toLowerCase().indexOf(searchGoal) !== -1;
+            this.filteredResource = this.filteredResource.filter(goal => {
+                return !searchBody || Resources.resourceBody.toLowerCase().indexOf(searchBody) !== -1;
             });
         }
 
         // Filter by category
-        if (searchCategory != null) {
-            searchCategory = searchCategory.toLocaleLowerCase();
+        if (searchPhone != null) {
+            searchPhone = searchPhone.toLocaleLowerCase();
 
-            this.filteredGoals = this.filteredGoals.filter(goal => {
-                return !searchCategory || resource.category.toLowerCase().indexOf(searchCategory) !== -1;
+            this.filteredResource = this.filteredResource.filter(goal => {
+                return !searchPhone || Resources.category.toLowerCase().indexOf(searchPhone) !== -1;
             });
         }
 
@@ -83,12 +83,12 @@ export class ResourcesComponent implements OnInit {
         if (searchName != null) {
             searchName = searchName.toLocaleLowerCase();
 
-            this.filteredGoals = this.filteredGoals.filter(goal => {
+            this.filteredResource = this.filteredResource.filter(goal => {
                 return !searchName || goal.name.toLowerCase().indexOf(searchName) !== -1;
             });
         }
 
-        return this.filteredGoals;
+        return this.filteredResource;
     }
 
     /**
@@ -101,7 +101,7 @@ export class ResourcesComponent implements OnInit {
         //
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
-        const goalObservable: Observable<resources[]> = this.goalService.getGoals();
+        const goalObservable: Observable<resources[]> = this.goalService.getresources();
         goalObservable.subscribe(
             goals => {
                 this.goals = goals;
@@ -115,10 +115,10 @@ export class ResourcesComponent implements OnInit {
 
 
     loadService(): void {
-        this.goalService.getGoals(this.goalCategory).subscribe(
-            goals => {
-                this.goals = goals;
-                this.filteredGoals = this.goals;
+        this.resourceService.getresources(this.goalCategory).subscribe(
+            resource => {
+                this.resources = resource;
+                this.filteredResource = this.resources;
             },
             err => {
                 console.log(err);
