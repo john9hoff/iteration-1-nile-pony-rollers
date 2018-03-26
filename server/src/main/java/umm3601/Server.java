@@ -108,6 +108,7 @@ public class Server {
         get("api/goals/:id", goalRequestHandler::getGoalJSON);
         post("api/goals/new", goalRequestHandler::addNewGoal);
         post("api/goals/edit", goalRequestHandler::editGoal);
+        post("api/goals/delete", goalRequestHandler::deleteGoal);
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.
