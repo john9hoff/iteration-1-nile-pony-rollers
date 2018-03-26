@@ -152,4 +152,22 @@ public class GoalController {
         }
     }
 
+    public String deleteGoal(String id, String purpose, String category, String name, Boolean status){
+        Document searchQuery = new Document().append("_id", new ObjectId(id));
+
+        System.out.println(id);
+
+
+        try {
+            goalCollection.deleteOne(searchQuery);
+            ObjectId id1 = searchQuery.getObjectId("_id");
+            System.err.println("Successfully updated goal [_id=" + id1 + ", purpose=" + purpose +
+                ", category=" + category + ", name=" + name + ", status=" + status + ']');
+            return JSON.serialize(id1);
+        } catch(MongoException me) {
+            me.printStackTrace();
+            return null;
+        }
+    }
+
 }
