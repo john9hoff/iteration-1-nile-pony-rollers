@@ -34,7 +34,7 @@ export class TrackerListComponent implements OnInit {
     }
 
     public addEmoji(newEmoji: string): void {
-        const newTracker: Tracker = {_id: '', emoji: newEmoji, date: ''};
+        const newTracker: Tracker = {_id: '', rating: 0, emoji: newEmoji, date: '', email:''};
         this.trackerListService.addNewEmoji(newTracker).subscribe(
             trackers => {
                 this.refreshTrackers();

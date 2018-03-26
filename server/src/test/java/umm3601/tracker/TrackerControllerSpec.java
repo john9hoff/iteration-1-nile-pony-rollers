@@ -80,11 +80,13 @@ public class TrackerControllerSpec
     public void getAllEmojis() {
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = trackerController.getTrackers(emptyMap);
+
         BsonArray docs = parseJsonArray(jsonResult);
 
         assertEquals("Should be 4 trackers", 4, docs.size());
 
     }
+
 
     @Test
     public void getSmilingTrackers() {
