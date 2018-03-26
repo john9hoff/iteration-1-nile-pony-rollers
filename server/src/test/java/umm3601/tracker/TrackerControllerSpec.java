@@ -36,15 +36,19 @@ public class TrackerControllerSpec
         List<Document> testTrackers= new ArrayList<>();
         testTrackers.add(Document.parse("{\n" +
             "                    emoji: \"grinning\",\n" +
-            "                }"));
+            "                    intensity: 2,\n" +
+        "                }"));
         testTrackers.add(Document.parse("{\n" +
             "                    emoji: \"smiling\",\n" +
+            "                    intensity: 4,\n" +
             "                }"));
         testTrackers.add(Document.parse("{\n" +
             "                    emoji: \"confused\",\n" +
+            "                    intensity: 3,\n" +
             "                }"));
         testTrackers.add(Document.parse("{\n" +
             "                    emoji: \"angry\",\n" +
+            "                    intensity: 1,\n" +
             "                }"));
 
 
@@ -105,7 +109,7 @@ public class TrackerControllerSpec
 
     @Test
     public void addEmojiTest(){
-        String newId = trackerController.addNewTracker("frowning");
+        String newId = trackerController.addNewTracker("frowning",2);
 
         assertNotNull("Add new trackers should return true,", newId);
         Map<String, String[]> argMap = new HashMap<>();
