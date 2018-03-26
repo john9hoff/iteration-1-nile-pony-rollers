@@ -16,6 +16,11 @@
                         font-family: "Trebuchet MS";
                         text-align: center;
                     }
+                    h2  {
+                        color: blueviolet;
+                        font-family: "Trebuchet MS";
+                        text-align: center;
+                    }
 
                 </style>
             </head>
@@ -29,8 +34,13 @@
         <div class="mood-buttons text-center">
             <button >
                 <img [attr.src]="image">
+
             </button>
+
+
         </div>
+        <br/>
+
         <a mat-raised-button type="button" class="next" (click)="plusSlides(-1)"><mat-icon>chevron_left</mat-icon></a>
         <a mat-raised-button type="button" class="previous" (click)="plusSlides(1)"><mat-icon>chevron_right</mat-icon></a>
 

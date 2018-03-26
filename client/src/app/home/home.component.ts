@@ -17,20 +17,21 @@ import {ResponseThanksComponent} from "./responseThanks.component";
 export class HomeComponent {
 
     public slideIndex = 0;
-    public emojis: string[] = ["./assets/grinning.png", "./assets/slightly-smiling.png", "./assets/neutral-face.png",
-        "./assets/slightly-frowning-face.png", "./assets/disappointed-face.png"];
+    public emojis: string[] = ["./assets/grinning.png",  "./assets/neutral-face.png",
+        "./assets/slightly-frowning-face.png", "./assets/crying-face.png","./assets/angry-face.png"];
 
-    public emojisString: string[] = ["Very Happy", "Happy", "Normal", "Sad", "Very Sad"];
+    public emojisString: string[] = ["Happy", "Normal", "Down", "Sad", "Angry"];
     public image = this.emojis[this.slideIndex];
+    public emojiExplain = this.emojisString[this.slideIndex];
     public emojiRating: number = -1;
-    thumbLabel = true;
+
 
     constructor(public trackerListService: TrackerListService, public dialog: MatDialog) {
     }
 
     public addEmotion(emojiIndex: number): void {
 
-        console.log("emojiString:"+ this.emojisString[emojiIndex]);
+        console.log("emojiString:"+this.emojisString[emojiIndex]);
         console.log("emojiRating: " + this.emojiRating);
         const newTracker: Tracker = {_id: '',
             rating:this.emojiRating,
@@ -56,7 +57,9 @@ export class HomeComponent {
         }
         console.log(this.slideIndex + ' index');
         console.log(this.image);
+        console.log(this.emojiExplain);
         this.image = this.emojis[this.slideIndex];
+        this.emojiExplain = this.emojisString[this.slideIndex];
     }
 
     openThanks():void{
