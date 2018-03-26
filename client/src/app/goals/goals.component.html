@@ -1,7 +1,4 @@
-<body class="whole-body" >
-<header>
-    <div class ="main-top" id="goal-main-title">Goals</div>
-</header>
+<body class="whole-body">
 
 <main>
     <div layout="column" [ngStyle]="{'background-color':'lightgreen'}">
@@ -30,14 +27,6 @@
                     <img *ngIf="goal.category == 'Personal Health'" src="../../assets/health.png"
                         class="goal-card-image" height="100">
                 </div>
-                <div class="goals-buttons">
-                    <button mat-raised-button class="button delete-button">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                    <button mat-raised-button class="button complete-button" (click)="goalSatisfied(goal._id['$oid'], goal.purpose, goal.category, goal.name)">
-                        <mat-icon>done</mat-icon>
-                    </button>
-                </div>
                 <div class="goals-card-info">
                 <mat-card-content class="goal-info">
                     <h2 id="goal-name">{{goal.name}}</h2>
@@ -47,6 +36,16 @@
                         <b *ngIf="!goal.status" id="goal-incomplete">Incomplete</b>
                     </p>
                 </mat-card-content>
+                </div>
+                <div class="goals-buttons">
+                    <button mat-raised-button class="button delete-button">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button *ngIf="!goal.status" mat-raised-button class="button complete-button"
+                            (click)="goalSatisfied(goal._id['$oid'], goal.purpose, goal.category, goal.name)"
+                            (click)="openSnackBar('Good job! You completed the goal: ', goal.name)">
+                        <mat-icon>done</mat-icon>
+                    </button>
                 </div>
             </mat-card>
         </div>
