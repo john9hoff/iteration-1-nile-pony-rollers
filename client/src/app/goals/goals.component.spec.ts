@@ -103,15 +103,6 @@ describe( 'Goals', () => {
         });
     });
 
-    it('goal list filters by purpose and name', () => {
-        expect(goalList.filteredGoals.length).toBe(3);
-        goalList.goalPurpose = 'i';
-        goalList.goalName = 'y';
-        goalList.refreshGoals().subscribe(() => {
-            expect(goalList.filteredGoals.length).toBe(1);
-        });
-    });
-
 })
 
 describe('Misbehaving Goal List', () => {
