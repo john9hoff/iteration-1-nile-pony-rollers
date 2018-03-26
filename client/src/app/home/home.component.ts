@@ -28,7 +28,7 @@ export class HomeComponent {
     public addEmotion(index: number): void {
 
         console.log(this.emojisString[index]);
-        const newTracker: Tracker = {_id: '', emoji: this.emojisString[index], date: ''};
+        const newTracker: Tracker = {_id: '', rating: 0, emoji: this.emojisString[index], date: '', email:''};
         this.trackerListService.addNewEmoji(newTracker).subscribe(
             trackers => {
             },

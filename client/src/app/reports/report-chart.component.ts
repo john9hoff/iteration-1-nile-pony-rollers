@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, OnInit, DoCheck, AfterContentInit, OnChanges} from '@angular/core';
-/* import {Chart} from 'chart.js'; */
 import * as Chart from 'chart.js';
 import {Tracker} from "../trackers/tracker";
 import {ReportChartService} from "./report-chart.service";
@@ -13,10 +12,9 @@ import {Observable} from 'rxjs/Observable';
 
 })
 
-export class ReportChartComponent implements OnInit, OnChanges{
+export class ReportChartComponent implements OnInit, OnChanges {
     // Inject the ReportChartService into this component.
     constructor(public reportChartService: ReportChartService) {
-
 
     }
 
@@ -31,24 +29,17 @@ export class ReportChartComponent implements OnInit, OnChanges{
     public numberOfNormal: number;
     public numberOfSad: number;
     public numberOfVerySad: number;
-    // dummy function for figuring out how to reflect functions return values
-    // for each bar/emotion
-    public static getfifteen(){
-
-
-        return 15;
-    }
 
     canvas: any;
     ctx: any;
 
     ngOnInit() {
-        this.reportChartService.getReports().subscribe(res =>{
+        this.reportChartService.getReports().subscribe(res => {
             this.reports = res;
-           this.numberOfVeryHappy = this.filterReports("Radiant").length;
-           this.numberOfHappy = this.filterReports("Happy").length;
-           this.numberOfNormal = this.filterReports("Meh").length;
-          this.numberOfSad = this.filterReports("Down").length;
+            this.numberOfVeryHappy = this.filterReports("Radiant").length;
+            this.numberOfHappy = this.filterReports("Happy").length;
+            this.numberOfNormal = this.filterReports("Meh").length;
+            this.numberOfSad = this.filterReports("Down").length;
             this.numberOfVerySad = this.filterReports("Sad").length;
             this.canvas = document.getElementById('myChart');
             this.ctx = this.canvas.getContext('2d');
@@ -67,9 +58,6 @@ export class ReportChartComponent implements OnInit, OnChanges{
                     datasets: [{
                         label: 'Total times logged',
 
-                        /*fill: false,*/
-                        // dummy data, this should be where our actual data should be
-                        // getfifteen function from above is used here to reflect 15
                         data: [this.numberOfVeryHappy, this.numberOfHappy, this.numberOfNormal, this.numberOfSad, this.numberOfVerySad],
 
                         backgroundColor: ['rgba(127,63,191,0.8)', 'rgba(63,191,63,0.8)',
@@ -83,6 +71,8 @@ export class ReportChartComponent implements OnInit, OnChanges{
                     }]
                 },
                 options: {
+                    responsive: true,
+                    display: true,
                     maintainAspectRatio: true,
                     scales: {
                         yAxes: [{
@@ -92,8 +82,8 @@ export class ReportChartComponent implements OnInit, OnChanges{
                             gridLines: {
                                 display: true,
                                 color: 'black',
-                            },
-
+                                offsetGridLines: false,
+                            }
                         }]
                     },
                     title: {
@@ -105,31 +95,23 @@ export class ReportChartComponent implements OnInit, OnChanges{
                         position: 'bottom',
                         display: false,
                     },
-                    layout: {
-                        padding: {
-                            // commented out because it doesn't scale well
-                            //top: 100,
-                            // left: 400,
-                            // right: 400,
-                        }
-                    },
+                    layout: {},
+
                     toolTips: {
                         enabled: true,
-                    },
-                    responsive: true,
-                    display: true
+                    }
                 }
             });
 
             // Defining a plugin to provide data labels
             Chart.plugins.register({
-                afterDatasetsDraw: function(chart) {
+                afterDatasetsDraw: function (chart) {
                     let ctx = chart.ctx;
 
                     chart.data.datasets.forEach(function (dataset, i) {
                         let meta = chart.getDatasetMeta(i);
                         if (!meta.hidden) {
-                            meta.data.forEach(function(element, index) {
+                            meta.data.forEach(function (element, index) {
 
                                 // properties for text above each bar
                                 ctx.fillStyle = 'black';
@@ -153,14 +135,8 @@ export class ReportChartComponent implements OnInit, OnChanges{
                     });
                 }
             });
-
         })
-
-
-
-
     }
-
 
     public filterReports(searchEmoji: string): Tracker[] {
 
@@ -177,6 +153,7 @@ export class ReportChartComponent implements OnInit, OnChanges{
 
         return this.filteredReports;
     }
+
     /**
      * Starts an asynchronous operation to update the journals list
      *
@@ -212,8 +189,9 @@ export class ReportChartComponent implements OnInit, OnChanges{
             }
         );
     }
+
     ngOnChanges(): void {
         this.refreshReports();
-       this.loadService();
+        this.loadService();
     }
 }

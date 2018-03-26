@@ -28,3 +28,7 @@ body{
 .icons{
     font-size:140%;
 }
+
+/* modifies top portion of page where menus are*/
+mat-nav-list[_ngcontent-c0] {
+}
