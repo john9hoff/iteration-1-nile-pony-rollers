@@ -17,7 +17,6 @@ export class ReportChartComponent implements OnInit {
 
     }
 
-    // These are public so that tests can reference them (.spec.ts)
     public reports: Tracker[];
     public filteredReports: Tracker[];
     canvas: any;
@@ -33,7 +32,6 @@ export class ReportChartComponent implements OnInit {
 
         })
     }
-
 
 
     public setPlugin () {
@@ -68,7 +66,7 @@ export class ReportChartComponent implements OnInit {
 
                             let padding = 5;
                             let position = element.tooltipPosition();
-                            ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+                            ctx.fillText(dataString, position.x, position.y - (fontSize / 2) -padding);
                         });
                     }
                 });
@@ -133,6 +131,7 @@ export class ReportChartComponent implements OnInit {
         return chart;
 
     }
+
     public getValues () {
         var values = [];
         values.push(this.filterReports("Radiant").length);

@@ -53,12 +53,9 @@ describe('report chart service: ', () => {
     it('getReports() calls calls api/reports', (done) => {
         //
         reportChartService.getReports().subscribe(
-
             reports => {
                 expect(reports.length).toBe(3);
                 done();
-
-
 
             });
 
