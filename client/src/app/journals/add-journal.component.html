@@ -1,6 +1,5 @@
 <div class="add-journal" layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
-        <mat-card>
             <mat-card-title>New Journal</mat-card-title>
             <mat-divider></mat-divider>
             <mat-card-content>
@@ -10,10 +9,8 @@
                 <mat-form-field>
                     <textarea matInput #input id="bodyField" matTextareaAutosize placeholder="Body" [(ngModel)]="data.journal.body"></textarea>
                 </mat-form-field>
-
-                <button mat-button id="confirmAddJournalButton" [mat-dialog-close]="data.journal" type="button">Add journal</button>
             </mat-card-content>
-        </mat-card>
-        <button mat-raised-button id="exitWithoutAddingButton" (click)="onNoClick()" type="button">Exit</button>
+        <button mat-raised-button id="confirmAddJournalButton" [mat-dialog-close]="data.journal" type="button" (click)="openSnackBar('Journal Added')">Confirm</button>
+        <button mat-raised-button id="exitWithoutAddingButton" (click)="onNoClick()" type="button">Cancel</button>
     </div>
 </div>

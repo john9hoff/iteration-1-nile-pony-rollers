@@ -1,14 +1,27 @@
 <body>
-<div>
-
-        <button id = "addNewJournal" mat-raised-button (click)="openDialog()">Add A New Journal</button>
-
-</div>
-
+<main>
+    <div layout="column">
+        <!-- Managing Journals Card -->
+        <div class="first-sec">
+            <mat-card class="manage-journals-card">
+                <mat-card-title id="journal-title">Your Journals</mat-card-title>
+                <mat-card-subtitle class="journal-subtitle">Journals can help you
+                    track daily activities in your life.
+                </mat-card-subtitle>
+                <mat-card-content class="journal-content">
+                    <li class="content-item" id="addNewJournal">
+                        <button mat-raised-button (click)="openDialog()" class="goal-button">
+                            <mat-icon id="add-icon">add</mat-icon>
+                            Add a Journal</button>
+                    </li>
+                    <br>
+                </mat-card-content>
+            </mat-card>
+        </div>
 
 <div layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
-        <mat-card>
+        <mat-card class="journals-card">
             <mat-card-title id="journal-list-title">Journals</mat-card-title>
             <mat-divider></mat-divider>
             <mat-card-content>
@@ -27,7 +40,8 @@
                         </mat-expansion-panel-header>
                         <mat-panel-description>Body: {{journal.body}}</mat-panel-description>
                         <mat-panel-description>Date: {{journal.date}}</mat-panel-description>
-                        <mat-panel-description><button mat-raised-button (click)="openDialogReview(journal._id['$oid'], journal.subject, journal.body, journal.date)">Edit Journal</button> </mat-panel-description>
+                        <br>
+                        <mat-panel-description><button mat-raised-button id="edit-journal-button" (click)="openDialogReview(journal._id['$oid'], journal.subject, journal.body, journal.date)">Edit Journal</button> </mat-panel-description>
                     </mat-expansion-panel>
                 </mat-accordion>
                 <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
@@ -44,4 +58,6 @@
         </mat-card>
     </div>
 </div>
+</div>
+</main>
 </body>
