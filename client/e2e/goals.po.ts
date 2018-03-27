@@ -26,52 +26,51 @@ export class GoalPage {
         return title;
     }
 
-    selectUpKey() {
-        browser.actions().sendKeys(Key.ARROW_UP).perform();
+    selectDownKey() {
+        browser.actions().sendKeys(Key.ARROW_DOWN).perform();
     }
 
-    backspace() {
-        browser.actions().sendKeys(Key.BACK_SPACE).perform();
+    selectEnter() {
+        browser.actions().sendKeys(Key.ENTER).perform();
     }
 
-    /*getCompany(company: string) {
-        const input = element(by.id('userCompany'));
-        input.click();
-        input.sendKeys(company);
-        const selectButton = element(by.id('submit'));
-        selectButton.click();
+    getUniqueGoal(anID: string) {
+        const goal = element(by.id(anID)).getText();
+        this.highlightElement(by.id(anID));
+
+        return goal;
     }
 
-    getUserByAge() {
-        const input = element(by.id('userName'));
-        input.click();
-        input.sendKeys(Key.TAB);
+    getGoalName() {
+        const name = element(by.id('goal-name')).getText();
+        this.highlightElement(by.id('goal-name'));
+
+        return name;
     }
 
-    getUniqueGoal(purpose: string) {
-        const user = element(by.id(email)).getText();
-        this.highlightElement(by.id(email));
-
-        return user;
-    }
-
-    getUsers() {
-        return element.all(by.className('users'));
-    }
-
-    clickClearCompanySearch() {
-        const input = element(by.id('companyClearSearch'));
-        input.click();
+    getGoals() {
+        return element.all(by.className('goals-card')).count();
     }
 
     buttonExists(): promise.Promise<boolean> {
-        this.highlightElement(by.id('addNewUser'));
-        return element(by.id('addNewUser')).isPresent();
+        this.highlightElement(by.id('addNewGoal'));
+        return element(by.id('addNewGoal')).isPresent();
     }
 
-    clickAddUserButton(): promise.Promise<void> {
-        this.highlightElement(by.id('addNewUser'));
-        return element(by.id('addNewUser')).click();
-    }*/
+    clickAddGoalButton(): promise.Promise<void> {
+        this.highlightElement(by.className('goal-button'));
+        return element(by.className('goal-button')).click();
+    }
+
+    pickChoresOption(){
+        const input = element(by.id('category-list'));
+        input.click();
+        this.selectEnter();
+    }
+
+    actuallyAddGoal() {
+        const input = element(by.id('confirmAddGoalButton'));
+        input.click();
+    }
 
 }

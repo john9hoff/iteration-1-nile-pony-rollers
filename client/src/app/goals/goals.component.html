@@ -1,7 +1,7 @@
 <body class="whole-body">
 
 <main>
-    <div layout="column" [ngStyle]="{'background-color':'lightgreen'}">
+    <div layout="column" [ngStyle]="{'background-color':'#f2fff5'}">
 
     <!-- Managing Goals Card -->
     <div class="first-sec">
@@ -18,7 +18,8 @@
     <div class="grid-goals-section" >
         <div class='md-padding' layout="row" layout-wrap>
             <mat-card class="goals-card"
-                      *ngFor="let goal of this.filterGoals(goalPurpose, goalCategory, goalName, goalStatus)">
+                      *ngFor="let goal of this.filterGoals(goalPurpose, goalCategory, goalName, goalStatus)"
+                      #elem [id]="goal._id['$oid']">
                 <div class ="goals-image">
                     <img *ngIf="goal.category == 'Family'" src="../../assets/family.png"
                         class="goal-card-image" height="100">
@@ -29,7 +30,7 @@
                 </div>
                 <div class="goals-card-info">
                 <mat-card-content class="goal-info">
-                    <h2 id="goal-name">{{goal.name}}</h2>
+                    <mat-card-title id="goal-name">{{goal.name}}</mat-card-title>
                     <p>Purpose: {{goal.purpose}}</p>
                     <p>Status:
                         <b *ngIf="goal.status" id="goal-complete">Complete</b>
@@ -41,9 +42,9 @@
                     <button mat-raised-button class="button delete-button">
                         <mat-icon>delete</mat-icon>
                     </button>
-                    <button *ngIf="!goal.status" mat-raised-button class="button complete-button"
+                    <button *ngIf="!goal.status" mat-raised-button class="button complete-button" id="completeGoal"
                             (click)="goalSatisfied(goal._id['$oid'], goal.purpose, goal.category, goal.name)"
-                            (click)="openSnackBar('Good job! You completed the goal: ', goal.name)">
+                            (click)="openSnackBar('Goal Completed')">
                         <mat-icon>done</mat-icon>
                     </button>
                 </div>
