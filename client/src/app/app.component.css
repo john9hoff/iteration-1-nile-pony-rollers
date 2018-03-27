@@ -33,3 +33,7 @@ li a:hover {
 .active {
     background-color: #4CAF50;
 }
+
+/* modifies top portion of page where menus are*/
+mat-nav-list[_ngcontent-c0] {
+}

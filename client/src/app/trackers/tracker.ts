@@ -1,6 +1,7 @@
 export interface Tracker {
     _id: string;
-    rating:number;
+    rating: number;
     emoji: string;
     date: string;
+    email: string;
 }
