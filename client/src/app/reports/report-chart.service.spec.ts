@@ -50,19 +50,21 @@ describe('report chart service: ', () => {
         httpTestingController.verify();
     });
 
-    it('getReports() calls calls api/reports', (/*done*/) => {
+    it('getReports() calls calls api/reports', (done) => {
         //
         reportChartService.getReports().subscribe(
 
-            reports => expect(reports).toBe(testTrackers));
+            reports => {
+                expect(reports.length).toBe(3);
+                done();
 
 
-        //done();
-    });
 
-    const req = httpTestingController.expectOne(reportChartService.baseUrl);
-    expect(req.request.method).toEqual('GET');
+            });
 
-    req.flush(testTrackers);
+        const req = httpTestingController.expectOne(reportChartService.baseUrl);
+        expect(req.request.method).toEqual('GET');
 
-});
+        req.flush(testTrackers);
+
+    });})
