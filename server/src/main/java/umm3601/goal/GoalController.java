@@ -117,8 +117,9 @@ public class GoalController {
         try {
             goalCollection.insertOne(newGoal);
             ObjectId id = newGoal.getObjectId("_id");
+
             System.err.println("Successfully added new goal [_id=" + id + ", purpose=" + purpose + ", category=" + category + ", name=" + name + ']');
-            // return JSON.serialize(newItem);
+            //return id.toHexString();
             return JSON.serialize(id);
         } catch(MongoException me) {
             me.printStackTrace();
@@ -155,15 +156,14 @@ public class GoalController {
     public void deleteGoal(String id){
         Document searchQuery = new Document().append("_id", new ObjectId(id));
 
-        System.out.println(id);
-
-
         try {
             goalCollection.deleteOne(searchQuery);
+            ObjectId id1 = searchQuery.getObjectId("_id");
+            System.out.println("Succesfully deleted goal " + id1);
 
         } catch(MongoException me) {
             me.printStackTrace();
-            System.out.println("error");;
+            System.out.println("error");
         }
     }
 
