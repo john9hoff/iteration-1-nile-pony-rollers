@@ -13,18 +13,21 @@ describe('Tracker list service: ', () => {
             rating: 2,
             emoji: 'sad',
             date: 'March 26',
+            email: ''
         },
         {
             _id: 'pat_id',
             rating:3,
             emoji:'happy',
             date:'April 1',
+            email: ''
         },
         {
             _id: 'jamie_id',
             rating:5,
             emoji:'angry',
             date:'April 1',
+            email: ''
         }
     ];
     const mTrackers: Tracker[] = testTrackers.filter(tracker =>
@@ -115,6 +118,7 @@ describe('Tracker list service: ', () => {
             rating: 2,
             emoji: 'sad',
             date: 'March 26',
+            email: ''
         };
 
         trackerListService.addNewEmoji(newTracker).subscribe(

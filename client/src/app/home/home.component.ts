@@ -36,7 +36,8 @@ export class HomeComponent {
         const newTracker: Tracker = {_id: '',
             rating:this.emojiRating,
             emoji: this.emojisString[emojiIndex],
-            date: ''};
+            date: '',
+            email:''};
         this.trackerListService.addNewEmoji(newTracker).subscribe(
             trackers => {
             },
