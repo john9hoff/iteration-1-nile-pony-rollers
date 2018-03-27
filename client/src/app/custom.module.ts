@@ -8,7 +8,7 @@ import {
     MatInputModule, MatMenuModule, MatSidenavModule, MatToolbarModule,
 
     MatExpansionModule, MatTooltipModule, MatDialogModule, MatGridListModule,
-    MatSnackBarModule,
+    MatSnackBarModule, MatSliderModule,
 
 } from '@angular/material';
 
@@ -39,7 +39,7 @@ const MATERIAL_MODULES: any[] = [
     MatTooltipModule,
     MatDialogModule,
     MatGridListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
     MatSliderModule,
 ];
 
