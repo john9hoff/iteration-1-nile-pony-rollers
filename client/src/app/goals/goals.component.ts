@@ -61,7 +61,6 @@ export class GoalsComponent implements OnInit {
     deleteGoal(_id: string){
         this.goalService.deleteGoal(_id).subscribe(
             goals => {
-
             },
             err => {
                 console.log(err);
