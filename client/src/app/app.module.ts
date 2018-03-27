@@ -7,6 +7,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 
+import {AddResourcesComponent} from "./resources/add-resources.component";
+
 import {UserListComponent} from './users/user-list.component';
 import {UserListService} from './users/user-list.service';
 
@@ -64,6 +66,7 @@ import {MatSelectModule} from '@angular/material/select';
         EmergencyComponent,
         EditJournalComponent,
         ResourcesComponent,
+        AddResourcesComponent,
     ],
     providers: [
         UserListService,

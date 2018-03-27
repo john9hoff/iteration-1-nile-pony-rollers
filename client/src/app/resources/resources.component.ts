@@ -4,7 +4,9 @@ import {resources} from './resources';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
 import {AddResourcesComponent} from "./add-resources.component";
-import {resource} from "selenium-webdriver/http";
+
+import {MatSnackBar} from '@angular/material';
+
 
 @Component({
     selector: 'resources-component',
@@ -12,23 +14,24 @@ import {resource} from "selenium-webdriver/http";
     styleUrls: ['./resources.component.css'],
 })
 
-
 export class ResourcesComponent implements OnInit {
     // These are public so that tests can reference them (.spec.ts)
-    public resources: resources[];
-    public filteredResource: resources[];
+    public resource: resources[];
+    public filteredResources: resources[];
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
-    public resourceUrl: string;
-    public resourceBody: string;
-    public resourcePhone: string;
+    public resourcesName: string;
+    public resourcesBody: string;
+    public resourcesPhone: string;
+    public resourcesUrl: string;
 
-    // The ID of the goal
+
+    // The ID of the resource
     private highlightedID: {'$oid': string} = { '$oid': '' };
 
-    // Inject the ResourcesService into this component.
-    constructor(public resourceService: ResourcesService, public dialog: MatDialog) {
+    // Inject the GoalsService into this component.
+    constructor(public resourceService: ResourcesService, public dialog: MatDialog, public snackBar: MatSnackBar) {
 
     }
 
@@ -37,62 +40,94 @@ export class ResourcesComponent implements OnInit {
     }
 
     openDialog(): void {
-        const newRESOURCES: resources = {resourceName: '', resourceBody:'', resourcePhone:'', resourcesUrl:''};
+        const newResources: resources = {resourceName: '', resourceBody:'', resourcePhone:'', resourcesUrl:''};
         const dialogRef = this.dialog.open(AddResourcesComponent, {
             width: '300px',
-            data: { Resources : newRESOURCES }
+            data: { resource : newResources }
         });
 
         dialogRef.afterClosed().subscribe(result => {
             this.resourceService.addNewresource(result).subscribe(
-                addresourceResult => {
-                    this.highlightedID = addresourceResult;
-                    this.refreshGoals();
+                addresourcesResult => {
+                    this.highlightedID = addresourcesResult;
+                    this.refreshResource();
                 },
                 err => {
                     // This should probably be turned into some sort of meaningful response.
-                    console.log('There was an error adding the goal.');
+                    console.log('There was an error adding the Resource.');
                     console.log('The error was ' + JSON.stringify(err));
                 });
         });
     }
 
-    public filterResources(searchBody: string, searchPhone: string, searchName: string): resources[] {
+    deleteresources(_id: string){
+        this.resourceService.deleteresources(_id).subscribe(
+            resource => {
+            },
+            err => {
+                console.log(err);
+            }
+        );
 
-        this.filteredResource = this.resource;
+        this.refreshResource();
+        this.loadService();
+    }
 
-        // Filter by resources
+    resourceSatisfied(theUserName: string, theBody: string, thePhoneNumber: string, theUrl: string) {
+        const updatedResources: resources = {resourceName: theUserName, resourceBody: theBody, resourcePhone: thePhoneNumber, resourcesUrl: theUrl};
+        this.resourceService.editResources(updatedResources).subscribe(
+            editResourcesResult => {
+                this.highlightedID = editResourcesResult;
+                this.refreshGoals();
+            },
+            err => {
+                console.log('There was an error editing the resources.');
+                console.log('The error was ' + JSON.stringify(err));
+            });
+    }
+
+    openSnackBar(message: string, action: string) {
+        this.snackBar.open(message, action, {
+            duration: 2000,
+        });
+    }
+
+    public filterResource(searchBody: string, searchPhone: string,
+                       searchUrl: string): resources[] {
+
+        this.filteredResources = this.resource;
+
+        // Filter by body
         if (searchBody != null) {
             searchBody = searchBody.toLocaleLowerCase();
 
-            this.filteredResource = this.filteredResource.filter(goal => {
-                return !searchBody || Resources.resourceBody.toLowerCase().indexOf(searchBody) !== -1;
+            this.filteredResources = this.filteredResources.filter(resource => {
+                return !searchBody || resource.resourceBody.toLowerCase().indexOf(searchBody) !== -1;
             });
         }
 
-        // Filter by category
+        // Filter by phone
         if (searchPhone != null) {
             searchPhone = searchPhone.toLocaleLowerCase();
 
-            this.filteredResource = this.filteredResource.filter(goal => {
-                return !searchPhone || Resources.category.toLowerCase().indexOf(searchPhone) !== -1;
+            this.filteredResources = this.filteredResources.filter(resource => {
+                return !searchPhone || resource.resourcePhone.toLowerCase().indexOf(searchPhone) !== -1;
             });
         }
 
-        // Filter by name
-        if (searchName != null) {
-            searchName = searchName.toLocaleLowerCase();
+        // Filter by url
+        if (searchUrl != null) {
+            searchUrl = searchUrl.toLocaleLowerCase();
 
-            this.filteredResource = this.filteredResource.filter(goal => {
-                return !searchName || goal.name.toLowerCase().indexOf(searchName) !== -1;
+            this.filteredResources = this.filteredResources.filter(resource => {
+                return !searchUrl || resource.resourcesUrl.toLowerCase().indexOf(searchUrl) !== -1;
             });
         }
-
-        return this.filteredResource;
+        return this.filteredResources;
     }
 
     /**
-     * Starts an asynchronous operation to update the goals list
+     * Starts an asynchronous operation to update the resources list
      *
      */
     refreshGoals(): Observable<resources[]> {
@@ -101,24 +136,24 @@ export class ResourcesComponent implements OnInit {
         //
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
-        const goalObservable: Observable<resources[]> = this.goalService.getresources();
-        goalObservable.subscribe(
-            goals => {
-                this.goals = goals;
-                this.filterGoals(this.goalPurpose, this.goalCategory, this.goalName);
+        const ResourceObservable: Observable<resources[]> = this.resourceService.getresources();
+        ResourceObservable.subscribe(
+            resource => {
+                this.resource = resource;
+                this.filterResource(this.resourcesBody, this.resourcesPhone, this.resourcesUrl);
             },
             err => {
                 console.log(err);
             });
-        return goalObservable;
+        return ResourceObservable;
     }
 
 
     loadService(): void {
-        this.resourceService.getresources(this.goalCategory).subscribe(
+        this.resourceService.getresources(this.resourcesPhone).subscribe(
             resource => {
-                this.resources = resource;
-                this.filteredResource = this.resources;
+                this.resource = resource;
+                this.filteredResources = this.resource;
             },
             err => {
                 console.log(err);
@@ -128,7 +163,8 @@ export class ResourcesComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.refreshGoals();
+        this.refreshResource();
         this.loadService();
     }
+
 }

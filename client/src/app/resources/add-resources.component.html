@@ -1,29 +1,19 @@
-
-
-<div class="set-goals" layout-gt-sm="row">
+<div class="add-resources" layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
-        <mat-card>
-            <mat-card-title>New PhoneNumber</mat-card-title>
-            <mat-divider></mat-divider>
-            <mat-card-content>
-                <mat-form-field>
-                    <input matInput #input id="nameField" placeholder="Name" [(ngModel)]="data.resource.name">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput #input id="numberField" placeholder="PhoneNumber" [(ngModel)]="data.resource.number">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput #input id="descriptionField" placeholder="Description" [(ngModel)]="data.resource.description">
-                </mat-form-field>
-
-                <!-- [mat-dialog-close]="data.goal" causes the data.goal object to be returned when the dialog is closed. -->
-
-
-
-                <button mat-button id="confirmAddPhoneNumberButton" [mat-dialog-close]="data.goal" type="button">Add PhoneNumber</button>
-            </mat-card-content>
-        </mat-card>
+        <mat-card-title>New PhoneNumber</mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <br>
+            <mat-form-field>
+                <input matInput #input id="nameField" placeholder="What is your name?" [(ngModel)]="data.resources.name">
+                <mat-error>This field is required</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput #input id="phoneField" placeholder="What is your PhoneNumber?" [(ngModel)]="data.resources.name">
+                <mat-error>This field is required</mat-error>
+            </mat-form-field>
+        </mat-card-content>
+        <button mat-raised-button id="confirmAddPhoneNumberButton" [mat-dialog-close]="data.resources" type="button">Add resource</button>
         <button mat-raised-button id="exitWithoutAddingButton" (click)="onNoClick()" type="button">Exit</button>
     </div>
 </div>
-

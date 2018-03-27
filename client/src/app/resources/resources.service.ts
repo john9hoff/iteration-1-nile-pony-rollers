@@ -9,15 +9,15 @@ import {ResourcesComponent} from "./resources.component";
 
 
 @Injectable()
-export class ResourcesService {
+export class resourceService {
     readonly baseUrl: string = environment.API_URL + 'resources';
     private resourceUrl: string = this.baseUrl;
 
     constructor(private http: HttpClient) {
 
     }
-    getresources(goalTitle?: string): Observable<resources[]> {
-        this.filterByTitle(goalTitle);
+    getresources(resourcesPhone?: string): Observable<resources[]> {
+        this.filterByPhone(resourcesPhone);
         return this.http.get<resources[]>(this.resourceUrl);
     }
 
@@ -25,24 +25,23 @@ export class ResourcesService {
         return this.http.get<resources>(this.resourceUrl + '/' + name);
     }
 
-
-    filterByTitle(goalTitle?: string): void {
-        if (!(goalTitle == null || goalTitle === '')) {
-            if (this.parameterPresent('title=') ) {
+    filterByPhone(resourcesPhone?: string): void {
+        if (!(resourcesPhone == null || resourcesPhone === '')) {
+            if (this.parameterPresent('resourcePhone=') ) {
                 // there was a previous search by title that we need to clear
-                this.removeParameter('title=');
+                this.removeParameter('resourcePhone=');
             }
             if (this.resourceUrl.indexOf('?') !== -1) {
                 // there was already some information passed in this url
-                this.resourceUrl += 'title=' + goalTitle + '&';
+                this.resourceUrl += 'resourcePhone=' + resourcesPhone + '&';
             } else {
                 // this was the first bit of information to pass in the url
-                this.resourceUrl += '?title=' + goalTitle + '&';
+                this.resourceUrl += '?resourcePhone=' + resourcesPhone + '&';
             }
         } else {
             // there was nothing in the box to put onto the URL... reset
-            if (this.parameterPresent('title=')) {
-                let start = this.resourceUrl.indexOf('title=');
+            if (this.parameterPresent('resourcePhone=')) {
+                let start = this.resourceUrl.indexOf('resourcePhone=');
                 const end = this.resourceUrl.indexOf('&', start);
                 if (this.resourceUrl.substring(start - 1, start) === '?') {
                     start = start - 1;
@@ -70,7 +69,7 @@ export class ResourcesService {
         this.resourceUrl = this.resourceUrl.substring(0, start) + this.resourceUrl.substring(end);
     }
 
-    addNewresource(newresource: resources): Observable<{'$oid': string}> {
+    addNewresource(newResources: resources): Observable<{'$oid': string}> {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
@@ -78,6 +77,28 @@ export class ResourcesService {
         };
 
         // Send post request to add a new goals with the user data as the body with specified headers.
-        return this.http.post<{'$oid': string}>(this.resourceUrl + '/new', newresource, httpOptions);
+        return this.http.post<{'$oid': string}>(this.resourceUrl + '/new', newResources, httpOptions);
+    }
+
+    editResources(editedResource: resources): Observable<{'$oid': string}> {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            }),
+        };
+
+        // Send post request to add a new journal with the journal data as the body with specified headers.
+        return this.http.post<{'$oid': string}>(this.resourceUrl + '/edit', editedResource, httpOptions);
+    }
+
+    deleteresources(ResourcedNAME: String) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            }),
+        };
+
+        // Send post request to add a new journal with the journal data as the body with specified headers.
+        return this.http.delete(this.resourceUrl + '/delete/' + ResourcedNAME, httpOptions);
     }
 }

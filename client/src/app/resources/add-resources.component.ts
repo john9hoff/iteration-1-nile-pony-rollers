@@ -11,7 +11,7 @@ import {resources} from './resources';
 export class AddResourcesComponent {
     constructor(
         public dialogRef: MatDialogRef<AddResourcesComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: {goal: resources}) {
+        @Inject(MAT_DIALOG_DATA) public data: {Resources: resources}) {
     }
 
     onNoClick(): void {
