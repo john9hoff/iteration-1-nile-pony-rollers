@@ -22,7 +22,7 @@ describe('Goal list', () => {
 
     it('Should get and highlight Goals title attribute ', () => {
         page.navigateTo();
-        expect(page.getGoalManageTitle()).toEqual('Managing Goals');
+        expect(page.getGoalManageTitle()).toEqual('Your Goals');
     });
 
     it('Should check that goal with name: \'Go to bed early\' matches unique id', () => {
