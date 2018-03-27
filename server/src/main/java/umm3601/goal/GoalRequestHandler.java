@@ -146,4 +146,23 @@ public class GoalRequestHandler {
         }
     }
 
+    public String deleteGoal(Request req, Response res){
+
+        System.out.println("I'm here");
+        System.out.println(req.params(":id"));
+
+        res.type("application/json");
+
+        try {
+            String id = req.params(":id");
+            goalController.deleteGoal(id);
+            return req.params(":id");
+        }
+        catch(RuntimeException ree)
+        {
+            ree.printStackTrace();
+            return null;
+        }
+    }
+
 }

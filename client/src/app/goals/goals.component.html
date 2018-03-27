@@ -39,7 +39,7 @@
                 </mat-card-content>
                 </div>
                 <div class="goals-buttons">
-                    <button mat-raised-button class="button delete-button">
+                    <button mat-raised-button class="button delete-button" (click)="deleteGoal(goal._id['$oid'])">
                         <mat-icon>delete</mat-icon>
                     </button>
                     <button *ngIf="!goal.status" mat-raised-button class="button complete-button" id="completeGoal"
