@@ -4,9 +4,7 @@ import {Goal} from './goal';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
 import {AddGoalComponent} from './add-goal.component';
-/*
-import {MatButton} from '@angular/material';
-*/
+import {MatSnackBar} from '@angular/material';
 
 @Component({
     selector: 'app-goals-component',
@@ -31,7 +29,7 @@ export class GoalsComponent implements OnInit {
     private highlightedID: {'$oid': string} = { '$oid': '' };
 
     // Inject the GoalsService into this component.
-    constructor(public goalService: GoalsService, public dialog: MatDialog/*, public button: MatButton*/) {
+    constructor(public goalService: GoalsService, public dialog: MatDialog, public snackBar: MatSnackBar ) {
 
     }
 
@@ -71,6 +69,12 @@ export class GoalsComponent implements OnInit {
                     console.log('There was an error editing the goal.');
                     console.log('The error was ' + JSON.stringify(err));
                 });
+    }
+
+    openSnackBar(message: string, action: string) {
+        this.snackBar.open(message, action, {
+            duration: 2000,
+        });
     }
 
     public filterGoals(searchPurpose: string, searchCategory: string,

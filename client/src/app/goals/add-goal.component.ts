@@ -6,7 +6,6 @@ import {Goal} from './goal';
     selector: 'app-add-goal.component',
     templateUrl: 'add-goal.component.html',
 })
-
 export class AddGoalComponent {
     constructor(
         public dialogRef: MatDialogRef<AddGoalComponent>,
