@@ -35,10 +35,14 @@ import {ResponseComponent2} from "./home/response-2.component";
 import {ResponseComponent3} from "./home/response-3.component";
 import {ResponseComponent4} from "./home/response-4.component";
 import {ResponseComponent5} from "./home/response-5.component";
+import {ResponseThanksComponent} from "./home/responseThanks.component";
 import {EmergencyComponent} from './home/emergency.component';
 import {ResourcesComponent} from "./resources/resources.component";
 
 import {MatSelectModule} from '@angular/material/select';
+
+import {ReportChartComponent} from './reports/report-chart.component'
+import {ReportChartService} from "./reports/report-chart.service";
 
 @NgModule({
     imports: [
@@ -46,7 +50,7 @@ import {MatSelectModule} from '@angular/material/select';
         HttpClientModule,
         Routing,
         CustomModule,
-        MatSelectModule
+        MatSelectModule,
     ],
     declarations: [
         AppComponent,
@@ -63,8 +67,10 @@ import {MatSelectModule} from '@angular/material/select';
         ResponseComponent3,
         ResponseComponent4,
         ResponseComponent5,
+        ResponseThanksComponent,
         EmergencyComponent,
         EditJournalComponent,
+        ReportChartComponent,
         ResourcesComponent,
         AddResourcesComponent,
     ],
@@ -73,6 +79,7 @@ import {MatSelectModule} from '@angular/material/select';
         TrackerListService,
         JournalListService,
         GoalsService,
+        ReportChartService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
@@ -93,6 +100,8 @@ import {MatSelectModule} from '@angular/material/select';
         ResponseComponent5,
         EmergencyComponent,
         EditJournalComponent,
+        ReportChartComponent,
+        ResponseThanksComponent
     ],
     bootstrap: [AppComponent]
 })

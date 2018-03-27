@@ -10,11 +10,11 @@
                     <label id="trackerEmoji">Emoji: </label>
                     <mat-select name="dropdown" id="dropdown" (click)="trackerEmoji = trackerEmoji">
                         <mat-option value="" (click)="trackerEmoji = null"></mat-option>
-                        <mat-option value="very happy" (click)="trackerEmoji = 'Very Happy'" >Very Happy</mat-option>
-                        <mat-option value="happy" (click)="trackerEmoji = 'Happy'">Happy</mat-option>
-                        <mat-option value="normal" (click)="trackerEmoji = 'Normal'">Normal</mat-option>
+                        <mat-option value="happy" (click)="trackerEmoji = 'Happy'" >Happy</mat-option>
+                        <mat-option value="normal" (click)="trackerEmoji = 'Normal'">Happy</mat-option>
+                        <mat-option value="down" (click)="trackerEmoji = 'Down'">Down</mat-option>
                         <mat-option value="sad" (click)="trackerEmoji = 'Sad'" >Sad</mat-option>
-                        <mat-option value="very sad" (click)="trackerEmoji = 'Very Sad'">Very Sad</mat-option>
+                        <mat-option value="angry" (click)="trackerEmoji = 'Angry'">Angry</mat-option>
                     </mat-select>
                 </form>
                 <mat-accordion *ngIf="trackers; else trackersError" >
@@ -25,6 +25,9 @@
                         </mat-expansion-panel-header>
                         <!--<mat-panel-description>ID: {{tracker._id['$oid']}}</mat-panel-description>-->
                         <mat-panel-description >Emoji selected: {{tracker.emoji}}</mat-panel-description>
+                        <mat-panel-description >Intensity: {{tracker.rating}}</mat-panel-description>
+
+
                     </mat-expansion-panel>
                 </mat-accordion>
                 <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->

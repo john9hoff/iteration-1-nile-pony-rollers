@@ -28,8 +28,25 @@
     size: 200px;
 }
 
+
 mat-card{padding-top:200px;}
 
+mat-slider {
+    width: 300px;
+}
+
 body {
-    background-image: url("https://i.ytimg.com/vi/ZgJfXlSVDxY/maxresdefault.jpg");
+    background-image: url("https://i.ytimg.com/vi/ZgJfXlSVDxY/maxresdefault.jpg");}
+
+.greeting {
+    color: #ffff1a;
+    font-family: "Trebuchet MS";
+    text-align: center;
+    padding: 0%;
+}
+.other-greeting  {
+    color: #ffff1a;
+    font-family: "Trebuchet MS";
+    text-align: center;
+
 }

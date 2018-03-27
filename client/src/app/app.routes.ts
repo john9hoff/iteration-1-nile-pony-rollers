@@ -7,6 +7,7 @@ import {TrackerListComponent} from './trackers/tracker-list.component';
 import {JournalListComponent} from './journals/journal-list.component';
 import {GoalsComponent} from "./goals/goals.component";
 import {ResourcesComponent} from "./resources/resources.component";
+import {ReportChartComponent} from "./reports/report-chart.component";
 
 
 // Route Configuration
@@ -17,6 +18,7 @@ export const routes: Routes = [
     {path: 'journals', component: JournalListComponent},
     {path: 'goals', component: GoalsComponent},
     {path: 'resources', component: ResourcesComponent},
+    {path: 'reports', component: ReportChartComponent},
 ];
 
 export const Routing: ModuleWithProviders = RouterModule.forRoot(routes);

@@ -8,7 +8,7 @@ import {MatDialog} from '@angular/material';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    title = 'Mongo-Angular-Spark lab';
+    title = 'Home';
 
     constructor(public dialog: MatDialog) {
 
@@ -20,4 +20,6 @@ export class AppComponent {
             height: '500px'
         });
     }
+
+
 }

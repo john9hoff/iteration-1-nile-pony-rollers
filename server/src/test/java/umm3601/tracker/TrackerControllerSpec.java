@@ -36,15 +36,19 @@ public class TrackerControllerSpec
         List<Document> testTrackers= new ArrayList<>();
         testTrackers.add(Document.parse("{\n" +
             "                    emoji: \"grinning\",\n" +
-            "                }"));
+            "                    rating: 2,\n" +
+        "                }"));
         testTrackers.add(Document.parse("{\n" +
             "                    emoji: \"smiling\",\n" +
+            "                    rating: 4,\n" +
             "                }"));
         testTrackers.add(Document.parse("{\n" +
             "                    emoji: \"confused\",\n" +
+            "                    rating: 3,\n" +
             "                }"));
         testTrackers.add(Document.parse("{\n" +
             "                    emoji: \"angry\",\n" +
+            "                    rating: 1,\n" +
             "                }"));
 
 
@@ -80,9 +84,30 @@ public class TrackerControllerSpec
     public void getAllEmojis() {
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = trackerController.getTrackers(emptyMap);
+
         BsonArray docs = parseJsonArray(jsonResult);
 
         assertEquals("Should be 4 trackers", 4, docs.size());
+
+    }
+
+
+    @Test
+    public void getTrackerByIntensity(){
+        Map<String, String[]> argMap = new HashMap<>();
+        argMap.put("rating", new String[] { "1" });
+        String jsonResult = trackerController.getTrackers(argMap);
+        BsonArray docs = parseJsonArray(jsonResult);
+
+        assertEquals("Should be 1 tracker", 1, docs.size());
+
+        List<String> emojis = docs
+            .stream()
+            .map(TrackerControllerSpec::getEmoji)
+            .sorted()
+            .collect(Collectors.toList());
+        List<String> expectedEmojis = Arrays.asList("angry");
+        assertEquals("Rating should match", expectedEmojis, emojis);
 
     }
 
@@ -105,7 +130,7 @@ public class TrackerControllerSpec
 
     @Test
     public void addEmojiTest(){
-        String newId = trackerController.addNewTracker("frowning");
+        String newId = trackerController.addNewTracker("frowning",2);
 
         assertNotNull("Add new trackers should return true,", newId);
         Map<String, String[]> argMap = new HashMap<>();
