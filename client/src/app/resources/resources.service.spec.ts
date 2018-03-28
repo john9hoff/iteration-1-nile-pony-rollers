@@ -11,26 +11,29 @@ describe('Resources list service: ', () => {
     // A small collection of test goals
     const testResources: resources[] = [
         {
-            resourceName: 'Bob_name',
-            resourceBody: 'My Freind',
-            resourcePhone: '320-555-1234',
-            resourcesUrl: 'Eat all the cookies',
+            _id: 'food_id',
+            purpose: 'Gain some weight',
+            category: 'Chores',
+            phone: '123-123-1234',
+            name: 'Bob',
         },
         {
-            resourceName: 'chores_name',
-            resourceBody: 'Brother',
-            resourcePhone: '320-1234-4567',
-            resourcesUrl: 'Take out recycling',
+            _id: 'chores_id',
+            purpose: 'Have cleaner kitchen',
+            category: 'Chores',
+            phone: '987-987-9876',
+            name: 'Chris',
         },
         {
-            resourceName: 'family_name',
-            resourceBody: 'Home LandLIne',
-            resourcePhone: '320-288-9876',
-            resourcesUrl: 'Call mom',
+            _id: 'family_id',
+            purpose: 'Gain some weight',
+            category: 'Family',
+            phone: '456-456-4567',
+            name: 'Family',
         }
     ];
     const mResources: resources[] = testResources.filter(Resource =>
-        Resource.resourcePhone.toLowerCase().indexOf('m') !== -1
+        Resource.category.toLowerCase().indexOf('m') !== -1
     );
 
     let ResourcesListService: ResourceService;
@@ -56,7 +59,7 @@ describe('Resources list service: ', () => {
         httpTestingController.verify();
     });
 
-    it('getresources() calls api/resource', () => {
+    it('getResources() calls api/resource', () => {
 
         ResourcesListService.getresources().subscribe(
             users => expect(users).toBe(testResources)
@@ -72,41 +75,41 @@ describe('Resources list service: ', () => {
         req.flush(testResources);
     });
 
-    it('getresources(resourcesPhone) adds appropriate param string to called URL', () => {
+    it('getresources(resourcesCategory) adds appropriate param string to called URL', () => {
         ResourcesListService.getresources('m').subscribe(
             users => expect(users).toEqual(mResources)
         );
 
-        const req = httpTestingController.expectOne(ResourcesListService.baseUrl + '?resourcesPhone=m&');
+        const req = httpTestingController.expectOne(ResourcesListService.baseUrl + '?category=m&');
         expect(req.request.method).toEqual('GET');
         req.flush(mResources);
     });
 
-    it('filterByPhone(resourcesPhone) deals appropriately with a URL that already had a resourcesPhone', () => {
+    it('resourcesCategory(resourcesCategory) deals appropriately with a URL that already had a category', () => {
         currentlyImpossibleToGenerateSearchResourcesUrl = ResourcesListService.baseUrl + '?category=f&something=k&';
         ResourcesListService['resourceUrl'] = currentlyImpossibleToGenerateSearchResourcesUrl;
-        ResourcesListService.filterByPhone('m');
+        ResourcesListService.filterByCategory('m');
         expect(ResourcesListService['resourceUrl']).toEqual(ResourcesListService.baseUrl + '?something=k&category=m&');
     });
 
-    it('filterByPhone(resourcesPhone) deals appropriately with a URL that already had some filtering, but no category', () => {
+    it('filterByCategory(resourcesCategory) deals appropriately with a URL that already had some filtering, but no category', () => {
         currentlyImpossibleToGenerateSearchResourcesUrl = ResourcesListService.baseUrl + '?something=k&';
         ResourcesListService['resourceUrl'] = currentlyImpossibleToGenerateSearchResourcesUrl;
-        ResourcesListService.filterByPhone('m');
+        ResourcesListService.filterByCategory('m');
         expect(ResourcesListService['resourceUrl']).toEqual(ResourcesListService.baseUrl + '?something=k&category=m&');
     });
 
-    it('filterByPhone(resourcesPhone) deals appropriately with a URL has the keyword category, but nothing after the =', () => {
+    it('filterByCategory(resourcesCategory) deals appropriately with a URL has the keyword category, but nothing after the =', () => {
         currentlyImpossibleToGenerateSearchResourcesUrl = ResourcesListService.baseUrl + '?category=&';
         ResourcesListService['resourceUrl'] = currentlyImpossibleToGenerateSearchResourcesUrl;
-        ResourcesListService.filterByPhone('');
+        ResourcesListService.filterByCategory('');
         expect(ResourcesListService['resourceUrl']).toEqual(ResourcesListService.baseUrl + '');
     });
 
-    it('getresourceByName() calls api/resource/name', () => {
+    it('getresourceByID() calls api/resource/id', () => {
         const targetReousrce: resources = testResources[1];
-        const targetId: string = targetReousrce.resourceName;
-        ResourcesListService.getresourceByName(targetId).subscribe(
+        const targetId: string = targetReousrce._id;
+        ResourcesListService.getresourceByID(targetId).subscribe(
             user => expect(user).toBe(targetReousrce)
         );
 
@@ -117,45 +120,47 @@ describe('Resources list service: ', () => {
     });
 
     it('adding a Resource calls api/resource/new', () => {
-        const chores_name = { '$oid': 'chores_name' };
+        const chores_id = { '$oid': 'chores_id' };
         const newResources: resources = {
-            resourceName: 'chores_name',
-            resourceBody: 'older Brother',
-            resourcePhone: '320-1234-5568',
-            resourcesUrl: 'Plunge toilet',
+            _id: 'chores_id',
+            purpose: 'Have cleaner bathroom',
+            category: 'Chores',
+            phone: '123-456-789',
+            name: 'Plunge toilet',
         };
 
-        ResourcesListService.addNewresource(newResources).subscribe(
+        ResourcesListService.addNewResource(newResources).subscribe(
             id => {
-                expect(name).toBe(chores_name);
+                expect(id).toBe(chores_id);
             }
         );
 
         const expectedUrl: string = ResourcesListService.baseUrl + '/new';
         const req = httpTestingController.expectOne(expectedUrl);
         expect(req.request.method).toEqual('POST');
-        req.flush(chores_name);
+        req.flush(chores_id);
     });
 
     it('editing a Resource calls api/resource/edit', () => {
-        const family_name = { '$oid': 'family_name' };
+        const family_id = { '$oid': 'family_id' };
         const editResources: resources = {
-            resourceName: 'family_name',
-            resourceBody: 'Talk about my classes',
-            resourcePhone: '320-588-4567',
-            resourcesUrl: 'Call sister',
+            _id: 'family_id',
+            purpose: 'Talk about my classes',
+            category: 'Family',
+            phone: '456-123-7890',
+            name: 'Call sister',
         };
 
-        ResourcesListService.editResources(editResources).subscribe(
-            name => {
-                expect(name).toBe(family_name);
+        ResourcesListService.editResource(editResources).subscribe(
+            id => {
+                expect(id).toBe(family_id);
             }
         );
 
         const expectedUrl: string = ResourcesListService.baseUrl + '/edit';
         const req = httpTestingController.expectOne(expectedUrl);
         expect(req.request.method).toEqual('POST');
-        req.flush(family_name);
+        req.flush(family_id);
     });
 
 });

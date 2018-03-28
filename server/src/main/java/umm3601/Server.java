@@ -135,11 +135,11 @@ public class Server {
         ///Resource Endpoints///////////////////////////////////
         /////////////////////////////////////////////////////
 
-        get("api/resources", resourceRequestHandler::getresources);
-        get("api/resources/:id", resourceRequestHandler::getresourcesJSON);
-        post("api/resources/new", resourceRequestHandler::addNewresource);
+        get("api/resources", resourceRequestHandler::getResources);
+        get("api/resources/:id", resourceRequestHandler::getResourcesJSON);
+        post("api/resources/new", resourceRequestHandler::addNewResource);
         post("api/resources/edit", resourceRequestHandler::editResources);
-        delete("api/resources/delete/:id", resourceRequestHandler::deleteresources);
+        delete("api/resources/delete/:id", resourceRequestHandler::deleteResources);
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.

@@ -20,12 +20,12 @@ public class ResourceRequestHandler {
      */
 
     // gets one item using its ObjectId--didn't use, just for potential future functionality
-    public String getresourcesJSON(Request req, Response res){
+    public String getResourcesJSON(Request req, Response res){
         res.type("application/json");
         String id = req.params("id");
         String item;
         try {
-            item = resourceController.getresource(id);
+            item = resourceController.getResource(id);
         } catch (IllegalArgumentException e) {
             // This is thrown if the ID doesn't have the appropriate
             // form for a Mongo Object ID.
@@ -55,10 +55,10 @@ public class ResourceRequestHandler {
      */
 
     // Gets the goals from the DB given the query parameters
-    public String getresources(Request req, Response res)
+    public String getResources(Request req, Response res)
     {
         res.type("application/json");
-        return resourceController.getresources(req.queryMap().toMap());
+        return resourceController.getResources(req.queryMap().toMap());
     }
 
     /**Method called from Server when the 'api/users/new'endpoint is received.
@@ -69,7 +69,7 @@ public class ResourceRequestHandler {
      * @param res the HTTP response
      * @return a boolean as whether the user was added successfully or not
      */
-    public String addNewresource(Request req, Response res)
+    public String addNewResource(Request req, Response res)
     {
 
         res.type("application/json");
@@ -79,14 +79,17 @@ public class ResourceRequestHandler {
             // then try to add the item with itemController's addNewItem method
             if(o.getClass().equals(BasicDBObject.class)) {
                 try {
+                    System.out.println("sdfsdfsdfsdfsdzfsdfsd");
                     BasicDBObject dbO = (BasicDBObject) o;
 
-                    String resourceBody = dbO.getString("resourceBody");
-                    String resourcePhone = dbO.getString("resourcePhone");
-                    String resourcesUrl = dbO.getString("resourcesUrl");
+                    String purpose = dbO.getString("purpose");
+                    String category = dbO.getString("category");
+                    String name = dbO.getString("name");
+                    String phone = dbO.getString("phone");
 
-                    System.err.println("Adding new resource [resourceBody=" + resourceBody + ", resourcePhone=" + resourcePhone + " resourcesUrl=" + resourcesUrl +']');
-                    return resourceController.addNewResource(resourceBody, resourcePhone, resourcesUrl).toString();
+
+                    System.err.println("Adding new resource [purpose=" + purpose + ", category=" + category + " name=" + name + " phone=" + phone +']');
+                    return resourceController.addNewResource(purpose, category, name, phone).toString();
                 } catch (NullPointerException e) {
                     System.err.println("A value was malformed or omitted, new item request failed.");
                     return null;
@@ -118,14 +121,15 @@ public class ResourceRequestHandler {
                 try {
                     BasicDBObject dbO = (BasicDBObject) o;
 
-                    String resourceName = dbO.getString("_name");
-                    String resourceBody = dbO.getString("resourceBody");
-                    String resourcePhone = dbO.getString("resourcePhone");
-                    String resourcesUrl = dbO.getString("resourcesUrl");
+                    String id = dbO.getString("_id");
+                    String purpose = dbO.getString("purpose");
+                    String category = dbO.getString("category");
+                    String name = dbO.getString("name");
+                    String phone = dbO.getString("phone");
 
 
-                    System.err.println("Editing Resource [resourceBody=" + resourceBody + ", resourcePhone=" + resourcePhone + ", resourcesUrl=" + resourcesUrl + ']');
-                    return resourceController.editResources(resourceName, resourceBody, resourcePhone, resourcesUrl).toString();
+                    System.err.println("Editing Resource [purpose=" + purpose + ", category=" + category + ", name=" + name + ", phone=" + phone + ']');
+                    return resourceController.editResources(id, purpose, category, name, phone).toString();
                 } catch (NullPointerException e) {
                     System.err.println("A value was malformed or omitted, new item request failed.");
                     return null;
@@ -145,7 +149,7 @@ public class ResourceRequestHandler {
         }
     }
 
-    public String deleteresources(Request req, Response res){
+    public String deleteResources(Request req, Response res){
 
         System.out.println("I'm here");
         System.out.println(req.params(":id"));
@@ -154,7 +158,7 @@ public class ResourceRequestHandler {
 
         try {
             String id = req.params(":id");
-            resourceController.deleteresources(id);
+            resourceController.deleteResources(id);
             return req.params(":id");
         }
         catch(RuntimeException ree)

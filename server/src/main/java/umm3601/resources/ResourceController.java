@@ -26,10 +26,10 @@ public class ResourceController {
         resourceCollection = database.getCollection("resources");
     }
 
-    public String getresource(String name) {
+    public String getResource(String name) {
         FindIterable<Document> jsonItems
             = resourceCollection
-            .find(eq("resourceName", new ObjectId(name)));
+            .find(eq("_id", new ObjectId(name)));
 
         Iterator<Document> iterator = jsonItems.iterator();
         if (iterator.hasNext()) {
@@ -41,38 +41,47 @@ public class ResourceController {
         }
     }
 
-    public String getresources(Map<String, String[]> queryParams) {
+    public String getResources(Map<String, String[]> queryParams) {
 
         Document filterDoc = new Document();
 
         // "goal" will be a key to a string object, where the object is
         // what we get when people enter their goals as a text body.
         // "goal" is the purpose of the goal
-        if (queryParams.containsKey("resourceBody")) {
-            String targetContent = (queryParams.get("resourceBody")[0]);
+        if (queryParams.containsKey("purpose")) {
+            String targetContent = (queryParams.get("purpose")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("resourceBody", contentRegQuery);
+            filterDoc = filterDoc.append("purpsoe", contentRegQuery);
         }
 
         // category is the category of the goal, also a String
-        if (queryParams.containsKey("resourcePhone")) {
-            String targetContent = (queryParams.get("resourcePhone")[0]);
+        if (queryParams.containsKey("category")) {
+            String targetContent = (queryParams.get("category")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("resourcePhone", contentRegQuery);
+            filterDoc = filterDoc.append("category", contentRegQuery);
         }
 
         // name is the title of the goal
-        if (queryParams.containsKey("resourcesUrl")) {
-            String targetContent = (queryParams.get("resourcesUrl")[0]);
+        if (queryParams.containsKey("name")) {
+            String targetContent = (queryParams.get("name")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("resourcesUrl", contentRegQuery);
+            filterDoc = filterDoc.append("name", contentRegQuery);
         }
+
+        if (queryParams.containsKey("phone")) {
+            String targetContent = (queryParams.get("phone")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("phone", contentRegQuery);
+        }
+
         // FindIterable comes from mongo, Document comes from Gson
         FindIterable<Document> matchingResources = resourceCollection.find(filterDoc);
 
@@ -82,67 +91,71 @@ public class ResourceController {
     /**
      * Helper method which appends received user information to the to-be added document
      *
-     * @param resourceBody
-     * @param resourcePhone
-     * @param resourcesUrl
+     * @param purpose
+     * @param category
+     * @param name
+     * @param phone
      * @return boolean after successfully or unsuccessfully adding a user
      */
     // As of now this only adds the goal, but you can separate multiple arguments
     // by commas as we add them.
-    public String addNewResource(String resourceBody, String resourcePhone, String resourcesUrl) {
+    public String addNewResource(String purpose, String category, String name, String phone) {
 
         // makes the search Document key-pairs
         Document newResources = new Document();
-        newResources.append("resourceBody", resourceBody);
-        newResources.append("resourcePhone", resourcePhone);
-        newResources.append("resourcesUrl", resourcesUrl);
+        newResources.append("purpsoe", purpose);
+        newResources.append("category", category);
+        newResources.append("name", name);
+        newResources.append("phone" , phone);
+        System.out.println("sdfsdfsdfsddsfsdf");
         // Append new goals here
 
         try {
             resourceCollection.insertOne(newResources);
-            ObjectId name = newResources.getObjectId("resourceName");
+            ObjectId id = newResources.getObjectId("_id");
 
-            System.err.println("Successfully added new Resources [resourceName=" + name + ", resourceBody=" + resourceBody + ", resourcePhone=" + resourcePhone + ", resourcesUrl=" + resourcesUrl + ']');
+            System.err.println("Successfully added new Resources [_id=" + id + ", purpose=" + purpose + ", category=" + category + ", name=" + name +  ", phone="+ phone +']');
             //return id.toHexString();
-            return JSON.serialize(name);
+            return JSON.serialize(id);
         } catch(MongoException me) {
             me.printStackTrace();
             return null;
         }
     }
 
-    public String editResources(String name, String body, String phone, String url){
+    public String editResources(String id, String purpose, String category, String phone, String name){
         System.out.println("Right here again");
         Document newResources = new Document();
-        newResources.append("resourceBody", body);
-        newResources.append("resourcePhone", phone);
-        newResources.append("resourceUrl", url);
+        newResources.append("purpose", purpose);
+        newResources.append("category", category);
+        newResources.append("name", name);
+        newResources.append("phone", phone);
         Document setQuery = new Document();
         setQuery.append("$set", newResources);
 
-        Document searchQuery = new Document().append("resourceName", new ObjectId(name));
+        Document searchQuery = new Document().append("_id", new ObjectId(id));
 
-        System.out.println(name);
+        System.out.println(id);
 
         try {
             resourceCollection.updateOne(searchQuery, setQuery);
-            ObjectId name1 = searchQuery.getObjectId("resourceName");
-            System.err.println("Successfully updated resource [resourceName=" + name1 + ", resourceBody=" + body +
-                ", resourcePhone=" + phone + ", resourceUrl=" + url + ']');
-            return JSON.serialize(name1);
+            ObjectId id1 = searchQuery.getObjectId("_id");
+            System.err.println("Successfully updated resource [_id=" + id1 + ", purpose=" + purpose +
+                ", category=" + category + ", name=" + name + ", phone=" + phone + ']');
+            return JSON.serialize(id1);
         } catch(MongoException me) {
             me.printStackTrace();
             return null;
         }
     }
 
-    public void deleteresources(String name){
-        Document searchQuery = new Document().append("resourceName", new ObjectId(name));
+    public void deleteResources(String name){
+        Document searchQuery = new Document().append("_id", new ObjectId(name));
 
         try {
             resourceCollection.deleteOne(searchQuery);
-            ObjectId name1 = searchQuery.getObjectId("resourceName");
-            System.out.println("Succesfully deleted resource " + name1);
+            ObjectId id1 = searchQuery.getObjectId("_id");
+            System.out.println("Succesfully deleted resource " + id1);
 
         } catch(MongoException me) {
             me.printStackTrace();

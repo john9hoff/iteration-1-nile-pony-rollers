@@ -21,10 +21,12 @@ export class ResourcesComponent implements OnInit {
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
-    public resourcesName: string;
-    public resourcesBody: string;
+    public resourcesID: string;
+    public resourcesPurpose: string;
+    public resourcesCategory: string;
     public resourcesPhone: string;
-    public resourcesUrl: string;
+    public resourcesName: string
+
 
 
     // The ID of the resource
@@ -36,18 +38,18 @@ export class ResourcesComponent implements OnInit {
     }
 
     isHighlighted(resource: resources): boolean {
-        return resource.resourceName['$oid'] === this.highlightedID['$oid'];
+        return resource._id['$oid'] === this.highlightedID['$oid'];
     }
 
     openDialog(): void {
-        const newResources: resources = {resourceName: '', resourceBody:'', resourcePhone:'', resourcesUrl:''};
+        const newResources: resources = {_id: '', name:'', purpose:'', phone:'', category: ''};
         const dialogRef = this.dialog.open(AddResourcesComponent, {
             width: '300px',
             data: { resource : newResources }
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            this.resourceService.addNewresource(result).subscribe(
+            this.resourceService.addNewResource(result).subscribe(
                 addresourcesResult => {
                     this.highlightedID = addresourcesResult;
                     this.refreshResources();
@@ -60,8 +62,8 @@ export class ResourcesComponent implements OnInit {
         });
     }
 
-    deleteresources(_id: string){
-        this.resourceService.deleteresources(_id).subscribe(
+    deleteResources(_id: string){
+        this.resourceService.deleteResource(_id).subscribe(
             resource => {
             },
             err => {
@@ -73,9 +75,9 @@ export class ResourcesComponent implements OnInit {
         this.loadService();
     }
 
-    resourceSatisfied(theUserName: string, theBody: string, thePhoneNumber: string, theUrl: string) {
-        const updatedResources: resources = {resourceName: theUserName, resourceBody: theBody, resourcePhone: thePhoneNumber, resourcesUrl: theUrl};
-        this.resourceService.editResources(updatedResources).subscribe(
+    resourceSatisfied(_id: string, thePurpose: string, thePhone: string, theName: string, theCategory: string) {
+        const updatedResources: resources = {_id: _id, purpose: thePurpose, phone: thePhone, name: theName, category: theCategory};
+        this.resourceService.editResource(updatedResources).subscribe(
             editResourcesResult => {
                 this.highlightedID = editResourcesResult;
                 this.refreshResources();
@@ -92,35 +94,43 @@ export class ResourcesComponent implements OnInit {
         });
     }
 
-    public filterResource(searchBody: string, searchPhone: string,
-                       searchUrl: string): resources[] {
+    public filterResource(searchPurpose: string, searchPhone: string,
+                       searchName: string, searchCategory: string): resources[] {
 
         this.filteredResources = this.resource;
 
         // Filter by body
-        if (searchBody != null) {
-            searchBody = searchBody.toLocaleLowerCase();
+        if (searchPurpose != null) {
+            searchPurpose = searchPurpose.toLocaleLowerCase();
 
             this.filteredResources = this.filteredResources.filter(resource => {
-                return !searchBody || resource.resourceBody.toLowerCase().indexOf(searchBody) !== -1;
+                return !searchPurpose || resource.purpose.toLowerCase().indexOf(searchPurpose) !== -1;
             });
         }
 
         // Filter by phone
-        if (searchPhone != null) {
-            searchPhone = searchPhone.toLocaleLowerCase();
+        if (searchCategory != null) {
+            searchCategory = searchCategory.toLocaleLowerCase();
 
             this.filteredResources = this.filteredResources.filter(resource => {
-                return !searchPhone || resource.resourcePhone.toLowerCase().indexOf(searchPhone) !== -1;
+                return !searchCategory || resource.category.toLowerCase().indexOf(searchCategory) !== -1;
             });
         }
 
         // Filter by url
-        if (searchUrl != null) {
-            searchUrl = searchUrl.toLocaleLowerCase();
+        if (searchName != null) {
+            searchName = searchName.toLocaleLowerCase();
 
             this.filteredResources = this.filteredResources.filter(resource => {
-                return !searchUrl || resource.resourcesUrl.toLowerCase().indexOf(searchUrl) !== -1;
+                return !searchName || resource.name.toLowerCase().indexOf(searchName) !== -1;
+            });
+        }
+
+        if (searchPhone != null) {
+            searchPhone = searchPhone.toLocaleLowerCase();
+
+            this.filteredResources = this.filteredResources.filter(resource => {
+                return !searchPhone || resource.phone.toLowerCase().indexOf(searchPhone) !== -1;
             });
         }
         return this.filteredResources;
@@ -136,11 +146,11 @@ export class ResourcesComponent implements OnInit {
         //
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
-        const ResourceObservable: Observable<resources[]> = this.resourceService.getresources();
+        const ResourceObservable: Observable<resources[]> = this.resourceService.getResources();
         ResourceObservable.subscribe(
             resource => {
                 this.resource = resource;
-                this.filterResource(this.resourcesBody, this.resourcesPhone, this.resourcesUrl);
+                this.filterResource(this.resourcesPurpose, this.resourcesPhone, this.resourcesName, this.resourcesCategory);
             },
             err => {
                 console.log(err);
@@ -150,7 +160,7 @@ export class ResourcesComponent implements OnInit {
 
 
     loadService(): void {
-        this.resourceService.getresources(this.resourcesPhone).subscribe(
+        this.resourceService.getResources(this.resourcesCategory).subscribe(
             resource => {
                 this.resource = resource;
                 this.filteredResources = this.resource;

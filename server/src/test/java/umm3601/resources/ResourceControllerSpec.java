@@ -33,21 +33,30 @@ public class ResourceControllerSpec {
         resourcesDocuments.drop();
         List<Document> testResources = new ArrayList<>();
         testResources.add(Document.parse("{\n" +
-            "                    resourceBody: \"Clean my room\",\n" +
-            "                    resourcePhone: \"123-123-1234\",\n" +
+            "                    name: \"Clean my room\",\n" +
+            "                    purpose: \"To have a better environment\",\n" +
+            "                    phone: \"123-486-4562\",\n" +
+            "                    category: \"Living\",\n" +
             "                }"));
         testResources.add(Document.parse("{\n" +
-            "                   resourceBody: \"Wash Dishes\",\n" +
-            "                    resourcePhone: \"345-345-3456\",\n" +
+            "                    name: \"Wash dishes\",\n" +
+            "                    purpose: \"Cleaner kitchen\",\n" +
+            "                    phone: \"154-352-4865\",\n" +
+            "                    category: \"Chores\",\n" +
             "                }"));
         testResources.add(Document.parse("{\n" +
-            "                    resourceBody: \"Make cookies\",\n" +
-            "                    resourcePhone: \"567-567-5678\",\n" +
+            "                    name: \"Make cookies\",\n" +
+            "                    purpose: \"Get fatter\",\n" +
+            "                    phone: \"654-786-3515\",\n" +
+            "                    category: \"Food\",\n" +
+
             "                }"));
         huntersID = new ObjectId();
-        BasicDBObject hunter = new BasicDBObject("resourceName", huntersID);
-        hunter = hunter.append("resourceBody", "Call mom")
-            .append("resourcePhone", "987-987-9876");
+        BasicDBObject hunter = new BasicDBObject("_id", huntersID);
+        hunter = hunter.append("name", "Call mom")
+            .append("purpose", "Improve relationship")
+            .append("phone", "896-325-4126")
+            .append("category", "Family");
         resourcesDocuments.insertMany(testResources);
         resourcesDocuments.insertOne(Document.parse(hunter.toJson()));
 
@@ -68,44 +77,44 @@ public class ResourceControllerSpec {
     }
 
 
-    private static String getresourceBody(BsonValue val) {
+    private static String getPurpose(BsonValue val) {
         BsonDocument doc = val.asDocument();
-        return ((BsonString) doc.get("resourceBody")).getValue();
+        return ((BsonString) doc.get("purpose")).getValue();
     }
 
-    private static String getresourcePhone(BsonValue val) {
+    private static String getName(BsonValue val) {
         BsonDocument doc = val.asDocument();
-        return ((BsonString) doc.get("resourcePhone")).getValue();
+        return ((BsonString) doc.get("name")).getValue();
     }
 
     @Test
     public void getAllResources() {
         Map<String, String[]> emptyMap = new HashMap<>();
-        String jsonResult = resourceController.getresources(emptyMap);
+        String jsonResult = resourceController.getResources(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
         assertEquals("Should be 4 resource", 4, docs.size());
         List<String> resources = docs
             .stream()
-            .map(ResourceControllerSpec::getresourceBody)
+            .map(ResourceControllerSpec::getPurpose)
             .sorted()
             .collect(Collectors.toList());
-        List<String> expectedBodys = Arrays.asList("Clean my room", "Wash Dishes", "Make cookies");
+        List<String> expectedBodys = Arrays.asList("Cleaner kitchen", "Get fatter", "Improve relationship", "To have a better environment");
         assertEquals("resources should match", expectedBodys, resources);
     }
 
     @Test
-    public void getresourceByName() {
+    public void getresourceByCategory() {
         Map<String, String[]> argMap = new HashMap<>();
         // Mongo in GoalController is doing a regex search so can just take a Java Reg. Expression
         // This will search the category for letters 'f' and 'c'.
-        argMap.put("resourcesPhone", new String[]{"[f, c]"});
-        String jsonResult = resourceController.getresources(argMap);
+        argMap.put("category", new String[]{"[f, c]"});
+        String jsonResult = resourceController.getResources(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
         assertEquals("Should be 3 resource", 3, docs.size());
         List<String> name = docs
             .stream()
-            .map(ResourceControllerSpec::getresourcePhone)
+            .map(ResourceControllerSpec::getPurpose)
             .sorted()
             .collect(Collectors.toList());
         List<String> expectedName = Arrays.asList("Call mom", "Make cookies", "Wash dishes");
@@ -114,25 +123,25 @@ public class ResourceControllerSpec {
 
     @Test
     public void getHuntersByID() {
-        String jsonResult = resourceController.getresource(huntersID.toHexString());
+        String jsonResult = resourceController.getResource(huntersID.toHexString());
         Document hunterDoc = Document.parse(jsonResult);
         assertEquals("Name should match", "Call mom", hunterDoc.get("name"));
-        String noJsonResult = resourceController.getresource(new ObjectId().toString());
+        String noJsonResult = resourceController.getResource(new ObjectId().toString());
         assertNull("No name should match", noJsonResult);
     }
 
     @Test
     public void addResourceTest() {
-        String newName = resourceController.addNewResource("Self defense from Bobs", "232-678-2358", "Kick Bob");
+        String newName = resourceController.addNewResource("Self defense from Bobs", "Injury", "Kick Bob", "232-678-2358");
 
         assertNotNull("Add new resource should return true when resource is added,", newName);
         Map<String, String[]> argMap = new HashMap<>();
-        String jsonResult = resourceController.getresources(argMap);
+        String jsonResult = resourceController.getResources(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
         List<String> purpose = docs
             .stream()
-            .map(ResourceControllerSpec::getresourceBody)
+            .map(ResourceControllerSpec::getPurpose)
             .sorted()
             .collect(Collectors.toList());
         // name.get(0) says to get the name of the first person in the database,
@@ -143,14 +152,14 @@ public class ResourceControllerSpec {
 
     @Test
     public void editResourcesTest() {
-        String newId = resourceController.editResources("Peter", "To have a better environment", "320-288-1234", "Hug KK");
+        String newId = resourceController.editResources("5ab53a8907d923f68d03e1a3", "To have a better environment", "Family", "320-288-1234", "Hug KK");
         assertNotNull("Edit rsource should return true when rsource is edited,", newId);
         Map<String, String[]> argMap = new HashMap<>();
-        String jsonResult = resourceController.getresources(argMap);
+        String jsonResult = resourceController.getResources(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
         List<String> purpose = docs
             .stream()
-            .map(ResourceControllerSpec::getresourceBody)
+            .map(ResourceControllerSpec::getPurpose)
             .sorted()
             .collect(Collectors.toList());
         assertEquals("Should return purpose of edited resource", "To have a better environment", purpose.get(3));
@@ -159,9 +168,9 @@ public class ResourceControllerSpec {
     @Test
     public void deleteResourceTest() {
         System.out.println("HuntersID " + huntersID.toHexString());
-        resourceController.deleteresources(huntersID.toHexString());
+        resourceController.deleteResources(huntersID.toHexString());
         Map<String, String[]> argMap = new HashMap<>();
-        String jsonResult = resourceController.getresources(argMap);
+        String jsonResult = resourceController.getResources(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
         assertEquals("Should be 3 resource", 3, docs.size());
     }

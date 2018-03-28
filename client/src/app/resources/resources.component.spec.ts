@@ -24,22 +24,25 @@ describe('Resources', () => {
         ResourceServiceStub = {
             getresources: () => Observable.of([
                 {
-                    resourceName: 'food_name',
-                    resourceBody: 'Gain some weight',
-                    resourcePhone: '763-599-4162',
-                    resourcesUrl: 'Eat all the cookies',
+                    _id: 'food_id',
+                    purpose: 'Gain some weight',
+                    category: 'Food',
+                    phone: '123-985-3548',
+                    name: 'Eat all the cookies',
                 },
                 {
-                    resourceName: 'chores_name',
-                    resourceBody: 'Have cleaner kitchen',
-                    resourcePhone: '288-566-5234',
-                    resourcesUrl: 'Take out recycling',
+                    _id: 'chores_id',
+                    purpose: 'Have cleaner kitchen',
+                    category: 'Chores',
+                    phone: '548-535-8943',
+                    name: 'Take out recycling',
                 },
                 {
-                    resourceName: 'family_name',
-                    resourceBody: 'To love her',
-                    resourcePhone: '123-456-7890',
-                    resourcesUrl: 'Call mom',
+                    _id: 'family_id',
+                    purpose: 'To love her',
+                    category: 'Family',
+                    phone: '896-132-4346',
+                    name: 'Call mom',
                 }
             ])
         };
@@ -64,33 +67,33 @@ describe('Resources', () => {
         expect(resourceList.resource.length).toBe(3);
     });
 
-    it('contains a body called \'Gain some weight\'', () => {
-        expect(resourceList.resource.some((Resource: resources) => Resource.resourceBody === 'Gain some weight')).toBe(true);
+    it('contains a name called \'Eat all the cookies\'', () => {
+        expect(resourceList.resource.some((Resource: resources) => Resource.name === 'Eat all the cookies')).toBe(true);
     });
 
-    it('contains a body called \'Have cleaner kitchen\'', () => {
-        expect(resourceList.resource.some((Resource: resources) => Resource.resourceBody === 'Have cleaner kitchen')).toBe(true);
+    it('contains a name called \'Call mom\'', () => {
+        expect(resourceList.resource.some((Resource: resources) => Resource.name === 'Call mom')).toBe(true);
     });
 
-    it('contains a phonenumber called \'123-456-7890\'', () => {
-        expect(resourceList.resource.some((Resource: resources) => Resource.resourcePhone === '123-456-7890')).toBe(true);
+    it('contains a purpose called \'Gain some weight\'', () => {
+        expect(resourceList.resource.some((Resource: resources) => Resource.purpose === 'Gain some weight')).toBe(true);
     });
 
-    it('doesn\'t contain a body called \'Meet with Santa\'', () => {
-        expect(resourceList.resource.some((Resource: resources) => Resource.resourceBody === 'Meet with Santa')).toBe(false);
+    it('doesn\'t contain a name called \'Meet with Santa\'', () => {
+        expect(resourceList.resource.some((Resource: resources) => Resource.name === 'Meet with Santa')).toBe(false);
     });
 
-    it('Resource list filters by body', () => {
+    it('Resource list filters by name', () => {
         expect(resourceList.filteredResources.length).toBe(3);
-        resourceList.resourcesBody = 'y';
+        resourceList.resourcesName = 'y';
         resourceList.refreshResources().subscribe(() => {
             expect(resourceList.filteredResources.length).toBe(1);
         });
     });
 
-    it('Resource list filters by phone', () => {
+    it('Resource list filters by purpose', () => {
         expect(resourceList.filteredResources.length).toBe(3);
-        resourceList.resourcesPhone = '5';
+        resourceList.resourcesPurpose = '5';
         resourceList.refreshResources().subscribe(() => {
             expect(resourceList.filteredResources.length).toBe(2);
         });
@@ -140,12 +143,13 @@ describe('Adding a Resource', () => {
     let resourceList: ResourcesComponent;
     let fixture: ComponentFixture<ResourcesComponent>;
     const newResources: resources =   {
-        resourceName: '',
-        resourceBody: 'To stay awake writing tests',
-        resourcePhone: '320-355-4457',
-        resourcesUrl: 'Drink coffee',
+        _id: '',
+        purpose: 'To stay awake writing tests',
+        category: 'Personal Health',
+        phone: '453-173-5349',
+        name: 'Drink coffee',
     };
-    const newName = 'health_name';
+    const newId = 'health_id';
 
     let calledResources: resources;
 
@@ -167,7 +171,7 @@ describe('Adding a Resource', () => {
             addNewresource: (ResourceToAdd: resources) => {
                 calledResources = ResourceToAdd;
                 return Observable.of({
-                    '$oid': newName
+                    '$oid': newId
                 });
             }
         };

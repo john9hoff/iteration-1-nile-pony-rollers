@@ -5,12 +5,12 @@
         <mat-card-content>
             <br>
             <mat-form-field>
-                <input matInput #input id="nameField" placeholder="What is your name?" [(ngModel)]="data.Resource.resourceName">
+                <input matInput #input id="nameField" placeholder="What is your name?" [(ngModel)]="data.Resource.name">
                 <mat-error>This field is required</mat-error>
             </mat-form-field> <br>
             <br><br>
             <mat-form-field>
-                <input matInput #input id="resourcePhone" placeholder="What is the Phone Number?" [(ngModel)]="data.Resource.resourcePhone">
+                <input matInput #input id="resourcePhone" placeholder="What is the Phone Number?" [(ngModel)]="data.Resource.phone">
             </mat-form-field>
         </mat-card-content>
         <button mat-raised-button id="confirmAddREsouButton" [mat-dialog-close]="data.Resource" type="button" (click)="openSnackBar('resources Added')">Confirm</button>
