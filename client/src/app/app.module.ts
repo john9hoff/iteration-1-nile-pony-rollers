@@ -42,6 +42,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {ReportChartComponent} from './reports/report-chart.component'
 import {ReportChartService} from "./reports/report-chart.service";
 
+import {AddResourceComponent} from "./resources/add-resource.component";
+import {ResourcesComponent} from "./resources/resources.component";
+import {ResourcesService} from "./resources/resources.service";
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -68,7 +72,9 @@ import {ReportChartService} from "./reports/report-chart.service";
         ResponseThanksComponent,
         EmergencyComponent,
         EditJournalComponent,
-        ReportChartComponent
+        ReportChartComponent,
+        AddResourceComponent,
+        ResourcesComponent
     ],
     providers: [
         UserListService,
@@ -76,6 +82,7 @@ import {ReportChartService} from "./reports/report-chart.service";
         JournalListService,
         GoalsService,
         ReportChartService,
+        ResourcesService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
@@ -87,6 +94,7 @@ import {ReportChartService} from "./reports/report-chart.service";
         AddUserComponent,
         AddJournalComponent,
         AddGoalComponent,
+        AddResourceComponent,
         TrackerListComponent,
         JournalListComponent,
         ResponseComponent,

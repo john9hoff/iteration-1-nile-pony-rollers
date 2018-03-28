@@ -6,6 +6,8 @@ import spark.Request;
 import spark.Response;
 import umm3601.report.ReportController;
 import umm3601.report.ReportRequestHandler;
+import umm3601.resource.ResourceController;
+import umm3601.resource.ResourceRequestHandler;
 import umm3601.user.UserController;
 import umm3601.user.UserRequestHandler;
 import umm3601.tracker.TrackerController;
@@ -26,6 +28,7 @@ public class Server {
     private static final String journalDatabaseName = "dev";
     private static final String goalDatabaseName = "dev";
     private static final String reportDatabaseName = "dev";
+    private static final String resourceDatabaseName = "dev";
 
     private static final int serverPort = 4567;
 
@@ -37,6 +40,7 @@ public class Server {
         MongoDatabase journalDatabase = mongoClient.getDatabase(journalDatabaseName);
         MongoDatabase goalDatabase = mongoClient.getDatabase(goalDatabaseName);
         MongoDatabase reportDatabase = mongoClient.getDatabase(reportDatabaseName);
+        MongoDatabase resourceDatabase = mongoClient.getDatabase(resourceDatabaseName);
 
         UserController userController = new UserController(userDatabase);
         UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
@@ -52,6 +56,9 @@ public class Server {
 
         ReportController reportController = new ReportController(reportDatabase);
         ReportRequestHandler reportRequestHandler = new ReportRequestHandler(reportController);
+
+        ResourceController resourceController = new ResourceController(resourceDatabase);
+        ResourceRequestHandler resourceRequestHandler = new ResourceRequestHandler(resourceController);
 
         //Configure Spark
         port(serverPort);
@@ -121,6 +128,14 @@ public class Server {
         post("api/goals/new", goalRequestHandler::addNewGoal);
         post("api/goals/edit", goalRequestHandler::editGoal);
         delete("api/goals/delete/:id", goalRequestHandler::deleteGoal);
+
+        /// Resource Endpoints ///////////////////////////
+        ////////////////////////////////////////////
+
+        get("api/resources", resourceRequestHandler::getResources);
+        post("api/goals/new", resourceRequestHandler::addNewResouce);
+        post("api/goals/edit", resourceRequestHandler::editResource);
+        delete("api/goals/delete/:id", resourceRequestHandler::deleteResource);
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.
