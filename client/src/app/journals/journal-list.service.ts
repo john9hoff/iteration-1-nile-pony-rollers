@@ -24,16 +24,6 @@ export class JournalListService {
         return this.http.get<Journal>(this.journalUrl + '/' + id);
     }
 
-    /*
-    //This method looks lovely and is more compact, but it does not clear previous searches appropriately.
-    //It might be worth updating it, but it is currently commented out since it is not used (to make that clear)
-    getUsersByCompany(userCompany?: string): Observable<User> {
-        this.userUrl = this.userUrl + (!(userCompany == null || userCompany == "") ? "?company=" + userCompany : "");
-        console.log("The url is: " + this.userUrl);
-        return this.http.request(this.userUrl).map(res => res.json());
-    }
-    */
-
     filterBySubject(journalSubject?: string): void {
         if (!(journalSubject == null || journalSubject === '')) {
             if (this.parameterPresent('subject=') ) {
@@ -87,7 +77,7 @@ export class JournalListService {
         return this.http.post<{'$oid': string}>(this.journalUrl + '/new', newJournal, httpOptions);
     }
 
-    editJournal(id: string): Observable<{'$oid': string}> {
+    editJournal(id : Journal): Observable<{'$oid': string}> {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'

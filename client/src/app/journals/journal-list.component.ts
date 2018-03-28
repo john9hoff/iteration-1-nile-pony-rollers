@@ -16,9 +16,6 @@ export class JournalListComponent implements OnInit {
     // These are public so that tests can reference them (.spec.ts)
     public journals: Journal[];
     public filteredJournals: Journal[];
-
-    // These are the target values used in searching.
-    // We should rename them to make that clearer.
     public journalSubject: string;
     public journalBody: string;
     public journalDate: any;
@@ -67,7 +64,7 @@ export class JournalListComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             this.journalListService.editJournal(result).subscribe(
                 editJournalResult => {
-                    //this.highlightedID = editJournalResult;
+                    this.highlightedID = editJournalResult;
                     this.refreshJournals();
                 },
                 err => {
@@ -103,17 +100,9 @@ export class JournalListComponent implements OnInit {
         return this.filteredJournals;
     }
 
-    /**
-     * Starts an asynchronous operation to update the journals list
-     *
-     */
-    refreshJournals(): Observable<Journal[]> {
-        // Get Journals returns an Observable, basically a "promise" that
-        // we will get the data from the server.
-        //
-        // Subscribe waits until the data is fully downloaded, then
-        // performs an action on it (the first lambda)
+    // Starts an asynchronous operation to update the journals list
 
+    refreshJournals(): Observable<Journal[]> {
         const journalListObservable: Observable<Journal[]> = this.journalListService.getJournals();
         journalListObservable.subscribe(
             journals => {
@@ -126,23 +115,21 @@ export class JournalListComponent implements OnInit {
         return journalListObservable;
     }
 
-/**
- * we might want the server to search for entries instead of angular ?
     loadService(): void {
-        this.journalListService.getJournals(this.userCompany).subscribe(
-            users => {
-                this.users = users;
-                this.filteredUsers = this.users;
+        this.journalListService.getJournals(this.journalSubject).subscribe(
+            journals => {
+                this.journals = journals;
+                this.filteredJournals = this.journals;
             },
             err => {
                 console.log(err);
             }
         );
     }
-**/
 
     ngOnInit(): void {
         this.refreshJournals();
         //this.loadService();
     }
+
 }
