@@ -31,7 +31,6 @@ export class ReportChartComponent implements OnInit {
             this.ctx = this.canvas.getContext('2d');
             this.buildChart();
             this.setPlugin();
-
         })
     }
 
@@ -40,7 +39,7 @@ export class ReportChartComponent implements OnInit {
         //global options
         Chart.defaults.global.defaultFontFamily = 'lato';
         Chart.defaults.global.defaultFontColor = 'black';
-        Chart.defaults.global.defaultFontSize = 18;
+        Chart.defaults.global.defaultFontSize = 16;
 
         // Defining a plugin to provide data labels
         Chart.plugins.register({
@@ -81,15 +80,15 @@ export class ReportChartComponent implements OnInit {
             type: 'bar',
 
             data: {
-                labels: ["Radiant", "Happy", "Meh", "Sad", "Very Sad"],
+                labels: ["Happy", "Normal", "Sad", "Angry", "Anxious"],
 
                 datasets: [{
                     label: 'Total times logged',
 
                     data: this.getValues(),
 
-                    backgroundColor: ['rgba(127,63,191,0.8)', 'rgba(63,191,63,0.8)',
-                        'rgba(248,248,63,0.8)', 'rgba(244,135,26,0.8)', 'rgb(244,26,26,0.8)'],
+                    backgroundColor: ['rgba(255, 255, 51,0.8)', 'rgba(63,191,63,0.8)',
+                        'rgba(51, 153, 255,0.8)', 'rgb(244,26,26,0.8)', 'rgba(240, 245, 245,0.8)'],
 
                     borderWidth: 1,
 
@@ -101,7 +100,7 @@ export class ReportChartComponent implements OnInit {
             options: {
                 responsive: true,
                 display: true,
-                maintainAspectRatio: true,
+                maintainAspectRatio: false,
                 scales: {
                     yAxes: [{
                         ticks: {
@@ -135,12 +134,12 @@ export class ReportChartComponent implements OnInit {
     }
 
     public getValues () {
-        var values = [];
-        values.push(this.filterReports("Radiant").length);
+        let values = [];
         values.push(this.filterReports("Happy").length);
-        values.push(this.filterReports("Meh").length);
-        values.push(this.filterReports("Down").length);
+        values.push(this.filterReports("Normal").length);
         values.push(this.filterReports("Sad").length);
+        values.push(this.filterReports("Angry").length);
+        values.push(this.filterReports("Anxious").length);
         return values;
     }
 

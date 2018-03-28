@@ -4,8 +4,10 @@ canvas {
 }
 
 .chart-container {
-    position: relative;
     padding: 3%;
-    /*bottom portion of page*/
-    background-color: whitesmoke;
+    position: absolute;
+    /*height and width are for the sizing. these specific numbers allow the
+    chart to be fully displayed with no scrolling on pc and mobile */
+    height: 81%;
+    width: 94%;
 }
