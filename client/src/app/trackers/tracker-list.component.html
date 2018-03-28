@@ -1,36 +1,42 @@
 <body>
-<div layout-gt-sm="row">
-    <div flex-gt-sm="80" flex-offset-gt-sm="10">
-        <div class="Trackers">
-        <mat-card>
-            <mat-card-title id="tracker-list-title">MoodTracker</mat-card-title>
-            <mat-divider></mat-divider>
+<main>
+    <div layout="column">
+        <!-- Managing Trackers Card -->
+        <div class="first-sec">
+            <mat-card class="manage-trackers-card">
+                <mat-card-title id="trackers-title">Mood Tracking</mat-card-title>
+                <mat-card-subtitle class="trackers-subtitle">You can view a history of which emotions you selected,
+                    their intensities, and the date and time that they were chosen.
+                </mat-card-subtitle>
+                <mat-card-content class="trackers-content">
+                    <form>
+                        <label id="trackerEmoji">Filter By Emotion: </label>
+                        <mat-select placeholder="Select" name="dropdown" id="dropdown" (click)="trackerEmoji = trackerEmoji">
+                            <!--<mat-option value="" (click)="trackerEmoji = null"></mat-option>-->
+                            <mat-option value="happy" (click)="trackerEmoji = 'Happy'" >Happy</mat-option>
+                            <mat-option value="normal" (click)="trackerEmoji = 'Normal'">Normal</mat-option>
+                            <mat-option value="down" (click)="trackerEmoji = 'Down'">Down</mat-option>
+                            <mat-option value="sad" (click)="trackerEmoji = 'Sad'" >Sad</mat-option>
+                            <mat-option value="angry" (click)="trackerEmoji = 'Angry'">Angry</mat-option>
+                        </mat-select>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    <div layout-gt-sm="row">
+        <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <mat-card class="trackers-card">
             <mat-card-content>
-                <form>
-                    <label id="trackerEmoji">Emoji: </label>
-                    <mat-select name="dropdown" id="dropdown" (click)="trackerEmoji = trackerEmoji">
-                        <mat-option value="" (click)="trackerEmoji = null"></mat-option>
-                        <mat-option value="happy" (click)="trackerEmoji = 'Happy'" >Happy</mat-option>
-                        <mat-option value="normal" (click)="trackerEmoji = 'Normal'">Happy</mat-option>
-                        <mat-option value="down" (click)="trackerEmoji = 'Down'">Down</mat-option>
-                        <mat-option value="sad" (click)="trackerEmoji = 'Sad'" >Sad</mat-option>
-                        <mat-option value="angry" (click)="trackerEmoji = 'Angry'">Angry</mat-option>
-                    </mat-select>
-                </form>
                 <mat-accordion *ngIf="trackers; else trackersError" >
                     <mat-expansion-panel #elem class="trackers" [id]="tracker._id['$oid']" [expanded]="this.isHighlighted(tracker)" *ngFor="let tracker of this.filterTrackers(trackerEmoji, trackerTime)">
                         <mat-expansion-panel-header>
                             <mat-panel-title >{{tracker.date}}</mat-panel-title>
-
                         </mat-expansion-panel-header>
                         <!--<mat-panel-description>ID: {{tracker._id['$oid']}}</mat-panel-description>-->
                         <mat-panel-description >Emoji selected: {{tracker.emoji}}</mat-panel-description>
                         <mat-panel-description >Intensity: {{tracker.rating}}</mat-panel-description>
-
-
                     </mat-expansion-panel>
                 </mat-accordion>
-                <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
                 <ng-template #trackersError>
                     <mat-error>
                         There was a problem loading the trackers. Possibly the server is down or perhaps there are network
@@ -44,6 +50,6 @@
         </mat-card>
         </div>
     </div>
-
-</div>
+    </div>
+</main>
 </body>

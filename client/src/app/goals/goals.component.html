@@ -24,10 +24,10 @@
     <!-- Grid Section for Goals -->
     <div class="grid-goals-section" >
         <div class='md-padding' layout="row" layout-wrap>
+            <mat-card *ngIf="goals; else goalsError"></mat-card>
             <mat-card class="goals-card"
                       *ngFor="let goal of this.filterGoals(goalPurpose, goalCategory, goalName, goalStatus)"
                       #elem [id]="goal._id['$oid']">
-
                 <div class ="goals-image">
                     <img *ngIf="goal.category == 'Family'" src="../../assets/family.png"
                         class="goal-card-image" height="75">
@@ -59,6 +59,15 @@
                     </button>
                 </div>
             </mat-card>
+            <ng-template #goalsError>
+                <mat-error>
+                    There was a problem loading the goals. Possibly the server is down or perhaps there are network
+                    issues.
+                </mat-error>
+                <mat-error>
+                    Please wait a bit and try again or start the server.
+                </mat-error>
+            </ng-template>
         </div>
     </div>
 
