@@ -60,7 +60,7 @@ describe('Goal list service: ', () => {
     it('getGoals() calls api/goals', () => {
 
         goalListService.getGoals().subscribe(
-            users => expect(users).toBe(testGoals)
+            goals => expect(goals).toBe(testGoals)
         );
 
         // Specify that (exactly) one request will be made to the specified URL.

@@ -20,7 +20,7 @@ describe( 'Goals', () => {
     };
 
     beforeEach(() => {
-        // stub GoalsService for test purposes
+        // stub GoalsService for test reasons
         goalsServiceStub = {
             getGoals: () => Observable.of([
                 {
@@ -114,7 +114,7 @@ describe('Misbehaving Goal List', () => {
     };
 
     beforeEach(() => {
-        // stub GoalService for test purposes
+        // stub GoalService for test reasons
         goalListServiceStub = {
             getGoals: () => Observable.create(observer => {
                 observer.error('Error-prone observable');
@@ -169,7 +169,7 @@ describe('Adding a goal', () => {
 
     beforeEach(() => {
         calledGoal = null;
-        // stub GoalsService for test purposes
+        // stub GoalsService for test reasons
         goalListServiceStub = {
             getGoals: () => Observable.of([]),
             addNewGoal: (goalToAdd: Goal) => {
