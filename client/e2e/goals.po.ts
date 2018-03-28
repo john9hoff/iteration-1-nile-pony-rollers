@@ -2,6 +2,7 @@ import {browser, element, by, promise, ElementFinder} from 'protractor';
 import {Key} from 'selenium-webdriver';
 
 export class GoalPage {
+
     navigateTo(): promise.Promise<any> {
         return browser.get('/goals');
     }
