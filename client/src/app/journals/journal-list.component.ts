@@ -38,7 +38,7 @@ export class JournalListComponent implements OnInit {
     openDialog(): void {
         const newJournal: Journal = {_id: '', subject: '', body: '', date: ''};
         const dialogRef = this.dialog.open(AddJournalComponent, {
-            width: '500px',
+            width: '300px',
             data: { journal: newJournal }
         });
 
@@ -60,7 +60,7 @@ export class JournalListComponent implements OnInit {
         console.log(_id + ' ' + subject);
         const newJournal: Journal = {_id: _id, subject: subject, body: body, date: date};
         const dialogRef = this.dialog.open(EditJournalComponent, {
-            width: '500px',
+            width: '300px',
             data: { journal: newJournal }
         });
 
