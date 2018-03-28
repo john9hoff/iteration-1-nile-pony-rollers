@@ -82,7 +82,7 @@
     {
         "_id": "5abbe29ba0abad803bc3fda3",
         "rating": 2,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Carmella Orr",
         "date": "Sat Sep 23 1972 14:07:11 GMT-0500 (CDT)",
         "email": "minniehouse@flexigen.com"
@@ -98,7 +98,7 @@
     {
         "_id": "5abbe29baefac59b94db5d3d",
         "rating": 4,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Christian Hunter",
         "date": "Fri Nov 30 2007 07:36:44 GMT-0600 (CST)",
         "email": "minniehouse@flexigen.com"
@@ -210,7 +210,7 @@
     {
         "_id": "5abbe29b9bef571d693bf430",
         "rating": 4,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Arlene Solomon",
         "date": "Wed Mar 12 2003 00:44:16 GMT-0600 (CST)",
         "email": "barnesjustice@flexigen.com"
@@ -218,7 +218,7 @@
     {
         "_id": "5abbe29b27131af730ea464b",
         "rating": 2,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Williams Gomez",
         "date": "Sun Jan 25 1998 20:35:34 GMT-0600 (CST)",
         "email": "minniehouse@flexigen.com"
@@ -226,7 +226,7 @@
     {
         "_id": "5abbe29ba27977d48840484d",
         "rating": 4,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Kramer Zamora",
         "date": "Mon Jan 31 1994 04:49:29 GMT-0600 (CST)",
         "email": "barnesjustice@flexigen.com"
@@ -242,7 +242,7 @@
     {
         "_id": "5abbe29be269ad9e14ca9e47",
         "rating": 1,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Aguirre Anthony",
         "date": "Tue Sep 12 1995 04:36:46 GMT-0500 (CDT)",
         "email": "opheliawinters@flexigen.com"
@@ -266,7 +266,7 @@
     {
         "_id": "5abbe29b5f36bea802f9e153",
         "rating": 4,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Randall Frank",
         "date": "Sun May 26 1985 08:16:40 GMT-0500 (CDT)",
         "email": "gildatorres@flexigen.com"
@@ -290,7 +290,7 @@
     {
         "_id": "5abbe29bb44759cfc8c73303",
         "rating": 2,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Hendrix Bright",
         "date": "Tue Oct 22 1996 00:25:09 GMT-0500 (CDT)",
         "email": "minniehouse@flexigen.com"
@@ -362,7 +362,7 @@
     {
         "_id": "5abbe29b8f2575fef53fac2f",
         "rating": 2,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Goodman Carter",
         "date": "Sat Sep 26 1998 08:19:44 GMT-0500 (CDT)",
         "email": "gildatorres@flexigen.com"
@@ -418,7 +418,7 @@
     {
         "_id": "5abbe29bbf4d40b5833390f9",
         "rating": 3,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Reba Adkins",
         "date": "Tue Dec 31 2002 02:08:44 GMT-0600 (CST)",
         "email": "minniehouse@flexigen.com"
@@ -442,7 +442,7 @@
     {
         "_id": "5abbe29bce05f8e6f420e5cb",
         "rating": 2,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Addie Pugh",
         "date": "Wed Feb 25 1998 20:13:09 GMT-0600 (CST)",
         "email": "minniehouse@flexigen.com"
@@ -474,7 +474,7 @@
     {
         "_id": "5abbe29bd1551bc5d11041f4",
         "rating": 4,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Daugherty Valenzuela",
         "date": "Mon Apr 26 2010 16:46:59 GMT-0500 (CDT)",
         "email": "sashawatson@flexigen.com"
@@ -498,7 +498,7 @@
     {
         "_id": "5abbe29b877e54d0cb1f7cda",
         "rating": 5,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Clarice Strickland",
         "date": "Tue Aug 02 1983 03:51:31 GMT-0500 (CDT)",
         "email": "gildatorres@flexigen.com"
@@ -674,7 +674,7 @@
     {
         "_id": "5abbe29b93ede1a8167754f8",
         "rating": 3,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Goff Hall",
         "date": "Sat Jan 09 2010 18:52:03 GMT-0600 (CST)",
         "email": "opheliawinters@flexigen.com"
@@ -698,7 +698,7 @@
     {
         "_id": "5abbe29ba3194af52fda353e",
         "rating": 2,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Rich Bell",
         "date": "Tue Aug 06 2002 14:54:17 GMT-0500 (CDT)",
         "email": "barnesjustice@flexigen.com"
@@ -754,7 +754,7 @@
     {
         "_id": "5abbe29b1be2f948c7026b46",
         "rating": 3,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Lois Powell",
         "date": "Thu Mar 26 1970 12:10:03 GMT-0600 (CST)",
         "email": "barnesjustice@flexigen.com"
@@ -770,7 +770,7 @@
     {
         "_id": "5abbe29b1e7d1c3a352d0258",
         "rating": 5,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Hill Caldwell",
         "date": "Fri May 22 1987 09:58:07 GMT-0500 (CDT)",
         "email": "opheliawinters@flexigen.com"
@@ -778,7 +778,7 @@
     {
         "_id": "5abbe29bac59ef549c036fb7",
         "rating": 2,
-        "emoji": "Neutral",
+        "emoji": "Normal",
         "name": "Booker Boone",
         "date": "Mon Feb 01 1971 19:25:26 GMT-0600 (CST)",
         "email": "minniehouse@flexigen.com"
