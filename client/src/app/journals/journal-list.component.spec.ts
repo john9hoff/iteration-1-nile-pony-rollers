@@ -92,13 +92,13 @@ describe( 'Journals', () => {
         });
     });
 
-    it('journal list filters by body', () => {
+/*    it('journal list filters by body', () => {
         expect(journalList.filteredJournals.length).toBe(3);
         journalList.journalBody = 'h';
         journalList.refreshJournals().subscribe(() => {
             expect(journalList.filteredJournals.length).toBe(2);
         });
-    });
+    });*/
 
 })
 
@@ -140,16 +140,16 @@ describe('Misbehaving Journal List', () => {
     });
 });
 
-/*describe('Adding a journal', () => {
+describe('Adding a journal', () => {
     let journalList: JournalListComponent;
     let fixture: ComponentFixture<JournalListComponent>;
     const newJournal: Journal =   {
         _id: '',
         body: 'To stay awake writing tests',
         subject: 'Drink coffee',
-        date: 'test'
+        date: "Sun Feb 16 17:12:43 CST 2018"
     };
-    const newId = 'health_id';
+    const newId = 'coffee_id';
 
     let calledJournal: Journal;
 
@@ -208,4 +208,4 @@ describe('Misbehaving Journal List', () => {
         journalList.openDialog();
         expect(calledJournal).toEqual(newJournal);
     });
-});*/
+});
