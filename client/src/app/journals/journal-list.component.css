@@ -36,3 +36,11 @@
 #edit-journal-button {
     background-color: rgba(173, 216, 230, 0.4);
 }
+
+.filter-fields {
+    font-size: 14px;
+}
+
+#journal-subject-field {
+    margin-top: 5px;
+}

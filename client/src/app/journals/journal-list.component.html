@@ -9,12 +9,17 @@
                     track daily activities in your life.
                 </mat-card-subtitle>
                 <mat-card-content class="journal-content">
-                    <li class="content-item" id="addNewJournal">
-                        <button mat-raised-button (click)="openDialog()" class="goal-button">
+                        <button mat-raised-button (click)="openDialog()" class="goal-button" id="addNewJournal">
                             <mat-icon id="add-icon">add</mat-icon>
                             Add a Journal</button>
-                    </li>
-                    <br>
+                    <div class="filter-fields">
+                    <mat-form-field id="journal-subject-field">
+                        <input matInput id="journalSubject" #input type="text" placeholder="Filter by subject" (input)="journalSubject = $event.target.value">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput id="journalBody" #input type="text" placeholder="Filter by body" (input)="journalBody = $event.target.value">
+                    </mat-form-field>
+                    </div>
                 </mat-card-content>
             </mat-card>
         </div>
@@ -22,16 +27,8 @@
 <div layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <mat-card class="journals-card">
-            <mat-card-title id="journal-list-title">Journals</mat-card-title>
             <mat-divider></mat-divider>
             <mat-card-content>
-                <mat-form-field>
-                    <input matInput id="journalSubject" #input type="text" placeholder="Filter by subject" (input)="journalSubject = $event.target.value">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput id="journalBody" #input type="text" placeholder="Filter by body" (input)="journalBody = $event.target.value">
-                </mat-form-field>
-
                 <mat-accordion *ngIf="journals; else journalsError" >
                     <mat-expansion-panel #elem class="journals" [id]="journal._id['$oid']" [expanded]="this.isHighlighted(journal)" *ngFor="let journal of this.filterJournals(journalSubject, journalBody)">
                         <mat-expansion-panel-header>
@@ -44,7 +41,6 @@
                         <mat-panel-description><button mat-raised-button id="edit-journal-button" (click)="openDialogReview(journal._id['$oid'], journal.subject, journal.body, journal.date)">Edit Journal</button> </mat-panel-description>
                     </mat-expansion-panel>
                 </mat-accordion>
-                <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
                 <ng-template #journalsError>
                     <mat-error>
                         There was a problem loading the journals. Possibly the server is down or perhaps there are network
