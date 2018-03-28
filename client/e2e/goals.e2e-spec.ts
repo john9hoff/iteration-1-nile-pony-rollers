@@ -57,9 +57,9 @@ describe('Goal list', () => {
 
     it('Should open a dialog box when add goal button is clicked', () => {
         page.navigateTo();
-        expect(element(by.className('add-goal')).isPresent()).toBeFalsy('There should not be a modal window yet');
+        expect(element(by.className('add-journal')).isPresent()).toBeFalsy('There should not be a modal window yet');
         element(by.className('goal-button')).click();
-        expect(element(by.className('add-goal')).isPresent()).toBeTruthy('There should be a modal window now');
+        expect(element(by.className('add-journal')).isPresent()).toBeTruthy('There should be a modal window now');
     });
 
     it('Should actually add the goal with the information we put in the fields', () => {
