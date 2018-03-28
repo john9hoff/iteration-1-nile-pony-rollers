@@ -111,7 +111,6 @@ public class Server {
         /////////////////////////////////////////////
 
         get("api/reports", reportRequestHandler::getReports);
-        get("api/reports/:id", reportRequestHandler::getReportJSON);
 
         /// Goal Endpoints ///////////////////////////
         /////////////////////////////////////////////

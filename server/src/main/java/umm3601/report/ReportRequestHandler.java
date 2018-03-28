@@ -15,36 +15,7 @@ public class ReportRequestHandler {
     public ReportRequestHandler(ReportController reportController){
         this.reportController = reportController;
     }
-    /**Method called from Server when the 'api/trackers/:id' endpoint is received.
-     * Get a JSON response with a list of all the reports in the database.
-     *
-     * @param req the HTTP request
-     * @param res the HTTP response
-     * @return one tracker in JSON formatted string and if it fails it will return text with a different HTTP status code
-     */
-    public String getReportJSON(Request req, Response res){
-        res.type("application/json");
-        String id = req.params("id");
-        String report;
-        try {
-            report = reportController.getReport(id);
-        } catch (IllegalArgumentException e) {
-            // This is thrown if the ID doesn't have the appropriate
-            // form for a Mongo Object ID.
-            // https://docs.mongodb.com/manual/reference/method/ObjectId/
-            res.status(400);
-            res.body("The requested tracker id " + id + " wasn't a legal Mongo Object ID.\n" +
-                "See 'https://docs.mongodb.com/manual/reference/method/ObjectId/' for more info.");
-            return "";
-        }
-        if (report != null) {
-            return report;
-        } else {
-            res.status(404);
-            res.body("The requested report with id " + id + " was not found");
-            return "";
-        }
-    }
+
 
 
 
