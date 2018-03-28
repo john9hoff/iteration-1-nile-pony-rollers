@@ -12,6 +12,7 @@ import {ReportChartService} from "./report-chart.service";
 })
 
 export class ReportChartComponent implements OnInit {
+
     // Inject the ReportChartService into this component.
     constructor(public reportChartService: ReportChartService) {
 
@@ -158,4 +159,3 @@ export class ReportChartComponent implements OnInit {
     }
 
 }
-
