@@ -1,3 +1,4 @@
+/*
 import {TrackerPage} from './tracker-list.po';
 import {browser, protractor, element, by} from 'protractor';
 import {Key} from 'selenium-webdriver';
@@ -30,7 +31,7 @@ describe('Tracker list', () => {
 
 
 
-    it('should get and highlight Trackers title attribute ', () => {
+    it('should gt and highlight Trackers title attribute ', () => {
         TrackerPage.navigateTo();
         expect(page.getTrackerTitle()).toEqual('MoodTracker');
     });
@@ -50,3 +51,4 @@ describe('Tracker list', () => {
     });
 
 });
+*/
