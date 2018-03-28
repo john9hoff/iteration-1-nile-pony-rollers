@@ -6,7 +6,7 @@
 }
 
 .manage-journals-card {
-    background-color: rgba(173, 216, 230, 0.36);
+    background-color: rgba(173, 216, 230, 0.14);
 }
 
 #journal-title {
@@ -34,7 +34,7 @@
 }
 
 #edit-journal-button {
-    background-color: rgba(173, 216, 230, 0.4);
+    background-color: rgba(173, 216, 230, 0.14);
 }
 
 .filter-fields {
