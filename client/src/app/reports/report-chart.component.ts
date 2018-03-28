@@ -25,6 +25,7 @@ export class ReportChartComponent implements OnInit {
     ngOnInit() {
         this.reportChartService.getReports().subscribe(res => {
             this.reports = res;
+            this.canvas = document.getElementById('myChart');
             document.getElementById('myChart');
             this.ctx = this.canvas.getContext('2d');
             this.buildChart();

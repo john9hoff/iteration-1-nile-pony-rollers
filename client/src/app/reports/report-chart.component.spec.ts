@@ -19,7 +19,7 @@ describe('report list', () => {
     };
 
     beforeEach(() => {
-        // stub UserService for test purposes
+        // stub ReportService for test purposes
         reportListServiceStub = {
             getReports: () => Observable.of([
                 {
@@ -52,8 +52,6 @@ describe('report list', () => {
         TestBed.configureTestingModule({
             imports: [CustomModule],
             declarations: [ReportChartComponent],
-            // providers:    [ UserListService ]  // NO! Don't provide the real service!
-            // Provide a test-double instead
             providers: [{provide: ReportChartService, useValue: reportListServiceStub},
                 {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
         });
@@ -66,12 +64,6 @@ describe('report list', () => {
             fixture.detectChanges();
         });
     }));
-
-    //
-    // it('contains all the emojis', () => {
-    //     expect(reportList.reports.length).toBe(3);
-    // });
-
 
 })
 
