@@ -21,12 +21,11 @@ import static org.junit.Assert.*;
 
 /**
  * JUnit tests for the JournalController.
- *
  */
-public class JournalControllerSpec
-{
+public class JournalControllerSpec {
     private JournalController journalController;
     private ObjectId samsId;
+
     @Before
     public void clearAndPopulateDB() throws IOException {
         MongoClient mongoClient = new MongoClient();
@@ -66,7 +65,6 @@ public class JournalControllerSpec
             .append("date", "Tue Jan 14 2014 18:35:56 GMT-0600");
 
 
-
         journalDocuments.insertMany(testJournals);
         journalDocuments.insertOne(Document.parse(sam.toJson()));
 
@@ -94,6 +92,7 @@ public class JournalControllerSpec
         BsonDocument doc = val.asDocument();
         return ((BsonString) doc.get("subject")).getValue();
     }
+
     private static String getBody(BsonValue val) {
         BsonDocument doc = val.asDocument();
         return ((BsonString) doc.get("body")).getValue();
@@ -118,7 +117,7 @@ public class JournalControllerSpec
     @Test
     public void getJournalsOnBadDay() {
         Map<String, String[]> argMap = new HashMap<>();
-        argMap.put("subject", new String[] { "Tuesday" });
+        argMap.put("subject", new String[]{"Tuesday"});
         String jsonResult = journalController.getJournals(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
@@ -135,7 +134,7 @@ public class JournalControllerSpec
     @Test
     public void getJournalByBody() {
         Map<String, String[]> argMap = new HashMap<>();
-        argMap.put("body", new String[] { "I went to the park" });
+        argMap.put("body", new String[]{"I went to the park"});
         String jsonResult = journalController.getJournals(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
@@ -155,16 +154,16 @@ public class JournalControllerSpec
         Document sam = Document.parse(jsonResult);
         assertEquals("Name should match", samsId, sam.get("_id"));
         String noJsonResult = journalController.getJournal(new ObjectId().toString());
-        assertNull("No Journal should match",noJsonResult);
+        assertNull("No Journal should match", noJsonResult);
 
     }
 
     @Test
-    public void addJounralTest(){
-        String newId = journalController.addNewJournal("I'm sad","I ate all my food");
+    public void addJounralTest() {
+        String newId = journalController.addNewJournal("I'm sad", "I ate all my food");
         assertNotNull("Add new journals should return true,", newId);
         Map<String, String[]> argMap = new HashMap<>();
-        argMap.put("jounral", new String[] { "I'm sad"});
+        argMap.put("jounral", new String[]{"I'm sad"});
         String jsonResult = journalController.getJournals(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
@@ -178,16 +177,12 @@ public class JournalControllerSpec
     }
 
     @Test
-    public void editJounralTest(){
+    public void editJounralTest() {
         journalController.editJournal(samsId.toHexString(), "Friday", "It's Friday");
-        String jsonResult = journalController.getJournal(samsId.toHexString());
-        System.out.println(jsonResult);
         Map<String, String[]> argMap = new HashMap<>();
-        System.out.println(journalController.getJournals(argMap) + " in tests");
-        argMap.put("body", new String[] { "It's Friday" });
+        argMap.put("body", new String[]{"It's Friday"});
+        String jsonResult = journalController.getJournals(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
-
-        //assertEquals("Should be 1 journal", 1, docs.size());
         List<String> subjects = docs
             .stream()
             .map(JournalControllerSpec::getBody)
