@@ -56,11 +56,11 @@
 }
 
 .delete-button {
-    background-color: indianred;
+    color: indianred;
 }
 
 .complete-button {
-    background-color: limegreen;
+    color: limegreen;
 }
 
 #goal-name {
@@ -68,10 +68,6 @@
 }
 
 .goals-image {
-    float: right;
-}
-
-.goals-buttons {
     float: right;
 }
 
