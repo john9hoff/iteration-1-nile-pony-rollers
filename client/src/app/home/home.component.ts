@@ -23,7 +23,7 @@ export class HomeComponent {
     public emojisString: string[] = ["Happy", "Normal", "Sad", "Angry", "Anxious"];
     public image = this.emojis[this.slideIndex];
     public emojiExplain = this.emojisString[this.slideIndex];
-    public emojiRating: number = -1;
+    public emojiRating: number = 3;
 
 
     constructor(public trackerListService: TrackerListService, public dialog: MatDialog) {
