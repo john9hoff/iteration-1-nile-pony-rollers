@@ -20,7 +20,7 @@ export class HomeComponent {
     public emojis: string[] = ["./assets/happy.png",  "./assets/meh.png",
         "./assets/sad.png", "./assets/angry.png","./assets/anxious.png"];
 
-    public emojisString: string[] = ["Happy", "Normal", "Down", "Sad", "Angry"];
+    public emojisString: string[] = ["Happy", "Normal", "Sad", "Angry", "Anxious"];
     public image = this.emojis[this.slideIndex];
     public emojiExplain = this.emojisString[this.slideIndex];
     public emojiRating: number = -1;
