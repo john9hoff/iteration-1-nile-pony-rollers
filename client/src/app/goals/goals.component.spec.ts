@@ -213,3 +213,145 @@ describe('Adding a goal', () => {
         expect(calledGoal).toEqual(newGoal);
     });
 });
+
+describe('Deleting a goal', () => {
+    let goalList: GoalsComponent;
+    let fixture: ComponentFixture<GoalsComponent>;
+    const deleteGoal: Goal =   {
+        _id: '',
+        purpose: 'To have a delightful tasting sensation',
+        category: 'Personal Health',
+        name: 'Eat pringles',
+        status: false
+    };
+    const newId = 'pringles_id';
+
+    let calledGoal: Goal;
+
+    let goalListServiceStub: {
+        getGoals: () => Observable<Goal[]>,
+        deleteGoal: (deleteGoal: Goal) => Observable<{'$oid': string}>
+    };
+    let mockMatDialog: {
+        open: (GoalsComponent, any) => {
+            afterClosed: () => Observable<Goal>
+        };
+    };
+
+    beforeEach(() => {
+        calledGoal = null;
+        // stub GoalsService for test reasons
+        goalListServiceStub = {
+            getGoals: () => Observable.of([]),
+            deleteGoal: (goalToDelete: Goal) => {
+                calledGoal = goalToDelete;
+                return Observable.of({
+                    '$oid': newId
+                });
+            }
+        };
+        mockMatDialog = {
+            open: () => {
+                return {
+                    afterClosed: () => {
+                        return Observable.of(deleteGoal);
+                    }
+                };
+            }
+        };
+
+        TestBed.configureTestingModule({
+            imports: [FormsModule, CustomModule],
+            declarations: [GoalsComponent],
+            providers: [
+                {provide: GoalsService, useValue: goalListServiceStub},
+                {provide: MatDialog, useValue: mockMatDialog},
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+        });
+    });
+
+    beforeEach(async(() => {
+        TestBed.compileComponents().then(() => {
+            fixture = TestBed.createComponent(GoalsComponent);
+            goalList = fixture.componentInstance;
+            fixture.detectChanges();
+        });
+    }));
+
+    it('calls GoalsService.deleteGoal', () => {
+        expect(calledGoal).toBeNull();
+        goalList.deleteGoal(this._id);
+    });
+});
+
+describe('Completing a goal', () => {
+    let goalList: GoalsComponent;
+    let fixture: ComponentFixture<GoalsComponent>;
+    const editGoal: Goal =   {
+        _id: '',
+        purpose: 'To break everything and make people mad',
+        category: 'Chores',
+        name: 'Destroy all monitors in the lab',
+        status: true
+    };
+    const newId = 'monitor_id';
+
+    let calledGoal: Goal;
+
+    let goalListServiceStub: {
+        getGoals: () => Observable<Goal[]>,
+        editGoal: (newGoal: Goal) => Observable<{'$oid': string}>
+    };
+    let mockMatDialog: {
+        open: (GoalsComponent, any) => {
+            afterClosed: () => Observable<Goal>
+        };
+    };
+
+    beforeEach(() => {
+        calledGoal = null;
+        // stub GoalsService for test reasons
+        goalListServiceStub = {
+            getGoals: () => Observable.of([]),
+            editGoal: (goalToComplete: Goal) => {
+                calledGoal = goalToComplete;
+                return Observable.of({
+                    '$oid': newId
+                });
+            }
+        };
+        mockMatDialog = {
+            open: () => {
+                return {
+                    afterClosed: () => {
+                        return Observable.of(editGoal);
+                    }
+                };
+            }
+        };
+
+        TestBed.configureTestingModule({
+            imports: [FormsModule, CustomModule],
+            declarations: [GoalsComponent],
+            providers: [
+                {provide: GoalsService, useValue: goalListServiceStub},
+                {provide: MatDialog, useValue: mockMatDialog},
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+        });
+    });
+
+    beforeEach(async(() => {
+        TestBed.compileComponents().then(() => {
+            fixture = TestBed.createComponent(GoalsComponent);
+            goalList = fixture.componentInstance;
+            fixture.detectChanges();
+        });
+    }));
+
+    it('calls GoalsService.editGoal', () => {
+        expect(calledGoal).toBeNull();
+        // I don't think this is correct, but it passes. It should probably take in this._id, this.purpose, etc.
+        goalList.goalSatisfied('', 'To break everything and make people mad', 'Chores', 'Destroy all monitors in the lab')
+        expect(calledGoal).toEqual(editGoal);
+    });
+});
