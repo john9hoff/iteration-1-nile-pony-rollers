@@ -92,13 +92,13 @@ describe( 'Journals', () => {
         });
     });
 
-/*    it('journal list filters by body', () => {
+    it('journal list filters by body', () => {
         expect(journalList.filteredJournals.length).toBe(3);
         journalList.journalBody = 'h';
         journalList.refreshJournals().subscribe(() => {
             expect(journalList.filteredJournals.length).toBe(2);
         });
-    });*/
+    });
 
 })
 
@@ -207,5 +207,75 @@ describe('Adding a journal', () => {
         expect(calledJournal).toBeNull();
         journalList.openDialog();
         expect(calledJournal).toEqual(newJournal);
+    });
+});
+
+describe('Editing a journal', () => {
+    let journalList: JournalListComponent;
+    let fixture: ComponentFixture<JournalListComponent>;
+    const editJournal: Journal =   {
+        _id: '',
+        body: 'I fell asleep in class today',
+        subject: 'Classes',
+        date: "Sun Feb 16 17:12:43 CST 2018"
+    };
+    const newId = 'class_id';
+
+    let calledJournal: Journal;
+
+    let journalListServiceStub: {
+        getJournals: () => Observable<Journal[]>,
+        editJournal: (newJournal: Journal) => Observable<{'$oid': string}>
+    };
+    let mockMatDialog: {
+        open: (JournalListComponent, any) => {
+            afterClosed: () => Observable<Journal>
+        };
+    };
+
+    beforeEach(() => {
+        calledJournal = null;
+        // stub JournalListService for test reasons
+        journalListServiceStub = {
+            getJournals: () => Observable.of([]),
+            editJournal: (journalToEdit: Journal) => {
+                calledJournal = journalToEdit;
+                return Observable.of({
+                    '$oid': newId
+                });
+            }
+        };
+        mockMatDialog = {
+            open: () => {
+                return {
+                    afterClosed: () => {
+                        return Observable.of(editJournal);
+                    }
+                };
+            }
+        };
+
+        TestBed.configureTestingModule({
+            imports: [FormsModule, CustomModule],
+            declarations: [JournalListComponent],
+            providers: [
+                {provide: JournalListService, useValue: journalListServiceStub},
+                {provide: MatDialog, useValue: mockMatDialog},
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+        });
+    });
+
+    beforeEach(async(() => {
+        TestBed.compileComponents().then(() => {
+            fixture = TestBed.createComponent(JournalListComponent);
+            journalList = fixture.componentInstance;
+            fixture.detectChanges();
+        });
+    }));
+
+    it('calls JournalListService.editJournal', () => {
+        expect(calledJournal).toBeNull();
+        journalList.openDialogReview(this._id, this.subject, this.body, this.date);
+        expect(calledJournal).toEqual(editJournal);
     });
 });
