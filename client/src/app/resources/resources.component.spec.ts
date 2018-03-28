@@ -1,35 +1,207 @@
-import {TestBed, ComponentFixture} from '@angular/core/testing';
-import {ResourcesComponent} from './resources.component';
-import {DebugElement} from '@angular/core';
-import {By} from '@angular/platform-browser';
+import {ComponentFixture, TestBed, async} from "@angular/core/testing";
+import {resources} from "./resources";
+import {ResourcesComponent} from "./resources.component";
+import {ResourceService} from "./resources.service"
+import {Observable} from 'rxjs/Observable';
+import {FormsModule} from '@angular/forms';
 import {CustomModule} from '../custom.module';
 import {MATERIAL_COMPATIBILITY_MODE} from '@angular/material';
+import {MatDialog} from '@angular/material';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/do';
 
 describe('Resources', () => {
 
-    let component: ResourcesComponent;
+    let resourceList: ResourcesComponent;
     let fixture: ComponentFixture<ResourcesComponent>;
-    let de: DebugElement;
-    let el: HTMLElement;
+
+    let ResourceServiceStub: {
+        getresources: () => Observable<resources[]>
+    };
 
     beforeEach(() => {
+        // stub ResourcesService for test purposes
+        ResourceServiceStub = {
+            getresources: () => Observable.of([
+                {
+                    resourceName: 'food_name',
+                    resourceBody: 'Gain some weight',
+                    resourcePhone: '763-599-4162',
+                    resourcesUrl: 'Eat all the cookies',
+                },
+                {
+                    resourceName: 'chores_name',
+                    resourceBody: 'Have cleaner kitchen',
+                    resourcePhone: '288-566-5234',
+                    resourcesUrl: 'Take out recycling',
+                },
+                {
+                    resourceName: 'family_name',
+                    resourceBody: 'To love her',
+                    resourcePhone: '123-456-7890',
+                    resourcesUrl: 'Call mom',
+                }
+            ])
+        };
+
         TestBed.configureTestingModule({
             imports: [CustomModule],
-            declarations: [ResourcesComponent], // declare the test component
-            providers: [{provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}],
+            declarations: [ResourcesComponent],
+            providers: [{provide: ResourceService, useValue: ResourceServiceStub},
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
         });
-
-        fixture = TestBed.createComponent(ResourcesComponent);
-
-        component = fixture.componentInstance; // BannerComponent test instance
-
-        // query for the title <h1> by CSS element selector
-        de = fixture.debugElement.query(By.css('.main-top'));
-        el = de.nativeElement;
     });
 
-    it('displays a greeting', () => {
-        fixture.detectChanges();
-        expect(el.textContent).toContain(component.title);
+    beforeEach(async(() => {
+        TestBed.compileComponents().then(() => {
+            fixture = TestBed.createComponent(ResourcesComponent);
+            resourceList = fixture.componentInstance;
+            fixture.detectChanges();
+        });
+    }));
+
+    it('contains all the resource', () => {
+        expect(resourceList.resource.length).toBe(3);
+    });
+
+    it('contains a body called \'Gain some weight\'', () => {
+        expect(resourceList.resource.some((goal: resources) => goal.resourceBody === 'Gain some weight')).toBe(true);
+    });
+
+    it('contains a body called \'Have cleaner kitchen\'', () => {
+        expect(resourceList.resource.some((goal: resources) => goal.resourceBody === 'Have cleaner kitchen')).toBe(true);
+    });
+
+    it('contains a phonenumber called \'123-456-7890\'', () => {
+        expect(resourceList.resource.some((goal: resources) => goal.resourcePhone === '123-456-7890')).toBe(true);
+    });
+
+    it('doesn\'t contain a body called \'Meet with Santa\'', () => {
+        expect(resourceList.resource.some((goal: resources) => goal.resourceBody === 'Meet with Santa')).toBe(false);
+    });
+
+    it('goal list filters by body', () => {
+        expect(resourceList.filteredResources.length).toBe(3);
+        resourceList.resourcesBody = 'y';
+        resourceList.refreshResources().subscribe(() => {
+            expect(resourceList.filteredResources.length).toBe(1);
+        });
+    });
+
+    it('goal list filters by phone', () => {
+        expect(resourceList.filteredResources.length).toBe(3);
+        resourceList.resourcesPhone = '5';
+        resourceList.refreshResources().subscribe(() => {
+            expect(resourceList.filteredResources.length).toBe(2);
+        });
+    });
+
+})
+
+describe('Misbehaving resources List', () => {
+    let resourceList: ResourcesComponent;
+    let fixture: ComponentFixture<ResourcesComponent>;
+
+    let resourceListServiceStub: {
+        getresources: () => Observable<resources[]>
+    };
+
+    beforeEach(() => {
+        // stub GoalService for test purposes
+        resourceListServiceStub = {
+            getresources: () => Observable.create(observer => {
+                observer.error('Error-prone observable');
+            })
+        };
+
+        TestBed.configureTestingModule({
+            imports: [FormsModule, CustomModule],
+            declarations: [ResourcesComponent],
+            providers: [{provide: ResourceService, useValue: resourceListServiceStub},
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+        });
+    });
+
+    beforeEach(async(() => {
+        TestBed.compileComponents().then(() => {
+            fixture = TestBed.createComponent(ResourcesComponent);
+            resourceList = fixture.componentInstance;
+            fixture.detectChanges();
+        });
+    }));
+
+    it('generates an error if we don\'t set up a ResourcesService', () => {
+        // Since the observer throws an error, we don't expect resource to be defined.
+        expect(resourceList.resource).toBeUndefined();
+    });
+});
+
+describe('Adding a goal', () => {
+    let resourceList: ResourcesComponent;
+    let fixture: ComponentFixture<ResourcesComponent>;
+    const newResources: resources =   {
+        resourceName: '',
+        resourceBody: 'To stay awake writing tests',
+        resourcePhone: '320-355-4457',
+        resourcesUrl: 'Drink coffee',
+    };
+    const newName = 'health_name';
+
+    let calledResources: resources;
+
+    let resourceListServiceStub: {
+        getresources: () => Observable<resources[]>,
+        addNewresource: (newResources: resources) => Observable<{'$oid': string}>
+    };
+    let mockMatDialog: {
+        open: (GoalsComponent, any) => {
+            afterClosed: () => Observable<resources>
+        };
+    };
+
+    beforeEach(() => {
+        calledResources = null;
+        // stub ResourcesService for test purposes
+        resourceListServiceStub = {
+            getresources: () => Observable.of([]),
+            addNewresource: (goalToAdd: resources) => {
+                calledResources = goalToAdd;
+                return Observable.of({
+                    '$oid': newName
+                });
+            }
+        };
+        mockMatDialog = {
+            open: () => {
+                return {
+                    afterClosed: () => {
+                        return Observable.of(newResources);
+                    }
+                };
+            }
+        };
+
+        TestBed.configureTestingModule({
+            imports: [FormsModule, CustomModule],
+            declarations: [ResourcesComponent],
+            providers: [
+                {provide: ResourceService, useValue: resourceListServiceStub},
+                {provide: MatDialog, useValue: mockMatDialog},
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+        });
+    });
+
+    beforeEach(async(() => {
+        TestBed.compileComponents().then(() => {
+            fixture = TestBed.createComponent(ResourcesComponent);
+            resourceList = fixture.componentInstance;
+            fixture.detectChanges();
+        });
+    }));
+
+    it('calls ResourcesService.addResource', () => {
+        expect(calledResources).toBeNull();
+        resourceList.openDialog();
+        expect(calledResources).toEqual(newResources);
     });
 });

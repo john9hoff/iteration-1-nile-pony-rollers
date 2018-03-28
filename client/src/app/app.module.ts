@@ -23,7 +23,9 @@ import {TrackerListService} from './trackers/tracker-list.service';
 
 import {GoalsComponent} from "./goals/goals.component";
 import {GoalsService} from "./goals/goals.service";
+
 import {AddGoalComponent} from "./goals/add-goal.component";
+import {ResourceService} from "./resources/resources.service";
 
 import {JournalListComponent} from "./journals/journal-list.component";
 import {JournalListService} from "./journals/journal-list.service";
@@ -38,6 +40,7 @@ import {ResponseComponent5} from "./home/response-5.component";
 import {ResponseThanksComponent} from "./home/responseThanks.component";
 import {EmergencyComponent} from './home/emergency.component';
 import {ResourcesComponent} from "./resources/resources.component";
+
 
 import {MatSelectModule} from '@angular/material/select';
 
@@ -72,7 +75,7 @@ import {ReportChartService} from "./reports/report-chart.service";
         EditJournalComponent,
         ReportChartComponent,
         ResourcesComponent,
-        AddResourcesComponent,
+        AddResourcesComponent
     ],
     providers: [
         UserListService,
@@ -80,6 +83,8 @@ import {ReportChartService} from "./reports/report-chart.service";
         JournalListService,
         GoalsService,
         ReportChartService,
+        ResourceService,
+
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
@@ -101,7 +106,9 @@ import {ReportChartService} from "./reports/report-chart.service";
         EmergencyComponent,
         EditJournalComponent,
         ReportChartComponent,
-        ResponseThanksComponent
+        ResponseThanksComponent,
+        ResourcesComponent,
+        AddResourcesComponent,
     ],
     bootstrap: [AppComponent]
 })

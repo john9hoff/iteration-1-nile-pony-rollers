@@ -6,7 +6,7 @@ import {AddResourcesComponent} from "./add-resources.component";
 
 import {CustomModule} from '../custom.module';
 
-describe('Add goal component', () => {
+describe('Add Resources component', () => {
 
     let addResourceComponent: AddResourcesComponent;
     let calledClose: boolean;
@@ -28,21 +28,11 @@ describe('Add goal component', () => {
         });
     }));
 
-
-
-
-
-
-
     beforeEach(() => {
         calledClose = false;
         fixture = TestBed.createComponent(AddResourcesComponent);
         addResourceComponent = fixture.componentInstance;
     });
-
-
-
-
 
     it('closes properly', () => {
         addResourceComponent.onNoClick();

@@ -5,11 +5,11 @@ import {Observable} from 'rxjs/Observable';
 
 import {resources} from './resources';
 import {environment} from '../../environments/environment';
-import {ResourcesComponent} from "./resources.component";
+import {ResourcesComponent} from'./resources.component'
 
 
 @Injectable()
-export class resourceService {
+export class ResourceService {
     readonly baseUrl: string = environment.API_URL + 'resources';
     private resourceUrl: string = this.baseUrl;
 

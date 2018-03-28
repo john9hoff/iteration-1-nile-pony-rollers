@@ -1,21 +1,27 @@
 
-
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {resources} from './resources';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
     selector: 'app-add-resources.component',
-    templateUrl: 'add-resurces.component.html',
+    templateUrl: 'add-resources.component.html',
+    styleUrls: ['./add-resources.component.css'],
 })
 export class AddResourcesComponent {
     constructor(
-        public dialogRef: MatDialogRef<AddResourcesComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: {Resources: resources}) {
+        public snackBar: MatSnackBar, public dialogRef: MatDialogRef<AddResourcesComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: {Resource: resources}) {
     }
 
     onNoClick(): void {
         this.dialogRef.close();
+    }
+    openSnackBar(message: string, action: string) {
+        this.snackBar.open(message, action, {
+            duration: 2000,
+        });
     }
 }
 

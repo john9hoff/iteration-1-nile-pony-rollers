@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ResourcesService} from "./resources.service";
+import {ResourceService} from "./resources.service"
 import {resources} from './resources';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
@@ -9,7 +9,7 @@ import {MatSnackBar} from '@angular/material';
 
 
 @Component({
-    selector: 'resources-component',
+    selector: 'app-resources-component',
     templateUrl: 'resources.component.html',
     styleUrls: ['./resources.component.css'],
 })
@@ -31,7 +31,7 @@ export class ResourcesComponent implements OnInit {
     private highlightedID: {'$oid': string} = { '$oid': '' };
 
     // Inject the GoalsService into this component.
-    constructor(public resourceService: ResourcesService, public dialog: MatDialog, public snackBar: MatSnackBar) {
+    constructor(public resourceService: ResourceService, public dialog: MatDialog, public snackBar: MatSnackBar) {
 
     }
 
@@ -50,7 +50,7 @@ export class ResourcesComponent implements OnInit {
             this.resourceService.addNewresource(result).subscribe(
                 addresourcesResult => {
                     this.highlightedID = addresourcesResult;
-                    this.refreshResource();
+                    this.refreshResources();
                 },
                 err => {
                     // This should probably be turned into some sort of meaningful response.
@@ -69,7 +69,7 @@ export class ResourcesComponent implements OnInit {
             }
         );
 
-        this.refreshResource();
+        this.refreshResources();
         this.loadService();
     }
 
@@ -78,7 +78,7 @@ export class ResourcesComponent implements OnInit {
         this.resourceService.editResources(updatedResources).subscribe(
             editResourcesResult => {
                 this.highlightedID = editResourcesResult;
-                this.refreshGoals();
+                this.refreshResources();
             },
             err => {
                 console.log('There was an error editing the resources.');
@@ -130,7 +130,7 @@ export class ResourcesComponent implements OnInit {
      * Starts an asynchronous operation to update the resources list
      *
      */
-    refreshGoals(): Observable<resources[]> {
+    refreshResources(): Observable<resources[]> {
         // Get Goals returns an Observable, basically a "promise" that
         // we will get the data from the server.
         //
@@ -163,7 +163,7 @@ export class ResourcesComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.refreshResource();
+        this.refreshResources();;
         this.loadService();
     }
 
