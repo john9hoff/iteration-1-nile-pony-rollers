@@ -17,8 +17,8 @@ import {ResponseThanksComponent} from "./responseThanks.component";
 export class HomeComponent {
 
     public slideIndex = 0;
-    public emojis: string[] = ["./assets/grinning.png",  "./assets/neutral-face.png",
-        "./assets/slightly-frowning-face.png", "./assets/crying-face.png","./assets/angry-face.png"];
+    public emojis: string[] = ["./assets/happy.png",  "./assets/meh.png",
+        "./assets/sad.png", "./assets/angry.png","./assets/anxious.png"];
 
     public emojisString: string[] = ["Happy", "Normal", "Down", "Sad", "Angry"];
     public image = this.emojis[this.slideIndex];
