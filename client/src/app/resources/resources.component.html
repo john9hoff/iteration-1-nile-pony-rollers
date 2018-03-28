@@ -3,7 +3,7 @@
 <header>
     <!-- This allows for good mobile compatibility -->
     <!-- It might be nice to switch this over to CSS -->
-    <div class ="main-top">{{this.title}}</div>
+    <div class ="main-top"></div>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -111,7 +111,7 @@
         <!-- Resources Card -->
         <div class="main-div">
             <mat-card class="main-card">
-                <mat-card-title id="main-thing-title">{{ this.title }}</mat-card-title>
+                <mat-card-title id="main-thing-title"></mat-card-title>
                 <mat-divider></mat-divider>
                 <mat-card-header>This is a breathing exercise for when you are feeling stressed out. Breathe in as the image is building and out as the image shrinks.</mat-card-header>
                 <mat-card-content>
@@ -144,19 +144,27 @@
 
         <div class="first-sec">
             <mat-card class="manage-resource-card">
-                <mat-card-title id="Resource-title">Your Resources</mat-card-title>
+                <mat-card-title id="Resource-title">Add Phone Number</mat-card-title>
                 <mat-card-subtitle class="Resource-subtitle">Resource can help you keep touch with other person.
                 </mat-card-subtitle>
                 <mat-card-content class="Resource-content">
                     <li class="content-item" id="addNewresource">
                         <button mat-raised-button (click)="openDialog()" class="Resource-button">
                             <mat-icon id="add-icon">add</mat-icon>
-                            Add a Goal</button>
+                            Add a number</button>
                     </li>
                     <br>
                 </mat-card-content>
             </mat-card>
         </div>
+        <div class="resource-buttons">
+            <button mat-icon-button class="button delete-button"
+                    (click)="deleteresources(Resource.resourceName['$oid'])"
+                    (click)="openSnackBar('Goal Deleted')">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+
 
     </div>
 </main>

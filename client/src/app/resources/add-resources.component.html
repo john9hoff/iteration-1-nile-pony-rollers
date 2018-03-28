@@ -5,15 +5,15 @@
         <mat-card-content>
             <br>
             <mat-form-field>
-                <input matInput #input id="nameField" placeholder="What is your name?" [(ngModel)]="data.Resources.resourceName">
+                <input matInput #input id="nameField" placeholder="What is your name?" [(ngModel)]="data.Resource.resourceName">
                 <mat-error>This field is required</mat-error>
             </mat-form-field> <br>
             <br><br>
             <mat-form-field>
-                <input matInput #input id="resourcePhone" placeholder="What is the Phone Number?" [(ngModel)]="data.Resources.resourcePhone">
+                <input matInput #input id="resourcePhone" placeholder="What is the Phone Number?" [(ngModel)]="data.Resource.resourcePhone">
             </mat-form-field>
         </mat-card-content>
-        <button mat-raised-button id="confirmAddGoalButton" [mat-dialog-close]="data.Resources" type="button" (click)="openSnackBar('resources Added')">Confirm</button>
+        <button mat-raised-button id="confirmAddREsouButton" [mat-dialog-close]="data.Resource" type="button" (click)="openSnackBar('resources Added')">Confirm</button>
         <button mat-raised-button id="exitWithoutAddingButton" (click)="onNoClick()" type="button">Cancel</button>
     </div>
 </div>

@@ -26,7 +26,7 @@ public class ResourceController {
         resourceCollection = database.getCollection("resources");
     }
 
-    public String getresources(String name) {
+    public String getresource(String name) {
         FindIterable<Document> jsonItems
             = resourceCollection
             .find(eq("resourceName", new ObjectId(name)));
@@ -41,7 +41,7 @@ public class ResourceController {
         }
     }
 
-    public String getGoals(Map<String, String[]> queryParams) {
+    public String getresources(Map<String, String[]> queryParams) {
 
         Document filterDoc = new Document();
 
@@ -74,9 +74,9 @@ public class ResourceController {
             filterDoc = filterDoc.append("resourcesUrl", contentRegQuery);
         }
         // FindIterable comes from mongo, Document comes from Gson
-        FindIterable<Document> matchingGoals = resourceCollection.find(filterDoc);
+        FindIterable<Document> matchingResources = resourceCollection.find(filterDoc);
 
-        return JSON.serialize(matchingGoals);
+        return JSON.serialize(matchingResources);
     }
 
     /**
@@ -89,7 +89,7 @@ public class ResourceController {
      */
     // As of now this only adds the goal, but you can separate multiple arguments
     // by commas as we add them.
-    public String addNewGoal(String resourceBody, String resourcePhone, String resourcesUrl) {
+    public String addNewResource(String resourceBody, String resourcePhone, String resourcesUrl) {
 
         // makes the search Document key-pairs
         Document newResources = new Document();
@@ -111,7 +111,7 @@ public class ResourceController {
         }
     }
 
-    public String editGoal(String name, String body, String phone, String url){
+    public String editResources(String name, String body, String phone, String url){
         System.out.println("Right here again");
         Document newResources = new Document();
         newResources.append("resourceBody", body);
@@ -127,7 +127,7 @@ public class ResourceController {
         try {
             resourceCollection.updateOne(searchQuery, setQuery);
             ObjectId name1 = searchQuery.getObjectId("resourceName");
-            System.err.println("Successfully updated goal [resourceName=" + name1 + ", resourceBody=" + body +
+            System.err.println("Successfully updated resource [resourceName=" + name1 + ", resourceBody=" + body +
                 ", resourcePhone=" + phone + ", resourceUrl=" + url + ']');
             return JSON.serialize(name1);
         } catch(MongoException me) {

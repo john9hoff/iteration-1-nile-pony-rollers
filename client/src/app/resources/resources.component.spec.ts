@@ -65,22 +65,22 @@ describe('Resources', () => {
     });
 
     it('contains a body called \'Gain some weight\'', () => {
-        expect(resourceList.resource.some((goal: resources) => goal.resourceBody === 'Gain some weight')).toBe(true);
+        expect(resourceList.resource.some((Resource: resources) => Resource.resourceBody === 'Gain some weight')).toBe(true);
     });
 
     it('contains a body called \'Have cleaner kitchen\'', () => {
-        expect(resourceList.resource.some((goal: resources) => goal.resourceBody === 'Have cleaner kitchen')).toBe(true);
+        expect(resourceList.resource.some((Resource: resources) => Resource.resourceBody === 'Have cleaner kitchen')).toBe(true);
     });
 
     it('contains a phonenumber called \'123-456-7890\'', () => {
-        expect(resourceList.resource.some((goal: resources) => goal.resourcePhone === '123-456-7890')).toBe(true);
+        expect(resourceList.resource.some((Resource: resources) => Resource.resourcePhone === '123-456-7890')).toBe(true);
     });
 
     it('doesn\'t contain a body called \'Meet with Santa\'', () => {
-        expect(resourceList.resource.some((goal: resources) => goal.resourceBody === 'Meet with Santa')).toBe(false);
+        expect(resourceList.resource.some((Resource: resources) => Resource.resourceBody === 'Meet with Santa')).toBe(false);
     });
 
-    it('goal list filters by body', () => {
+    it('Resource list filters by body', () => {
         expect(resourceList.filteredResources.length).toBe(3);
         resourceList.resourcesBody = 'y';
         resourceList.refreshResources().subscribe(() => {
@@ -88,7 +88,7 @@ describe('Resources', () => {
         });
     });
 
-    it('goal list filters by phone', () => {
+    it('Resource list filters by phone', () => {
         expect(resourceList.filteredResources.length).toBe(3);
         resourceList.resourcesPhone = '5';
         resourceList.refreshResources().subscribe(() => {
@@ -136,7 +136,7 @@ describe('Misbehaving resources List', () => {
     });
 });
 
-describe('Adding a goal', () => {
+describe('Adding a Resource', () => {
     let resourceList: ResourcesComponent;
     let fixture: ComponentFixture<ResourcesComponent>;
     const newResources: resources =   {
@@ -154,7 +154,7 @@ describe('Adding a goal', () => {
         addNewresource: (newResources: resources) => Observable<{'$oid': string}>
     };
     let mockMatDialog: {
-        open: (GoalsComponent, any) => {
+        open: (ResourcesComponent, any) => {
             afterClosed: () => Observable<resources>
         };
     };
@@ -164,8 +164,8 @@ describe('Adding a goal', () => {
         // stub ResourcesService for test purposes
         resourceListServiceStub = {
             getresources: () => Observable.of([]),
-            addNewresource: (goalToAdd: resources) => {
-                calledResources = goalToAdd;
+            addNewresource: (ResourceToAdd: resources) => {
+                calledResources = ResourceToAdd;
                 return Observable.of({
                     '$oid': newName
                 });

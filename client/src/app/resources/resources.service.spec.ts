@@ -104,16 +104,16 @@ describe('Resources list service: ', () => {
     });
 
     it('getresourceByName() calls api/resource/name', () => {
-        const targetGoal: resources = testResources[1];
-        const targetId: string = targetGoal.resourceName;
+        const targetReousrce: resources = testResources[1];
+        const targetId: string = targetReousrce.resourceName;
         ResourcesListService.getresourceByName(targetId).subscribe(
-            user => expect(user).toBe(targetGoal)
+            user => expect(user).toBe(targetReousrce)
         );
 
         const expectedUrl: string = ResourcesListService.baseUrl + '/' + targetId;
         const req = httpTestingController.expectOne(expectedUrl);
         expect(req.request.method).toEqual('GET');
-        req.flush(targetGoal);
+        req.flush(targetReousrce);
     });
 
     it('adding a Resource calls api/resource/new', () => {
@@ -137,7 +137,7 @@ describe('Resources list service: ', () => {
         req.flush(chores_name);
     });
 
-    it('editing a goal calls api/resource/edit', () => {
+    it('editing a Resource calls api/resource/edit', () => {
         const family_name = { '$oid': 'family_name' };
         const editResources: resources = {
             resourceName: 'family_name',

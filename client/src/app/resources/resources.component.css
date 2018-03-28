@@ -70,6 +70,10 @@
     font-size: 24px;
 }
 
+delete-button {
+    background-color: indianred;
+}
+
 .little-phone-icon {
     color: forestgreen;
 }
