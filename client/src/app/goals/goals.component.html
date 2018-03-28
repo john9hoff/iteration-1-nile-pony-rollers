@@ -46,18 +46,18 @@
                     </p>
                 </mat-card-content>
                 </div>
+                <mat-card-actions>
                 <div class="goals-buttons">
                     <button mat-icon-button class="button delete-button"
-                            (click)="deleteGoal(goal._id['$oid'])"
-                            (click)="openSnackBar('Goal Deleted')">
+                            (click)="deleteGoal(goal._id['$oid']); openSnackBar('Goal Deleted')">
                         <mat-icon>delete</mat-icon>
                     </button>
                     <button *ngIf="!goal.status" mat-icon-button class="button complete-button" id="completeGoal"
-                            (click)="goalSatisfied(goal._id['$oid'], goal.purpose, goal.category, goal.name)"
-                            (click)="openSnackBar('Goal Completed')">
+                            (click)="goalSatisfied(goal._id['$oid'], goal.purpose, goal.category, goal.name); openSnackBar('Goal Completed')">
                         <mat-icon>done</mat-icon>
                     </button>
                 </div>
+                </mat-card-actions>
             </mat-card>
             <ng-template #goalsError>
                 <mat-error>
