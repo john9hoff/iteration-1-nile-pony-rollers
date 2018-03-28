@@ -57,7 +57,7 @@ export class JournalListComponent implements OnInit {
     }
 
     openDialogReview(_id: string, subject: string, body: string, date: string): void {
-        console.log(_id + ' ' + subject);
+        console.log(_id + ' ' + subject + body + date);
         const newJournal: Journal = {_id: _id, subject: subject, body: body, date: date};
         const dialogRef = this.dialog.open(EditJournalComponent, {
             width: '300px',
