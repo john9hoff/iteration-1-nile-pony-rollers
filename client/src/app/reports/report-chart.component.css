@@ -1,13 +1,11 @@
 canvas {
-    border: 1px solid black;
+    border: 2px solid black;
     background-color: #e6f7ff;
 }
 
 .chart-container {
     padding: 3%;
     position: absolute;
-    /*height and width are for the sizing. these specific numbers allow the
-    chart to be fully displayed with no scrolling on pc and mobile */
     height: 81%;
     width: 94%;
 }

@@ -34,12 +34,11 @@ export class ReportChartComponent implements OnInit {
         })
     }
 
-
     public setPlugin () {
         //global options
         Chart.defaults.global.defaultFontFamily = 'lato';
         Chart.defaults.global.defaultFontColor = 'black';
-        Chart.defaults.global.defaultFontSize = 16;
+        Chart.defaults.global.defaultFontSize = 15;
 
         // Defining a plugin to provide data labels
         Chart.plugins.register({
@@ -130,7 +129,6 @@ export class ReportChartComponent implements OnInit {
             }
         });
         return chart;
-
     }
 
     public getValues () {
