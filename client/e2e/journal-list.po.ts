@@ -71,6 +71,26 @@ export class JournalPage {
         return element(by.id('addNewJournal')).click();
     }
 
+    clickNextIndecButton(): promise.Promise<void> {
+        this.highlightElement(by.id('nextIndex'));
+        return element(by.id('nextIndex')).click();
+    }
+
+    clickPrevIndexButton(): promise.Promise<void> {
+        this.highlightElement(by.id('prevIndex'));
+        return element(by.id('prevIndex')).click();
+    }
+
+    clickFirstIndexButton(): promise.Promise<void> {
+        this.highlightElement(by.id('firstIndex'));
+        return element(by.id('firstIndex')).click();
+    }
+
+    clickLastIndexButton(): promise.Promise<void> {
+        this.highlightElement(by.id('lastIndex'));
+        return element(by.id('lastIndex')).click();
+    }
+
     clickEditJournalButton(): promise.Promise<void> {
         this.highlightElement(by.id('edit-journal-button'));
         return element(by.id('edit-journal-button')).click();

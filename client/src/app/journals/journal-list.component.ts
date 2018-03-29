@@ -19,6 +19,9 @@ export class JournalListComponent implements OnInit {
     public journalSubject: string;
     public journalBody: string;
     public journalDate: any;
+    public length: number;
+    public index = 0;
+    public progress: number;
 
     // The ID of the
     private highlightedID: {'$oid': string} = { '$oid': '' };
@@ -97,6 +100,14 @@ export class JournalListComponent implements OnInit {
             });
         }
 
+        this.length = this.filteredJournals.length;
+        if (this.index + 10 > this.length) {
+            this.index = this.length - 10;
+        }
+        if (this.index - 10 < 0) {
+            this.index = 0;
+        }
+
         return this.filteredJournals;
     }
 
@@ -108,11 +119,20 @@ export class JournalListComponent implements OnInit {
             journals => {
                 this.journals = journals;
                 this.filterJournals(this.journalSubject, this.journalBody);
+                this.length = this.journals.length;
             },
             err => {
                 console.log(err);
             });
         return journalListObservable;
+    }
+
+    loadProgressBar(): void {
+
+        this.progress = (this.index / this.length) * 100;
+        //console.log(this.length + " printing this.length in loadProgressBar");
+        //console.log(this.progress + " printing this.progress in loadProgressBar");
+        //console.log(this.index + " printing this.index in loadProgressBar");
     }
 
     loadService(): void {
@@ -127,9 +147,40 @@ export class JournalListComponent implements OnInit {
         );
     }
 
+    prevIndex(): void{
+        if(this.index != this.length - 10){
+            this.index = this.index - 10;
+        }
+        if(this.index == this.length - 10){
+            while(this.index % 10 != 0){
+                this.index = this.index - 1;
+            }
+        }
+        this.loadProgressBar();
+    }
+
+    nextIndex(): void{
+        this.index = this.index + 10;
+        if(this.index + 10 >= this.length){
+            this.index = this.length;
+        }
+        this.loadProgressBar();
+    }
+
+    firstIndex(): void{
+        this.index = 0;
+        this.loadProgressBar();
+    }
+
+    lastIndex(): void{
+        this.index = this.length;
+        this.loadProgressBar();
+    }
+
     ngOnInit(): void {
         this.refreshJournals();
-        //this.loadService();
+        this.loadService();
+        this.loadProgressBar();
     }
 
 }
