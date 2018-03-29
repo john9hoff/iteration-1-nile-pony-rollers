@@ -72,8 +72,8 @@ describe('Journal list', () => {
         page.clickPrevIndexButton();
         page.clickPrevIndexButton();
         expect(page.getJournals()).toEqual(10);
-        page.clickNextIndecButton();
-        page.clickNextIndecButton();
+        page.clickNextIndexButton();
+        page.clickNextIndexButton();
         expect(page.getJournals()).toEqual(10);
     });
 

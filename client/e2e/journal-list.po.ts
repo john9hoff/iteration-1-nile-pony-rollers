@@ -71,7 +71,7 @@ export class JournalPage {
         return element(by.id('addNewJournal')).click();
     }
 
-    clickNextIndecButton(): promise.Promise<void> {
+    clickNextIndexButton(): promise.Promise<void> {
         this.highlightElement(by.id('nextIndexJournal'));
         return element(by.id('nextIndexJournal')).click();
     }

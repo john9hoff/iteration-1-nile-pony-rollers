@@ -71,12 +71,34 @@ export class TrackerPage {
         return element(by.id('dropdown')).click();
     }
 
-
+    getTrackers() {
+        return element.all(by.className('trackers')).count();
+    }
 
 
     clickDropDownValue(): promise.Promise<void> {
         this.highlightElement(by.className('trackerEmoji'));
         return element(by.cssContainingText('value', 'happy')).click();
+    }
+
+    clickNextIndexButton(): promise.Promise<void> {
+        this.highlightElement(by.id('nextIndexTracker'));
+        return element(by.id('nextIndexTracker')).click();
+    }
+
+    clickPrevIndexButton(): promise.Promise<void> {
+        this.highlightElement(by.id('prevIndexTracker'));
+        return element(by.id('prevIndexTracker')).click();
+    }
+
+    clickFirstIndexButton(): promise.Promise<void> {
+        this.highlightElement(by.id('firstIndexTracker'));
+        return element(by.id('firstIndexTracker')).click();
+    }
+
+    clickLastIndexButton(): promise.Promise<void> {
+        this.highlightElement(by.id('lastIndexTracker'));
+        return element(by.id('lastIndexTracker')).click();
     }
 
 
