@@ -12,6 +12,8 @@ import java.util.Iterator;
 import java.util.Map;
 import static com.mongodb.client.model.Filters.eq;
 
+
+
 public class ResourceController {
 
     private final Gson gson;
@@ -26,10 +28,11 @@ public class ResourceController {
         resourceCollection = database.getCollection("resources");
     }
 
-    public String getResource(String name) {
+
+    public String getResource(String id) {
         FindIterable<Document> jsonItems
             = resourceCollection
-            .find(eq("_id", new ObjectId(name)));
+            .find(eq("_id", new ObjectId(id)));
 
         Iterator<Document> iterator = jsonItems.iterator();
         if (iterator.hasNext()) {
@@ -40,6 +43,10 @@ public class ResourceController {
             return null;
         }
     }
+
+
+
+
 
     public String getResources(Map<String, String[]> queryParams) {
 
@@ -149,8 +156,8 @@ public class ResourceController {
         }
     }
 
-    public void deleteResources(String name){
-        Document searchQuery = new Document().append("_id", new ObjectId(name));
+    public void deleteResources(String id){
+        Document searchQuery = new Document().append("_id", new ObjectId(id));
 
         try {
             resourceCollection.deleteOne(searchQuery);

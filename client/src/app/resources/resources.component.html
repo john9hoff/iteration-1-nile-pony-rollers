@@ -159,11 +159,16 @@
         </div>
         <div class="resource-buttons">
             <button mat-icon-button class="button delete-button"
-                    (click)="deleteresources(Resource.resourceName['$oid'])"
-                    (click)="openSnackBar('Goal Deleted')">
+                    (click)="openSnackBar('Resource Deleted')">
                 <mat-icon>delete</mat-icon>
             </button>
         </div>
+
+        <mat-card class="Resource-card"
+                  *ngFor="let Resource of this.filterResource(resourcesPurpose, resourcesPhone,
+                       resourcesName, resourcesCategory)"
+                  #elem [id]="Resource._id['$oid']"><mat-card-title id="goal-name">{{Resource.name}}</mat-card-title>
+        </mat-card>
 
 
     </div>

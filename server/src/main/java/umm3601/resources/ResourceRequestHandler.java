@@ -1,4 +1,5 @@
 package umm3601.resources;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.util.JSON;
 import spark.Request;
@@ -126,7 +127,6 @@ public class ResourceRequestHandler {
                     String category = dbO.getString("category");
                     String name = dbO.getString("name");
                     String phone = dbO.getString("phone");
-
 
                     System.err.println("Editing Resource [purpose=" + purpose + ", category=" + category + ", name=" + name + ", phone=" + phone + ']');
                     return resourceController.editResources(id, purpose, category, name, phone).toString();
