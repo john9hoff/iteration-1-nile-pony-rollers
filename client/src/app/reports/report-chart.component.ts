@@ -32,14 +32,6 @@ export class ReportChartComponent implements OnInit {
             this.ctx = this.canvas.getContext('2d');
             this.buildChart();
             this.setPlugin();
-        })
-    }
-
-    public setPlugin () {
-        //global options
-        Chart.defaults.global.defaultFontFamily = 'lato';
-        Chart.defaults.global.defaultFontColor = 'black';
-        Chart.defaults.global.defaultFontSize = 15;
         });
 
         if(gapi == null || gapi.auth2 == null || gapi.auth2.getAuthInstance().isSignedIn.get() == true){
@@ -50,12 +42,11 @@ export class ReportChartComponent implements OnInit {
         console.log(this.showPage + " window.email " + window['email']);
     }
 
-
     public setPlugin () {
         //global options
         Chart.defaults.global.defaultFontFamily = 'lato';
         Chart.defaults.global.defaultFontColor = 'black';
-        Chart.defaults.global.defaultFontSize = 18;
+        Chart.defaults.global.defaultFontSize = 15;
 
         // Defining a plugin to provide data labels
         Chart.plugins.register({
