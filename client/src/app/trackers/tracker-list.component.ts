@@ -130,13 +130,16 @@ export class TrackerListComponent implements OnInit {
     }
 
     prevIndex(): void{
-        if(this.index != this.length - 10){
+        if(this.index == this.length - 10){
             this.index = this.index - 10;
         }
-        if(this.index == this.length - 10){
+        else if(this.index % 10 != 0){
             while(this.index % 10 != 0){
                 this.index = this.index - 1;
             }
+        }
+        else{
+            this.index = this.index - 10;
         }
         this.loadProgressBar();
     }
