@@ -6,21 +6,17 @@
             <head>
                 <style>
                     h1 {
-                        color: #ffff1a;
+                        color:yellow;
                         font-family: "Trebuchet MS";
                         text-align: center;
                         padding: 0%;
                     }
                     p  {
-                        color: #ffff1a;
+                        color: yellow;
                         font-family: "Trebuchet MS";
                         text-align: center;
                     }
-                    h2  {
-                        color: blueviolet;
-                        font-family: "Trebuchet MS";
-                        text-align: center;
-                    }
+
 
                 </style>
             </head>
@@ -59,11 +55,11 @@
             </mat-slider>
 
         <div>
-            <button type="button" id="addEmotionWithIntensity" (click)="addEmotion(slideIndex); openThanks();">
+            <button type="button" id="submitAndThanks" (click)="addEmotion(slideIndex); openThanks();">
             submit
             </button>
 
-            <button type="button" id="thanks" (click)="openDialog(slideIndex);">
+            <button type="button" id="videos" (click)="openDialog(slideIndex);">
                 relaxing videos
             </button>
         </div>
