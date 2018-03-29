@@ -18,8 +18,47 @@
     <!-- script for chart js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 
+    <!-- script for google login -->
+    <script async defer src="https://apis.google.com/js/platform.js"></script>
+    <meta name="google-signin-client_id" content="296237216257-59cma82ojiteqbuo0iodmpb2kenrisf3.apps.googleusercontent.com">
+
 </head>
 <body>
+
+<script type=application/javascript>
+
+    function init() {
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+        });
+    }
+
+    function onSignIn(googleUser) {
+
+        window = googleUser.getBasicProfile();
+
+        window.name = googleUser.getBasicProfile().getName();
+        window.email = googleUser.getBasicProfile().getEmail();
+
+
+        console.log(window.email + ' has successfully logged in.');
+    }
+
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            delete window.name;
+            delete window.email;
+            location.reload();
+            console.log('User has logged out.');
+        });
+    }
+
+    function reload(){
+        location.reload();
+    }
+</script>
+
 <app-root>Loading...</app-root>
 </body>
 </html>

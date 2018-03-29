@@ -1,6 +1,6 @@
 <body>
 <main>
-    <div layout="column">
+    <div *ngIf="showPage; else askToLogin" layout="column">
         <!-- Managing Trackers Card -->
         <div class="first-sec">
             <mat-card class="manage-trackers-card">
@@ -27,7 +27,7 @@
         <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <mat-card class="trackers-card">
             <mat-card-content>
-                <mat-accordion class = "trackers" *ngIf="trackers; else trackersError" >
+                <mat-accordion *ngIf="trackers; else trackersError" >
                     <mat-expansion-panel #elem class="trackers" [id]="tracker._id['$oid']" [expanded]="this.isHighlighted(tracker)" *ngFor="let tracker of this.filterTrackers(trackerEmoji, trackerTime) | slice:index:index+10; let i=index;">
                         <mat-expansion-panel-header>
                             <mat-panel-title >{{tracker.emoji}}</mat-panel-title>
@@ -76,3 +76,8 @@
     </div>
 </main>
 </body>
+
+
+<ng-template #askToLogin>
+    <h1>You need to login to see this page</h1>
+</ng-template>

@@ -22,6 +22,7 @@ export class JournalListComponent implements OnInit {
     public length: number;
     public index = 0;
     public progress: number;
+    showPage = false;
 
     // The ID of the
     private highlightedID: {'$oid': string} = { '$oid': '' };
@@ -181,6 +182,13 @@ export class JournalListComponent implements OnInit {
         this.refreshJournals();
         this.loadService();
         this.loadProgressBar();
+        //this.loadService();
+    if(gapi == null || gapi.auth2 == null || gapi.auth2.getAuthInstance().isSignedIn.get() == true){
+        this.showPage = true;
+    } else{
+        this.showPage = false;
+    }
+    console.log(this.showPage + " window.email " + window['email']);
     }
 
 }

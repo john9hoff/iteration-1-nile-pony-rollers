@@ -22,6 +22,7 @@ export class ReportChartComponent implements OnInit {
     public filteredReports: Tracker[];
     canvas: any;
     ctx: any;
+    showPage = false;
 
     ngOnInit() {
         this.reportChartService.getReports().subscribe(res => {
@@ -31,7 +32,14 @@ export class ReportChartComponent implements OnInit {
             this.ctx = this.canvas.getContext('2d');
             this.buildChart();
             this.setPlugin();
-        })
+        });
+
+        if(gapi == null || gapi.auth2 == null || gapi.auth2.getAuthInstance().isSignedIn.get() == true){
+            this.showPage = true;
+        } else{
+            this.showPage = false;
+        }
+        console.log(this.showPage + " window.email " + window['email']);
     }
 
     public setPlugin () {
