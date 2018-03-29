@@ -12,7 +12,7 @@ import {MatSnackBar} from '@angular/material';
 export class AddResourcesComponent {
     constructor(
         public snackBar: MatSnackBar, public dialogRef: MatDialogRef<AddResourcesComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: {Resource: resources}) {
+        @Inject(MAT_DIALOG_DATA) public data: {resource: resources}) {
     }
 
     onNoClick(): void {

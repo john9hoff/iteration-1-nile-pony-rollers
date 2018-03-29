@@ -107,7 +107,6 @@ import {ReportChartService} from "./reports/report-chart.service";
         EditJournalComponent,
         ReportChartComponent,
         ResponseThanksComponent,
-        ResourcesComponent,
         AddResourcesComponent,
     ],
     bootstrap: [AppComponent]

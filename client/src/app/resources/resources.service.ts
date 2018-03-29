@@ -79,6 +79,7 @@ export class ResourceService {
         };
 
         // Send post request to add a new goals with the user data as the body with specified headers.
+        console.log(newResources);
         return this.http.post<{'$oid': string}>(this.resourceUrl + '/new', newResources, httpOptions);
     }
 
