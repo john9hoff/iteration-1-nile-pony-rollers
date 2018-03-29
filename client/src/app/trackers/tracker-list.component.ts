@@ -13,6 +13,7 @@ export class TrackerListComponent implements OnInit {
     // These are public so that tests can reference them (.spec.ts)
     public trackers: Tracker[];
     public filteredTrackers: Tracker[];
+    showPage = false;
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
@@ -116,5 +117,11 @@ export class TrackerListComponent implements OnInit {
     ngOnInit(): void {
         this.refreshTrackers();
         this.loadService();
+        if(gapi == null || gapi.auth2 == null || gapi.auth2.getAuthInstance().isSignedIn.get() == true){
+            this.showPage = true;
+        } else{
+            this.showPage = false;
+        }
+        console.log(this.showPage + " window.email " + window['email']);
     }
 }

@@ -1,4 +1,5 @@
 <body>
+<div *ngIf="showPage; else askToLogin">
 <div layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <div class="Trackers">
@@ -46,4 +47,10 @@
     </div>
 
 </div>
+</div>
 </body>
+
+
+<ng-template #askToLogin>
+    <h1>You need to login to see this page</h1>
+</ng-template>
