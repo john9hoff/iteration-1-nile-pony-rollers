@@ -20,12 +20,12 @@
 
 
 
-    <li id="signInButton" class="g-signin2" data-onsuccess="onSignIn"></li>
+    <div class="g-signin2 mt-2 col-md-12" data-onsuccess="onSignIn">
+        This is sign on
+    </div>
 
-    <div id="gSignInWrapper">
-        <button mat-button id="customBtn" class="customGPlusSignIn" onclick="signOut()">
-            <span class="buttonText">Sign Out</span>
-        </button>
+    <div>
+        <button mat-button button href="/" onclick="signOut();">Sign out</button>
     </div>
 
 
