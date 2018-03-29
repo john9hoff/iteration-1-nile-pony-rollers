@@ -1,4 +1,3 @@
-/*
 import {ReportChartPage} from "./report-chart.po";
 import {element, by} from "protractor";
 
@@ -19,4 +18,3 @@ describe('Report Page', () => {
        expect(element(by.id('myChart')).isPresent()).toBeTruthy();
     });
 });
-*/

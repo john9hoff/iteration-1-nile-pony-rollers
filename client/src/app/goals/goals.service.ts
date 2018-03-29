@@ -20,13 +20,10 @@ export class GoalsService {
         return this.http.get<Goal[]>(this.goalUrl);
     }
 
-    // This isn't used, but may be useful for future iterations.
     getGoalByID(id: string): Observable<Goal> {
         return this.http.get<Goal>(this.goalUrl + '/' + id);
     }
 
-    // Unfortunately we did not get to implementing specific filters,
-    // but this may useful in the future.
     filterByCategory(goalCategory?: string): void {
         if (!(goalCategory == null || goalCategory === '')) {
             if (this.parameterPresent('category=') ) {
@@ -76,7 +73,7 @@ export class GoalsService {
             }),
         };
 
-        // Send post request to add a new goal with the user data as the body with specified headers.
+        // Send post request to add a new goal with the goal data as the body with specified headers.
         return this.http.post<{'$oid': string}>(this.goalUrl + '/new', newGoal, httpOptions);
     }
 
@@ -87,7 +84,7 @@ export class GoalsService {
             }),
         };
 
-        // Send post request to add a new journal with the journal data as the body with specified headers.
+        // Send post request to add a new goal with the goal data as the body with specified headers.
         return this.http.post<{'$oid': string}>(this.goalUrl + '/edit', editedGoal, httpOptions);
     }
 
@@ -98,7 +95,7 @@ export class GoalsService {
             }),
         };
 
-        // Send post request to add a new journal with the journal data as the body with specified headers.
+        // Send post request to add a new goal with the goal data as the body with specified headers.
         return this.http.delete(this.goalUrl + '/delete/' + goaldID, httpOptions);
     }
 }

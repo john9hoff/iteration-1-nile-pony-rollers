@@ -36,10 +36,6 @@ export class JournalPage {
         input.sendKeys(body);
     }
 
-    backspace() {
-        browser.actions().sendKeys(Key.BACK_SPACE).perform();
-    }
-
     getJournalManageTitle() {
         const title = element(by.id('journal-title')).getText();
         this.highlightElement(by.id('journal-title'));
@@ -91,9 +87,9 @@ export class JournalPage {
         return element(by.id('lastIndexJournal')).click();
     }
 
-    clickEditJournalButton(): promise.Promise<void> {
+/*    clickEditJournalButton(): promise.Promise<void> {
         this.highlightElement(by.id('edit-journal-button'));
         return element(by.id('edit-journal-button')).click();
-    }
+    }*/
 
 }

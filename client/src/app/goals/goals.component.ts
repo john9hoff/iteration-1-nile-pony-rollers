@@ -18,8 +18,6 @@ export class GoalsComponent implements OnInit {
     public filteredGoals: Goal[];
 
     // These are the target values used in searching.
-    // We should rename them to make that clearer.
-    public goalID: string;
     public goalPurpose: string;
     public goalCategory: string;
     public goalName: string;
@@ -170,7 +168,6 @@ export class GoalsComponent implements OnInit {
             }
         );
     }
-
 
     ngOnInit(): void {
         this.refreshGoals();

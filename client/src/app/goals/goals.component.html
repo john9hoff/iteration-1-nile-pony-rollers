@@ -2,8 +2,6 @@
 
 <main>
     <div layout="column">
-
-    <!-- Managing Goals Card -->
     <div class="first-sec">
         <mat-card class="manage-goals-card">
             <mat-card-title id="goal-title">Your Goals</mat-card-title>
@@ -20,8 +18,6 @@
             </mat-card-content>
         </mat-card>
     </div>
-
-    <!-- Grid Section for Goals -->
     <div class="grid-goals-section" >
         <div layout="row" layout-wrap>
             <!-- The errors card is commented out beacuse it messes with the goals cards layout -->
@@ -58,7 +54,8 @@
                     </button>
                 </div>
             </mat-card>
-            <ng-template #goalsError>
+            <!-- Errors message card can be uncommented if you fix the layout issue -->
+            <!--<ng-template #goalsError>
                 <mat-error>
                     There was a problem loading the goals. Possibly the server is down or perhaps there are network
                     issues.
@@ -66,10 +63,9 @@
                 <mat-error>
                     Please wait a bit and try again or start the server.
                 </mat-error>
-            </ng-template>
+            </ng-template>-->
         </div>
     </div>
-
     </div>
 </main>
 </body>
