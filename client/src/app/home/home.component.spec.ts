@@ -67,5 +67,5 @@ describe( 'Home', () => {
         expect(trackerList.emojis.length).toBe(5);
     });
 
-  
+
 });
