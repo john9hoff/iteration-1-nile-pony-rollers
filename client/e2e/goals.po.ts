@@ -13,7 +13,7 @@ export class GoalPage {
             element.setAttribute('style', style);
             setTimeout(() => {
                 element.setAttribute('style', previous);
-            }, 200);
+            }, 100);
             return 'highlighted';
         }
 
@@ -27,10 +27,6 @@ export class GoalPage {
         return title;
     }
 
-    selectDownKey() {
-        browser.actions().sendKeys(Key.ARROW_DOWN).perform();
-    }
-
     selectEnter() {
         browser.actions().sendKeys(Key.ENTER).perform();
     }
@@ -40,13 +36,6 @@ export class GoalPage {
         this.highlightElement(by.id(anID));
 
         return goal;
-    }
-
-    getGoalName() {
-        const name = element(by.id('goal-name')).getText();
-        this.highlightElement(by.id('goal-name'));
-
-        return name;
     }
 
     getGoals() {

@@ -108,7 +108,7 @@ describe('Goal list service: ', () => {
         const targetGoal: Goal = testGoals[1];
         const targetId: string = targetGoal._id;
         goalListService.getGoalByID(targetId).subscribe(
-            user => expect(user).toBe(targetGoal)
+            goal => expect(goal).toBe(targetGoal)
         );
 
         const expectedUrl: string = goalListService.baseUrl + '/' + targetId;

@@ -1,18 +1,17 @@
-/*
 import {GoalPage} from './goals.po';
 import {browser, protractor, element, by} from 'protractor';
 
-const origFn = browser.driver.controlFlow().execute;
+/*const origFn = browser.driver.controlFlow().execute;
 
 browser.driver.controlFlow().execute = function () {
     let args = arguments;
-    // queue 5ms wait between test
+    // queue 100ms wait between test
     // This delay is only put here so that you can watch the browser do its thing.
     origFn.call(browser.driver.controlFlow(), function () {
        return protractor.promise.delayed(100);
     });
     return origFn.apply(browser.driver.controlFlow(), args);
- };
+ };*/
 
 describe('Goal list', () => {
     let page: GoalPage;
@@ -58,9 +57,9 @@ describe('Goal list', () => {
 
     it('Should open a dialog box when add goal button is clicked', () => {
         page.navigateTo();
-        expect(element(by.className('add-journal')).isPresent()).toBeFalsy('There should not be a modal window yet');
+        expect(element(by.className('add-goal')).isPresent()).toBeFalsy('There should not be a modal window yet');
         element(by.className('goal-button')).click();
-        expect(element(by.className('add-journal')).isPresent()).toBeTruthy('There should be a modal window now');
+        expect(element(by.className('add-goal')).isPresent()).toBeTruthy('There should be a modal window now');
     });
 
     it('Should actually add the goal with the information we put in the fields', () => {
@@ -80,4 +79,3 @@ describe('Goal list', () => {
     });
 
 });
-*/

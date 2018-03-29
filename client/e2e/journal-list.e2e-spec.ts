@@ -2,6 +2,18 @@ import {JournalPage} from './journal-list.po';
 import {browser, protractor, element, by} from 'protractor';
 import {Key} from 'selenium-webdriver';
 
+/*const origFn = browser.driver.controlFlow().execute;
+
+browser.driver.controlFlow().execute = function () {
+    let args = arguments;
+    // queue 100ms wait between test
+    // This delay is only put here so that you can watch the browser do its thing.
+    origFn.call(browser.driver.controlFlow(), function () {
+        return protractor.promise.delayed(100);
+    });
+    return origFn.apply(browser.driver.controlFlow(), args);
+};*/
+
 describe('Journal list', () => {
     let page: JournalPage;
 
