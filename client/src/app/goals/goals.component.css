@@ -15,13 +15,8 @@
 }
 
 .goal-content {
-    margin-left: 25px;
     list-style-type: none;
     font-size: 21px;
-}
-
-.second-sec {
-    width: 100%
 }
 
 .your-goals-title {
@@ -41,17 +36,11 @@
     color: red;
 }
 
-.grid-goals-section {
-    margin: 0 auto;
-}
-
 .goals-card {
     width: 275px;
     padding: 15px;
     margin: 0 auto;
     margin-bottom: 15px;
-    margin-left: auto;
-    margin-right: auto;
     background-color: rgba(144, 238, 144, 0.22);
 }
 
@@ -71,3 +60,6 @@
     float: right;
 }
 
+.goals-buttons {
+    float: right;
+}

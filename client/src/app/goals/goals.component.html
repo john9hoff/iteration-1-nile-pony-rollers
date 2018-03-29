@@ -23,8 +23,9 @@
 
     <!-- Grid Section for Goals -->
     <div class="grid-goals-section" >
-        <div class='md-padding' layout="row" layout-wrap>
-            <mat-card *ngIf="goals; else goalsError"></mat-card>
+        <div layout="row" layout-wrap>
+            <!-- The errors card is commented out beacuse it messes with the goals cards layout -->
+            <!--<mat-card *ngIf="goals; else goalsError"></mat-card>-->
             <mat-card class="goals-card"
                       *ngFor="let goal of this.filterGoals(goalPurpose, goalCategory, goalName, goalStatus)"
                       #elem [id]="goal._id['$oid']">
@@ -46,7 +47,6 @@
                     </p>
                 </mat-card-content>
                 </div>
-                <mat-card-actions>
                 <div class="goals-buttons">
                     <button mat-icon-button class="button delete-button"
                             (click)="deleteGoal(goal._id['$oid']); openSnackBar('Goal Deleted')">
@@ -57,7 +57,6 @@
                         <mat-icon>done</mat-icon>
                     </button>
                 </div>
-                </mat-card-actions>
             </mat-card>
             <ng-template #goalsError>
                 <mat-error>
