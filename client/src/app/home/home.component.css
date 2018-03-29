@@ -1,3 +1,58 @@
+.happyEmoji{
+    background: url("../../assets/happy.svg") no-repeat top left;
+    background-size: contain;
+    cursor: pointer;
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.mehEmoji{
+    background: url("../../assets/meh.svg") no-repeat top left;
+    background-size: contain;
+    cursor: pointer;
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.sadEmoji{
+    background: url("../../assets/sad.svg") no-repeat top left;
+    background-size: contain;
+    cursor: pointer;
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.angryEmoji{
+    background: url("../../assets/angry.png") no-repeat top left;
+    background-size: contain;
+    cursor: pointer;
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.anxiousEmoji{
+    background: url("../../assets/anxious.svg") no-repeat top left;
+    background-size: contain;
+    cursor: pointer;
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
 .mood-buttons button {
     background-color: transparent;
     border: none;
@@ -47,3 +102,12 @@ mat-slider {
     text-align: center;
 
 }
+
+#submitAndThanks{
+    background-color: #607d8b;
+}
+
+#videos{
+    background-color: #607d8b;
+}
+
