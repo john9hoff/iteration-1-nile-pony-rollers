@@ -32,7 +32,7 @@ describe('Resource list', () => {
 
     it('Total number of Resources should be 15', () => {
         page.navigateTo();
-        expect(page.getresources()).toEqual(15);
+        expect(page.getResources()).toEqual(15);
     });
 
     it('Should check that Resource with resourcePhone: \'To surprise Bobby\' matches unique id', () => {

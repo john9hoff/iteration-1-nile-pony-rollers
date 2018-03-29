@@ -76,8 +76,6 @@ public class ResourceRequestHandler {
         res.type("application/json");
         Object o = JSON.parse(req.body());
         try {
-            // if the object that is the JSON representation of the request body's class is the class BasicDBObject
-            // then try to add the item with itemController's addNewItem method
             if(o.getClass().equals(BasicDBObject.class)) {
                 try {
                     System.out.println("sdfsdfsdfsdfsdzfsdfsd");

@@ -3,7 +3,7 @@ import {Key} from 'selenium-webdriver';
 
 export class ResourcePage {
     navigateTo(): promise.Promise<any> {
-        return browser.get('/resources');
+        return browser.get('/resource');
     }
 
     highlightElement(byObject) {
@@ -34,21 +34,21 @@ export class ResourcePage {
         browser.actions().sendKeys(Key.ENTER).perform();
     }
 
-    getUniqueResource(anNAME: string) {
-        const Resource = element(by.id(anNAME)).getText();
-        this.highlightElement(by.id(anNAME));
+    getUniqueResource(anID: string) {
+        const Resource = element(by.id(anID)).getText();
+        this.highlightElement(by.id(anID));
 
         return Resource;
     }
 
-    getresourceName() {
+    getResourceName() {
         const name = element(by.id('Resource-name')).getText();
         this.highlightElement(by.id('Resource-name'));
 
         return name;
     }
 
-    getresources() {
+    getResources() {
         return element.all(by.className('resource-card')).count();
     }
 
@@ -63,7 +63,7 @@ export class ResourcePage {
     }
 
     pickChoresOption(){
-        const input = element(by.id('resourcePhone-list'));
+        const input = element(by.id('category-list'));
         input.click();
         this.selectEnter();
     }
