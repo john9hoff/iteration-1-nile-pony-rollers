@@ -1,4 +1,9 @@
-
+<div *ngIf="showPage; else askToLogin">
 <div class="chart-container" >
 <canvas id="myChart" height=100 width=100 ></canvas>
 </div>
+</div>
+
+<ng-template #askToLogin>
+    <h1>You need to login to see this page</h1>
+</ng-template>
