@@ -130,9 +130,6 @@ export class JournalListComponent implements OnInit {
     loadProgressBar(): void {
 
         this.progress = (this.index / this.length) * 100;
-        //console.log(this.length + " printing this.length in loadProgressBar");
-        //console.log(this.progress + " printing this.progress in loadProgressBar");
-        //console.log(this.index + " printing this.index in loadProgressBar");
     }
 
     loadService(): void {
