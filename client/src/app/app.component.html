@@ -1,3 +1,7 @@
+<head>
+    <script defer src="https://apis.google.com/js/platform.js"></script>
+    <meta name="google-signin-client_id" content="296237216257-59cma82ojiteqbuo0iodmpb2kenrisf3.apps.googleusercontent.com">
+</head>
 <body>
 <mat-toolbar color="primary">
 
@@ -13,6 +17,18 @@
             <li><a  [routerLink]="['/reports']"  routerLinkActive="nav-active">Reports</a></li>
         </ul>
     </div>
+
+
+
+    <li id="signInButton" class="g-signin2" data-onsuccess="onSignIn"></li>
+
+    <div id="gSignInWrapper">
+        <button mat-button id="customBtn" class="customGPlusSignIn" onclick="signOut()">
+            <span class="buttonText">Sign Out</span>
+        </button>
+    </div>
+
+
     <button mat-button fxHide="false"
             fxHide.gt-sm routerLink="/" class="web-title">
         <mat-icon>home</mat-icon>
