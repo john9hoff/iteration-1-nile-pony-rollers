@@ -3,6 +3,7 @@
 import {TrackerPage} from './tracker-list.po';
 import {browser, protractor, element, by} from 'protractor';
 import {Key} from 'selenium-webdriver';
+import {Tracker} from "../src/app/trackers/tracker";
 
 const origFn = browser.driver.controlFlow().execute;
 
@@ -68,6 +69,21 @@ describe('Tracker list', () => {
         page.clickDropdown();
         element(by.css('.mat-option[value=""]')).click();
     });
+
+    // it('Should actually click the navigation buttons and still have 10 journals on page everytime', () => {
+    //     TrackerPage.navigateTo();
+    //     page.clickFirstIndexButton();
+    //     expect(page.getTrackers()).toEqual(10);
+    //     page.clickLastIndexButton();
+    //     expect(page.getTrackers()).toEqual(10);
+    //     page.clickPrevIndexButton();
+    //     page.clickPrevIndexButton();
+    //     expect(page.getTrackers()).toEqual(10);
+    //     page.clickNextIndexButton();
+    //     page.clickNextIndexButton();
+    //     expect(page.getTrackers()).toEqual(10);
+    // });
+
 
 
 

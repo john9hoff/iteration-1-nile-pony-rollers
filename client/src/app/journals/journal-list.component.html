@@ -42,16 +42,16 @@
                         <mat-panel-description><button mat-raised-button id="edit-journal-button" (click)="openDialogReview(journal._id['$oid'], journal.subject, journal.body, journal.date)">Edit Journal</button> </mat-panel-description>
                     </mat-expansion-panel>
 
-                    <button mat-button id="first index" type="button" matSuffix mat-icon-button aria-label="clear" id="firstIndex" (click)="firstIndex()">
+                    <button mat-button type="button" matSuffix mat-icon-button aria-label="clear" id="firstIndexJournal" (click)="firstIndex()">
                         <mat-icon>first_page</mat-icon>
                     </button>
-                    <button mat-button id="previous index" type="button" matSuffix mat-icon-button aria-label="clear" id="prevIndex" (click)="prevIndex()">
+                    <button mat-button type="button" matSuffix mat-icon-button aria-label="clear" id="prevIndexJournal" (click)="prevIndex()">
                         <mat-icon>arrow_back</mat-icon>
                     </button>
-                    <button mat-button id="next index" type="button" matSuffix mat-icon-button aria-label="clear" id="nextIndex" (click)="nextIndex()">
+                    <button mat-button type="button" matSuffix mat-icon-button aria-label="clear" id="nextIndexJournal" (click)="nextIndex()">
                         <mat-icon>arrow_forward</mat-icon>
                     </button>
-                    <button mat-button id="last index" type="button" matSuffix mat-icon-button aria-label="clear" id="lastIndex" (click)="lastIndex()">
+                    <button mat-button type="button" matSuffix mat-icon-button aria-label="clear" id="lastIndexJournal" (click)="lastIndex()">
                         <mat-icon>last_page</mat-icon>
                     </button>
 
