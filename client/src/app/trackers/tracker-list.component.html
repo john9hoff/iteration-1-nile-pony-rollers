@@ -12,7 +12,7 @@
                     <form>
                         <label id="trackerEmoji">Filter By Emotion: </label>
                         <mat-select placeholder="Select" name="dropdown" id="dropdown" (click)="trackerEmoji = trackerEmoji">
-                            <!--<mat-option value="" (click)="trackerEmoji = null"></mat-option>-->
+                            <mat-option value="" (click)="trackerEmoji = null"></mat-option>
                             <mat-option value="happy" (click)="trackerEmoji = 'Happy'" >Happy</mat-option>
                             <mat-option value="normal" (click)="trackerEmoji = 'Normal'">Normal</mat-option>
                             <mat-option value="sad" (click)="trackerEmoji = 'Sad'">Sad</mat-option>
@@ -27,14 +27,17 @@
         <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <mat-card class="trackers-card">
             <mat-card-content>
-                <mat-accordion *ngIf="trackers; else trackersError" >
+                <mat-accordion class = "test" *ngIf="trackers; else trackersError" >
                     <mat-expansion-panel #elem class="trackers" [id]="tracker._id['$oid']" [expanded]="this.isHighlighted(tracker)" *ngFor="let tracker of this.filterTrackers(trackerEmoji, trackerTime)">
                         <mat-expansion-panel-header>
-                            <mat-panel-title >{{tracker.date}}</mat-panel-title>
+                            <mat-panel-title >{{tracker.emoji}}</mat-panel-title>
+
                         </mat-expansion-panel-header>
                         <!--<mat-panel-description>ID: {{tracker._id['$oid']}}</mat-panel-description>-->
-                        <mat-panel-description >Emoji selected: {{tracker.emoji}}</mat-panel-description>
+                        <mat-panel-description >Date: {{tracker.date}}</mat-panel-description>
                         <mat-panel-description >Intensity: {{tracker.rating}}</mat-panel-description>
+                        <mat-panel-description >Intensity: {{tracker._id}}</mat-panel-description>
+
                     </mat-expansion-panel>
                 </mat-accordion>
                 <ng-template #trackersError>
