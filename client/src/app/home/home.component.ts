@@ -45,7 +45,6 @@ export class HomeComponent {
         this.emojiString = "anxious";
     }
 
-
     public addEmotion(): void {
 
         const newTracker: Tracker = {_id: '',

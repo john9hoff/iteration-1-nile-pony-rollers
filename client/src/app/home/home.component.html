@@ -3,16 +3,18 @@
 
 
         <h2>Hey there!</h2>
-        <p>How are you feeling today?</p>
+        <p>Are you feeling  {{this.emojiString}}?</p>
+
+
 
         <div>
-            <button mat-fab class="happyEmoji" matTooltip="happy" (click)="lightHappy()">
+            <button type="radio" mat-fab class="happyEmoji" matTooltip="happy" (click)="lightHappy();">
             </button>
             <button mat-fab class="mehEmoji" matTooltip="normal" (click)="lightMeh()">
             </button>
             <button mat-fab class="sadEmoji" matTooltip="sad" (click)="lightSad()">
             </button>
-            <button mat-fab class="angryEmoji" matTooltip="angy" (click)="lightAngry()">
+            <button mat-fab class="angryEmoji" matTooltip="angry" (click)="lightAngry()">
             </button>
             <button mat-fab class="anxiousEmoji" matTooltip="anxious" (click)="lightAnxious()">
             </button>
@@ -33,11 +35,11 @@
             </mat-slider>
 
         <div>
-            <button type="button" id="submitAndThanks" (click)="addEmotion(); openThanks();">
+            <button mat-raised-button  id="submitAndThanks" (click)="addEmotion(); openThanks();">
             submit
             </button>
 
-            <button type="button" id="videos" (click)="openDialog();">
+            <button mat-raised-button  id="videos" (click)="openDialog();">
                 relaxing videos
             </button>
         </div>

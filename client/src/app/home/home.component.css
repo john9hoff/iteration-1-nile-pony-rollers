@@ -53,8 +53,6 @@
     margin-bottom: 10px;
 }
 
-
-
 .mood-buttons button {
     background-color: transparent;
     border: none;
@@ -104,3 +102,12 @@ mat-slider {
     text-align: center;
 
 }
+
+#submitAndThanks{
+    background-color: #607d8b;
+}
+
+#videos{
+    background-color: #607d8b;
+}
+
