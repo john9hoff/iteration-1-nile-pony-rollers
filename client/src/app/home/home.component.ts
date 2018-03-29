@@ -48,8 +48,6 @@ export class HomeComponent {
 
     public addEmotion(): void {
 
-        console.log("emojiString:"+this.emojiString);
-        console.log("emojiRating: " + this.emojiRating);
         const newTracker: Tracker = {_id: '',
             rating:this.emojiRating,
             emoji: this.emojiString,
