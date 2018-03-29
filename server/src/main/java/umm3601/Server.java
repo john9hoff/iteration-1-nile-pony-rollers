@@ -27,7 +27,7 @@ public class Server {
     private static final String goalDatabaseName = "dev";
     private static final String reportDatabaseName = "dev";
 
-    private static final int serverPort = 4567;
+    private static final int serverPort = 80;
 
     public static void main(String[] args) throws IOException {
 
@@ -83,6 +83,18 @@ public class Server {
 
         // Redirects for the "home" page
         redirect.get("", "/");
+
+        // Redirects for the "trackers" page
+        redirect.get("", "/trackers");
+
+        // Redirects for the "journals" page
+        redirect.get("", "/journals");
+
+        // Redirects for the "goals" page
+        redirect.get("", "/goals");
+
+        // Redirects for the "reports" page
+        redirect.get("", "/reports");
 
         /// User Endpoints ///////////////////////////
         /////////////////////////////////////////////
