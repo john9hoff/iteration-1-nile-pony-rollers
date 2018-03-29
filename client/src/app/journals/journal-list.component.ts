@@ -22,6 +22,7 @@ export class JournalListComponent implements OnInit {
     public journalSubject: string;
     public journalBody: string;
     public journalDate: any;
+    showPage = false;
 
     // The ID of the
     private highlightedID: {'$oid': string} = { '$oid': '' };
@@ -144,5 +145,11 @@ export class JournalListComponent implements OnInit {
     ngOnInit(): void {
         this.refreshJournals();
         //this.loadService();
+    if(gapi == null || gapi.auth2 == null || gapi.auth2.getAuthInstance().isSignedIn.get() == true){
+        this.showPage = true;
+    } else{
+        this.showPage = false;
+    }
+    console.log(this.showPage + " window.email " + window['email']);
     }
 }

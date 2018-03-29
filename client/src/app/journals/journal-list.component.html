@@ -1,4 +1,5 @@
 <body>
+<div *ngIf="showPage; else askToLogin">
 <div>
 
         <button id = "addNewJournal" mat-raised-button (click)="openDialog()">Add A New Journal</button>
@@ -44,4 +45,10 @@
         </mat-card>
     </div>
 </div>
+</div>
 </body>
+
+<ng-template #askToLogin>
+    <h1>You need to login to see this page</h1>
+</ng-template>
+
