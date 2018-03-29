@@ -1,7 +1,7 @@
 <body class="whole-body">
 
 <main>
-    <div layout="column" [ngStyle]="{'background-color':'#dbffdb'}">
+    <div *ngIf="showPage; else askToLogin" layout="column" [ngStyle]="{'background-color':'#dbffdb'}">
 
     <!-- Managing Goals Card -->
     <div class="first-sec">
@@ -55,3 +55,7 @@
     </div>
 </main>
 </body>
+
+<ng-template #askToLogin>
+    <h1>You need to login to see this page</h1>
+</ng-template>

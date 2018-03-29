@@ -24,6 +24,7 @@ export class GoalsComponent implements OnInit {
     public goalCategory: string;
     public goalName: string;
     public goalStatus: string;
+    showPage = false;
 
     // The ID of the goal
     private highlightedID: {'$oid': string} = { '$oid': '' };
@@ -174,6 +175,12 @@ export class GoalsComponent implements OnInit {
     ngOnInit(): void {
         this.refreshGoals();
         this.loadService();
+        if(gapi == null || gapi.auth2 == null || gapi.auth2.getAuthInstance().isSignedIn.get() == true){
+            this.showPage = true;
+        } else{
+            this.showPage = false;
+        }
+        console.log(this.showPage + " window.email " + window['email']);
     }
 
 }
