@@ -154,7 +154,6 @@ export class JournalListComponent implements OnInit {
         if(this.index == this.length - 10){
             while(this.index % 10 != 0){
                 this.index = this.index - 1;
-                console.log(this.index);
             }
         }
         this.loadProgressBar();
