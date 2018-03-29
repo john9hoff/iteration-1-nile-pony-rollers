@@ -27,7 +27,7 @@ public class Server {
     private static final String goalDatabaseName = "dev";
     private static final String reportDatabaseName = "dev";
 
-    private static final int serverPort = 80;
+    private static final int serverPort = 4567;
 
     public static void main(String[] args) throws IOException {
 
