@@ -85,16 +85,16 @@ public class Server {
         redirect.get("", "/");
 
         // Redirects for the "trackers" page
-        redirect.get("", "/trackers");
+        redirect.get("trackers", "/trackers");
 
         // Redirects for the "journals" page
-        redirect.get("", "/journals");
+        redirect.get("journals", "/journals");
 
         // Redirects for the "goals" page
-        redirect.get("", "/goals");
+        redirect.get("goals", "/goals");
 
         // Redirects for the "reports" page
-        redirect.get("", "/reports");
+        redirect.get("reports", "/reports");
 
         /// User Endpoints ///////////////////////////
         /////////////////////////////////////////////
