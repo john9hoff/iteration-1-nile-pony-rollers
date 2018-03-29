@@ -63,4 +63,18 @@ describe('Journal list', () => {
         element(by.id('confirmAddJournalButton')).click();
     });
 
+    it('Should actually click the navigation buttons and still have 10 journals on page everytime', () => {
+        page.navigateTo();
+        page.clickFirstIndexButton();
+        expect(page.getJournals()).toEqual(10);
+        page.clickLastIndexButton();
+        expect(page.getJournals()).toEqual(10);
+        page.clickPrevIndexButton();
+        page.clickPrevIndexButton();
+        expect(page.getJournals()).toEqual(10);
+        page.clickNextIndecButton();
+        page.clickNextIndecButton();
+        expect(page.getJournals()).toEqual(10);
+    });
+
 });
