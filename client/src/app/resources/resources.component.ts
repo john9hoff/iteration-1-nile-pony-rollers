@@ -64,6 +64,7 @@ export class ResourcesComponent implements OnInit {
     }
 
     deleteResources(_id: string){
+        console.log(_id);
         this.resourceService.deleteResource(_id).subscribe(
             resource => {
             },

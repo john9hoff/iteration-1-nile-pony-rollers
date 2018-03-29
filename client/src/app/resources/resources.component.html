@@ -39,7 +39,7 @@
                     <div class="resources-card-info">
                         <mat-card-content class="resource-info">
                             <mat-card-title id="resource-name">{{resource.name}}</mat-card-title>
-                            <p>Purpose: {{resource.purpose}}</p>
+                            <p>Purpose: {{resource._id['$oid']}}</p>
                             <!--<p>Status:-->
                                 <!--<b *ngIf="resource.status" id="resource-complete">Complete</b>-->
                                 <!--<b *ngIf="!resource.status" id="resource-incomplete">Incomplete</b>-->
