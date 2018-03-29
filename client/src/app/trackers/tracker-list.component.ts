@@ -19,6 +19,9 @@ export class TrackerListComponent implements OnInit {
     public trackerEmoji: string;
     public trackerTime: string;
     public trackerRating: number;
+    public length: number;
+    public index = 0;
+    public progress: number;
 
 
 
@@ -73,6 +76,14 @@ export class TrackerListComponent implements OnInit {
             })
         }
 
+        this.length = this.filteredTrackers.length;
+        if (this.index + 10 > this.length) {
+            this.index = this.length - 10;
+        }
+        if (this.index - 10 < 0) {
+            this.index = 0;
+        }
+
         return this.filteredTrackers;
     }
 
@@ -92,11 +103,17 @@ export class TrackerListComponent implements OnInit {
             trackers => {
                 this.trackers = trackers;
                 this.filterTrackers(this.trackerEmoji, this.trackerTime, this.trackerRating);
+                this.length = this.trackers.length;
             },
             err => {
                 console.log(err);
             });
         return trackerListObservable;
+    }
+
+    loadProgressBar(): void {
+
+        this.progress = (this.index / this.length) * 100;
     }
 
 
@@ -112,9 +129,40 @@ export class TrackerListComponent implements OnInit {
         );
     }
 
+    prevIndex(): void{
+        if(this.index != this.length - 10){
+            this.index = this.index - 10;
+        }
+        if(this.index == this.length - 10){
+            while(this.index % 10 != 0){
+                this.index = this.index - 1;
+            }
+        }
+        this.loadProgressBar();
+    }
+
+    nextIndex(): void{
+        this.index = this.index + 10;
+        if(this.index + 10 >= this.length){
+            this.index = this.length;
+        }
+        this.loadProgressBar();
+    }
+
+    firstIndex(): void{
+        this.index = 0;
+        this.loadProgressBar();
+    }
+
+    lastIndex(): void{
+        this.index = this.length;
+        this.loadProgressBar();
+    }
+
 
     ngOnInit(): void {
         this.refreshTrackers();
         this.loadService();
+        this.loadProgressBar();
     }
 }
