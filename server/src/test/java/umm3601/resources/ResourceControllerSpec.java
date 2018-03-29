@@ -104,7 +104,7 @@ public class ResourceControllerSpec {
     }
 
     @Test
-    public void getresourceByCategory() {
+    public void getResourceByCategory() {
         Map<String, String[]> argMap = new HashMap<>();
         // Mongo in GoalController is doing a regex search so can just take a Java Reg. Expression
         // This will search the category for letters 'f' and 'c'.
@@ -114,7 +114,7 @@ public class ResourceControllerSpec {
         assertEquals("Should be 3 resource", 3, docs.size());
         List<String> name = docs
             .stream()
-            .map(ResourceControllerSpec::getPurpose)
+            .map(ResourceControllerSpec::getName)
             .sorted()
             .collect(Collectors.toList());
         List<String> expectedName = Arrays.asList("Call mom", "Make cookies", "Wash dishes");
@@ -132,10 +132,11 @@ public class ResourceControllerSpec {
 
     @Test
     public void addResourceTest() {
-        String newName = resourceController.addNewResource("Self defense from Bobs", "Injury", "Kick Bob", "232-678-2358");
+        String newId = resourceController.addNewResource("Self defense from Bobs", "Injury", "Kick Bob", "232-678-2358");
 
-        assertNotNull("Add new resource should return true when resource is added,", newName);
+        assertNotNull("Add new resource should return true when resource is added,", newId);
         Map<String, String[]> argMap = new HashMap<>();
+        argMap.put("category", new String[] { "Injury" });
         String jsonResult = resourceController.getResources(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
