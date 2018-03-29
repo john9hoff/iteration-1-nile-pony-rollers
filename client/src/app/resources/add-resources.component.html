@@ -10,7 +10,7 @@
             </mat-form-field> <br>
             <br><br>
             <mat-form-field>
-                <input matInput #input id="resourcePhone" placeholder="What is the Phone Number?" [(ngModel)]="data.Resource.phone">
+                <input matInput #input id="phoneField" placeholder="What is the Phone Number?" [(ngModel)]="data.Resource.phone">
             </mat-form-field>
         </mat-card-content>
         <button mat-raised-button id="confirmAddREsouButton" [mat-dialog-close]="data.Resource" type="button" (click)="openSnackBar('resources Added')">Confirm</button>
