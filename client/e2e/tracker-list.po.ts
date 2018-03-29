@@ -7,12 +7,6 @@ export class TrackerPage {
         return browser.get('/trackers');
     }
 
-    static typeAnEmoji(subject: string) {
-        const input = element(by.id('trackerEmoji'));
-        input.click();
-        input.sendKeys(subject);
-    }
-
     static backspace() {
         browser.actions().sendKeys(Key.BACK_SPACE).perform();
     }
@@ -35,18 +29,55 @@ export class TrackerPage {
         return browser.executeScript(setStyle, element(byObject).getWebElement(), 'color: red; background-color: yellow;');
     }
 
-    getTrackerTitle() {
-        const title = element(by.id('tracker-list-title')).getText();
-        this.highlightElement(by.id('tracker-list-title'));
-
-        return title;
+    selectDownKey() {
+        browser.actions().sendKeys(Key.ARROW_DOWN).perform();
     }
 
+    selectEnter() {
+        browser.actions().sendKeys(Key.ENTER).perform();
+    }
 
-    getUniqueTracker(id: string) {
-        const tracker = element(by.id(id)).getText();
-        this.highlightElement(by.id(id));
+    clickAddFilterButton(): promise.Promise<void> {
+        this.highlightElement(by.id('dropdown'));
+        return element(by.id('dropdown')).click();
+    }
 
+    clickAddGoalButton(): promise.Promise<void> {
+        this.highlightElement(by.id('dropdown'));
+        return element(by.className('dropdown')).click();
+    }
+
+    getUniqueTracker(id1: string) {
+        const tracker = element(by.id(id1)).getText();
+        this.highlightElement(by.id(id1));
         return tracker;
     }
+
+
+    pickChoresOption(){
+        const input = element(by.id('dropdown'));
+        input.click();
+        this.selectEnter();
+    }
+
+
+    selectEmotionMarkDown(): promise.Promise<boolean> {
+        this.highlightElement(by.id('dropdown'));
+        return element(by.id('dropdown')).isPresent();
+    }
+
+    clickDropdown(): promise.Promise<void> {
+        this.highlightElement(by.id('dropdown'));
+        return element(by.id('dropdown')).click();
+    }
+
+
+
+
+    clickDropDownValue(): promise.Promise<void> {
+        this.highlightElement(by.className('trackerEmoji'));
+        return element(by.cssContainingText('value', 'happy')).click();
+    }
+
+
 }
