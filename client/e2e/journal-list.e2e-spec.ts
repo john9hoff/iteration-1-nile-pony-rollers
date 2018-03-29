@@ -19,9 +19,9 @@ describe('Journal list', () => {
         expect(page.buttonExists()).toBeTruthy();
     });
 
-    it('Total number of journals should be 23', () => {
+    it('Total number of journals should be 10', () => {
         page.navigateTo();
-        expect(page.getJournals()).toEqual(23);
+        expect(page.getJournals()).toEqual(10);
     });
 
     it('Should type something in filter subject box and check that it returned correct element', () => {
