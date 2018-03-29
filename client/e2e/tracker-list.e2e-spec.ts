@@ -1,3 +1,5 @@
+
+
 import {TrackerPage} from './tracker-list.po';
 import {browser, protractor, element, by} from 'protractor';
 import {Key} from 'selenium-webdriver';
@@ -25,38 +27,45 @@ describe('Tracker list', () => {
         page = new TrackerPage();
     });
 
+    // For examples testing modal dialog related things, see:
+// https://code.tutsplus.com/tutorials/getting-started-with-end-to-end-testing-in-angular-using-protractor--cms-29318
+// https://github.com/blizzerand/angular-protractor-demo/tree/final
+
+
+
+
     it('should gt and highlight Trackers title attribute ', () => {
-        page.navigateTo();
+        TrackerPage.navigateTo();
         page.clickDropdown();
         element(by.css('.mat-option[value="happy"]')).click();
     });
 
     it('It should select the dropdown and click on normal', () => {
-        page.navigateTo();
+        TrackerPage.navigateTo();
         page.clickDropdown();
         element(by.css('.mat-option[value="normal"]')).click();
     });
 
     it('It should select the dropdown and click on anxious', () => {
-        page.navigateTo();
+        TrackerPage.navigateTo();
         page.clickDropdown();
         element(by.css('.mat-option[value="anxious"]')).click();
     });
 
     it('It should select the dropdown and click on sad', () => {
-        page.navigateTo();
+        TrackerPage.navigateTo();
         page.clickDropdown();
         element(by.css('.mat-option[value="sad"]')).click();
     });
 
     it('It should select the dropdown and click on angry', () => {
-        page.navigateTo();
+        TrackerPage.navigateTo();
         page.clickDropdown();
         element(by.css('.mat-option[value="angry"]')).click();
     });
 
     it('It should select the dropdown and click on a blank entry', () => {
-        page.navigateTo();
+        TrackerPage.navigateTo();
         page.clickDropdown();
         element(by.css('.mat-option[value=""]')).click();
     });
@@ -74,6 +83,10 @@ describe('Tracker list', () => {
         page.clickNextIndexButton();
         expect(page.getTrackers()).toEqual(10);
     });
+
+
+
+
 
 });
 
