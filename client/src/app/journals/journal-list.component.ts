@@ -130,9 +130,9 @@ export class JournalListComponent implements OnInit {
     loadProgressBar(): void {
 
         this.progress = (this.index / this.length) * 100;
-        console.log(this.length + " printing this.length in loadProgressBar");
-        console.log(this.progress + " printing this.progress in loadProgressBar");
-        console.log(this.index + " printing this.index in loadProgressBar");
+        //console.log(this.length + " printing this.length in loadProgressBar");
+        //console.log(this.progress + " printing this.progress in loadProgressBar");
+        //console.log(this.index + " printing this.index in loadProgressBar");
     }
 
     loadService(): void {
@@ -148,9 +148,14 @@ export class JournalListComponent implements OnInit {
     }
 
     prevIndex(): void{
-        this.index = this.index - 10;
-        if(this.index == this.length){
-            this.index = 0;
+        if(this.index != this.length - 10){
+            this.index = this.index - 10;
+        }
+        if(this.index == this.length - 10){
+            while(this.index % 10 != 0){
+                this.index = this.index - 1;
+                console.log(this.index);
+            }
         }
         this.loadProgressBar();
     }
