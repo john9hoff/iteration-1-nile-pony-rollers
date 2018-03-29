@@ -1,6 +1,6 @@
 <body>
 <main>
-    <div layout="column">
+    <div *ngIf="showPage; else askToLogin" layout="column">
         <!-- Managing Journals Card -->
         <div class="first-sec">
             <mat-card class="manage-journals-card">
