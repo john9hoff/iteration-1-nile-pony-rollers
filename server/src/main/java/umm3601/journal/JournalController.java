@@ -92,21 +92,20 @@ public class JournalController {
     }
 
     public String editJournal(String id, String subject, String body){
-        System.out.println("Right here again");
+
         Document newJournal = new Document();
         newJournal.append("subject", subject);
         newJournal.append("body", body);
         Document setQuery = new Document();
         setQuery.append("$set", newJournal);
-
         Document searchQuery = new Document().append("_id", new ObjectId(id));
-
-        System.out.println(id);
-
+        System.out.println(searchQuery + " the search");
 
 
         try {
+            //System.out.println(journalCollection.find());
             journalCollection.updateOne(searchQuery, setQuery);
+            System.out.println(journalCollection.find());
             ObjectId id1 = searchQuery.getObjectId("_id");
             System.err.println("Successfully updated journal [_id=" + id1 + ", subject=" + subject + ", body=" + body + ']');
             return JSON.serialize(id1);

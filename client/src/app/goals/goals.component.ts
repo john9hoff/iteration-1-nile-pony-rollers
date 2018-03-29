@@ -61,14 +61,15 @@ export class GoalsComponent implements OnInit {
     deleteGoal(_id: string){
         this.goalService.deleteGoal(_id).subscribe(
             goals => {
+                this.refreshGoals();
+                this.loadService();
             },
             err => {
                 console.log(err);
+                this.refreshGoals();
+                this.loadService();
             }
         );
-
-        this.refreshGoals();
-        this.loadService();
     }
 
     goalSatisfied(_id: string, thePurpose: string, theCategory: string, theName) {

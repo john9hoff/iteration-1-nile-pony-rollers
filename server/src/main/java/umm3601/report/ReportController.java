@@ -37,28 +37,7 @@ public class ReportController {
         reportCollection = database.getCollection("trackers");
     }
 
-    /**
-     * Helper method that gets a single tracker specified by the `id`
-     * parameter in the request.
-     *
-     * @param id the Mongo ID of the desired tracker
-     * @return the desired tracker as a JSON object if the tracker with that ID is found,
-     * and `null` if no tracker with that ID is found
-     */
-    public String getReport(String id) {
-        FindIterable<Document> jsonTrackers
-            = reportCollection
-            .find(eq("_id", new ObjectId(id)));
 
-        Iterator<Document> iterator = jsonTrackers.iterator();
-        if (iterator.hasNext()) {
-            Document tracker = iterator.next();
-            return tracker.toJson();
-        } else {
-            // We didn't find the desired tracker
-            return null;
-        }
-    }
 
 
     /** Helper method which iterates through the collection, receiving all

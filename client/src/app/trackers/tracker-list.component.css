@@ -1,15 +1,23 @@
-#title input {
-    width:16%;
-    min-width: 100px;
+.first-sec {
+    width: 320px;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#list-title {
-    padding-right: 14px;
-}
-body {
-    background-image: url("https://i.ytimg.com/vi/ZgJfXlSVDxY/maxresdefault.jpg");
+.manage-trackers-card {
+    background-color: rgba(173, 216, 230, 0.14);
 }
 
-.Trackers{
-    padding-top: 120px;
+#trackerEmoji {
+    font-size: 18px;
+}
+
+#trackers-title {
+    font-size: 32px;
+    text-align: center;
+}
+
+.trackers-card {
+    background-color: lightyellow;
 }
