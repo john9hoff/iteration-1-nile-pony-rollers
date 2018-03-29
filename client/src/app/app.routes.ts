@@ -6,6 +6,7 @@ import {UserListComponent} from './users/user-list.component';
 import {TrackerListComponent} from './trackers/tracker-list.component';
 import {JournalListComponent} from './journals/journal-list.component';
 import {GoalsComponent} from "./goals/goals.component";
+import {ResourcesComponent} from "./resources/resources.component";
 import {ReportChartComponent} from "./reports/report-chart.component";
 
 
@@ -16,6 +17,7 @@ export const routes: Routes = [
     {path: 'trackers', component: TrackerListComponent},
     {path: 'journals', component: JournalListComponent},
     {path: 'goals', component: GoalsComponent},
+    {path: 'resources', component: ResourcesComponent},
     {path: 'reports', component: ReportChartComponent},
 ];
 

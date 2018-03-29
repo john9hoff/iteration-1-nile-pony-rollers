@@ -1,0 +1,62 @@
+<body class="whole-body">
+
+<main>
+    <div layout="column">
+
+        <!-- Managing Goals Card -->
+        <div class="first-sec">
+            <mat-card class="manage-resources-card">
+                <mat-card-title id="resource-title">Your Resources</mat-card-title>
+                <mat-card-subtitle class="resource-subtitle">Resources can help you stay on
+                    track with daily activities in your life.
+                </mat-card-subtitle>
+                <mat-card-content class="resource-content">
+                    <li class="content-item" id="addNewResource">
+                        <button mat-raised-button (click)="openDialog()" class="resource-button">
+                            <mat-icon id="add-icon">add</mat-icon>
+                            Add a phone-number</button>
+                    </li>
+                    <br>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <!-- Grid Section for Goals -->
+        <div class="grid-resources-section" >
+            <div class='md-padding' layout="row" layout-wrap>
+                <mat-card class="resources-card"
+                          *ngFor="let resource of this.filterResource(resourcesPurpose, resourcesPhone, resourcesName, resourcesCategory)"
+                          #elem [id]="resource._id['$oid']">
+
+                    <div class ="resources-image">
+                        <img *ngIf="resource.category == 'Family'" src="../../assets/family.png"
+                             class="resource-card-image" height="75">
+                        <img *ngIf="resource.category == 'Chores'" src="../../assets/chores.png"
+                             class="resource-card-image" height="75">
+                        <img *ngIf="resource.category == 'Personal Health'" src="../../assets/health.png"
+                             class="resource-card-image" height="75">
+                    </div>
+                    <div class="resources-card-info">
+                        <mat-card-content class="resource-info">
+                            <mat-card-title id="resource-name">{{resource.name}}</mat-card-title>
+                            <p>Purpose: {{resource._id['$oid']}}</p>
+                            <!--<p>Status:-->
+                                <!--<b *ngIf="resource.status" id="resource-complete">Complete</b>-->
+                                <!--<b *ngIf="!resource.status" id="resource-incomplete">Incomplete</b>-->
+                            <!--</p>-->
+                        </mat-card-content>
+                    </div>
+                    <div class="resources-buttons">
+                        <button mat-icon-button class="button delete-button"
+                                (click)="deleteResources(resource._id['$oid'])"
+                                (click)="openSnackBar('Resource Deleted')">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+
+    </div>
+</main>
+</body>

@@ -7,6 +7,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 
+import {AddResourcesComponent} from "./resources/add-resources.component";
+
 import {UserListComponent} from './users/user-list.component';
 import {UserListService} from './users/user-list.service';
 
@@ -19,11 +21,12 @@ import {AddUserComponent} from './users/add-user.component';
 import {TrackerListComponent} from './trackers/tracker-list.component';
 import {TrackerListService} from './trackers/tracker-list.service';
 
-
 import {GoalsComponent} from "./goals/goals.component";
 import {GoalsService} from "./goals/goals.service";
+
 import {AddGoalComponent} from "./goals/add-goal.component";
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {ResourceService} from "./resources/resources.service";
 
 import {JournalListComponent} from "./journals/journal-list.component";
 import {JournalListService} from "./journals/journal-list.service";
@@ -37,6 +40,8 @@ import {ResponseComponent4} from "./home/response-4.component";
 import {ResponseComponent5} from "./home/response-5.component";
 import {ResponseThanksComponent} from "./home/responseThanks.component";
 import {EmergencyComponent} from './home/emergency.component';
+import {ResourcesComponent} from "./resources/resources.component";
+
 
 import {MatSelectModule} from '@angular/material/select';
 
@@ -70,7 +75,9 @@ import {ReportChartService} from "./reports/report-chart.service";
         ResponseThanksComponent,
         EmergencyComponent,
         EditJournalComponent,
-        ReportChartComponent
+        ReportChartComponent,
+        ResourcesComponent,
+        AddResourcesComponent
     ],
     providers: [
         UserListService,
@@ -78,6 +85,8 @@ import {ReportChartService} from "./reports/report-chart.service";
         JournalListService,
         GoalsService,
         ReportChartService,
+        ResourceService,
+
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
@@ -99,7 +108,8 @@ import {ReportChartService} from "./reports/report-chart.service";
         EmergencyComponent,
         EditJournalComponent,
         ReportChartComponent,
-        ResponseThanksComponent
+        ResponseThanksComponent,
+        AddResourcesComponent,
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA,

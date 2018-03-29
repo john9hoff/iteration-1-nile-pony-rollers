@@ -75,7 +75,7 @@ export class GoalsService {
                 'Content-Type': 'application/json'
             }),
         };
-
+        console.log(newGoal);
         // Send post request to add a new goal with the user data as the body with specified headers.
         return this.http.post<{'$oid': string}>(this.goalUrl + '/new', newGoal, httpOptions);
     }

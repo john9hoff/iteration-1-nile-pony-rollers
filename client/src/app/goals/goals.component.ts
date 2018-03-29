@@ -45,6 +45,7 @@ export class GoalsComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
+            console.log(result);
             this.goalService.addNewGoal(result).subscribe(
                 addGoalResult => {
                     this.highlightedID = addGoalResult;
