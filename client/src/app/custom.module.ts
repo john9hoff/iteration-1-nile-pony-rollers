@@ -14,6 +14,8 @@ import {
 
 import { FlexLayoutModule, } from '@angular/flex-layout';
 
+import {GoogleSignInComponent} from 'angular-google-signin';
+
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -59,13 +61,14 @@ const COVALENT_MODULES: any[] = [
         FLEX_LAYOUT_MODULES,
     ],
     declarations: [
-
+        GoogleSignInComponent
     ],
     exports: [
         ANGULAR_MODULES,
         MATERIAL_MODULES,
         COVALENT_MODULES,
         FLEX_LAYOUT_MODULES,
+        GoogleSignInComponent
     ]
 })
 

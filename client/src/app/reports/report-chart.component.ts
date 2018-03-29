@@ -22,6 +22,7 @@ export class ReportChartComponent implements OnInit {
     public filteredReports: Tracker[];
     canvas: any;
     ctx: any;
+    showPage = false;
 
     ngOnInit() {
         this.reportChartService.getReports().subscribe(res => {
@@ -39,6 +40,22 @@ export class ReportChartComponent implements OnInit {
         Chart.defaults.global.defaultFontFamily = 'lato';
         Chart.defaults.global.defaultFontColor = 'black';
         Chart.defaults.global.defaultFontSize = 15;
+        });
+
+        if(gapi == null || gapi.auth2 == null || gapi.auth2.getAuthInstance().isSignedIn.get() == true){
+            this.showPage = true;
+        } else{
+            this.showPage = false;
+        }
+        console.log(this.showPage + " window.email " + window['email']);
+    }
+
+
+    public setPlugin () {
+        //global options
+        Chart.defaults.global.defaultFontFamily = 'lato';
+        Chart.defaults.global.defaultFontColor = 'black';
+        Chart.defaults.global.defaultFontSize = 18;
 
         // Defining a plugin to provide data labels
         Chart.plugins.register({

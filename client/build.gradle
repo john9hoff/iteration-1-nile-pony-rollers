@@ -44,6 +44,14 @@ task runClientTests(dependsOn: yarn_run_test) {
     group = 'application'
 }
 
+task installGoogleSignIn(type: Exec){
+    group = 'application'
+    workingDir = '../client'
+    description = 'Installs gapi-client into the client folder'
+
+    commandLine 'sh', 'install-gapi.sh'
+}
+
 task build(type:NodeTask) {
     group = 'application'
     description = 'Builds the client side of the application using ng build'
