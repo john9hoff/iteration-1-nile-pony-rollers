@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TrackerListService} from "../trackers/tracker-list.service";
 import {Tracker} from "../trackers/tracker";
 import {MatDialog} from '@angular/material';
@@ -14,7 +14,7 @@ import {ResponseThanksComponent} from "./responseThanks.component";
     templateUrl: 'home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
 
     public slideIndex = 0;
     public emojis: string[] = ["./assets/grinning.png",  "./assets/neutral-face.png",
@@ -24,6 +24,7 @@ export class HomeComponent {
     public image = this.emojis[this.slideIndex];
     public emojiExplain = this.emojisString[this.slideIndex];
     public emojiRating: number = -1;
+    showPage = false;
 
 
     constructor(public trackerListService: TrackerListService, public dialog: MatDialog) {
@@ -106,5 +107,14 @@ export class HomeComponent {
             });
         }
 
+    }
+
+    ngOnInit(){
+        if(gapi == null || gapi.auth2 == null || gapi.auth2.getAuthInstance().isSignedIn.get() == true){
+            this.showPage = true;
+        } else{
+            this.showPage = false;
+        }
+        console.log(this.showPage + " window.email " + window['email']);
     }
 }

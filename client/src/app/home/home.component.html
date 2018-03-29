@@ -1,5 +1,5 @@
 <body>
-    <div class="container text-center">
+    <div *ngIf="showPage; else askToLogin" class="container text-center">
 
         <div>
             <body>
@@ -72,3 +72,7 @@
 
     </div>
 </body>
+
+<ng-template #askToLogin>
+    <h1>You need to login to see this page</h1>
+</ng-template>
