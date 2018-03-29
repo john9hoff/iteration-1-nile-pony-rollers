@@ -1,4 +1,5 @@
 
+
 import {TrackerPage} from './tracker-list.po';
 import {browser, protractor, element, by} from 'protractor';
 import {Key} from 'selenium-webdriver';
@@ -32,7 +33,7 @@ describe('Tracker list', () => {
 
 
 
-    it('It should select the dropdown and click on happy', () => {
+    it('should gt and highlight Trackers title attribute ', () => {
         TrackerPage.navigateTo();
         page.clickDropdown();
         element(by.css('.mat-option[value="happy"]')).click();
@@ -72,3 +73,4 @@ describe('Tracker list', () => {
 
 
 });
+

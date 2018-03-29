@@ -84,6 +84,18 @@ public class Server {
         // Redirects for the "home" page
         redirect.get("", "/");
 
+        // Redirects for the "trackers" page
+        redirect.get("", "/trackers");
+
+        // Redirects for the "journals" page
+        redirect.get("", "/journals");
+
+        // Redirects for the "goals" page
+        redirect.get("", "/goals");
+
+        // Redirects for the "reports" page
+        redirect.get("", "/reports");
+
         /// User Endpoints ///////////////////////////
         /////////////////////////////////////////////
 

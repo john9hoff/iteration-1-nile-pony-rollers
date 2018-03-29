@@ -30,6 +30,19 @@ describe('Journal list', () => {
         expect(page.getUniqueJournal('58af3a600343927e48e8722c')).toEqual('Wednesday');
     });
 
+    it('Should type something in filter body box and check that it returned correct element', () => {
+        page.navigateTo();
+        page.typeABody('deserunt est');
+        expect(page.getUniqueJournal('5abab410fc453e83fafbd7f1')).toEqual('Hayes Knowles');
+    });
+
+    it('Should filter by subject and body and check that it returned correct element', () => {
+        page.navigateTo();
+        page.typeASubject('os')
+        page.typeABody('comm');
+        expect(page.getUniqueJournal('5abab410d9dbead292bb89fc')).toEqual('Osborne Henderson');
+    });
+
     it('Should click on a unique journal in the accordion', () => {
         page.navigateTo();
         page.clickUniqueJournal("5abab41029fb8de16b8a3a10")
