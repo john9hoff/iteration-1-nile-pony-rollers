@@ -1,47 +1,27 @@
 <body>
     <div class="container text-center">
 
+
+        <h2>Hey there!</h2>
+        <p>How are you feeling today?</p>
+
         <div>
-            <body>
-            <head>
-                <style>
-                    h1 {
-                        color:yellow;
-                        font-family: "Trebuchet MS";
-                        text-align: center;
-                        padding: 0%;
-                    }
-                    p  {
-                        color: yellow;
-                        font-family: "Trebuchet MS";
-                        text-align: center;
-                    }
-
-
-                </style>
-            </head>
-            <body>
-            <h1>Hey there!</h1>
-            <p>How are you feeling today?</p>
-            </body>
-            </body>
-        </div>
-
-        <div class="mood-buttons text-center">
-            <button >
-                <img [attr.src]="image" height=30% width=30%>
+            <button mat-fab class="happyEmoji" matTooltip="happy" (click)="lightHappy()">
+            </button>
+            <button mat-fab class="mehEmoji" matTooltip="normal" (click)="lightMeh()">
+            </button>
+            <button mat-fab class="sadEmoji" matTooltip="sad" (click)="lightSad()">
+            </button>
+            <button mat-fab class="angryEmoji" matTooltip="angy" (click)="lightAngry()">
+            </button>
+            <button mat-fab class="anxiousEmoji" matTooltip="anxious" (click)="lightAnxious()">
             </button>
 
-
         </div>
-        <br/>
-
-        <a mat-raised-button type="button" class="next" (click)="plusSlides(-1)"><mat-icon>chevron_left</mat-icon></a>
-        <a mat-raised-button type="button" class="previous" (click)="plusSlides(1)"><mat-icon>chevron_right</mat-icon></a>
-
 
         <p>How would you rate the intensity of your feelings?</p>
         <p style="font-size:70%">(1 means a little, 5 means extremely)</p>
+
 
             <mat-slider
             class="slider"
@@ -54,16 +34,16 @@
             </mat-slider>
 
         <div>
-            <button type="button" id="submitAndThanks" (click)="addEmotion(slideIndex); openThanks();">
+            <button type="button" id="submitAndThanks" (click)="addEmotion(); openThanks();">
             submit
             </button>
 
-            <button type="button" id="videos" (click)="openDialog(slideIndex);">
+            <button type="button" id="videos" (click)="openDialog();">
                 relaxing videos
             </button>
         </div>
 
 
+</div>
 
-    </div>
 </body>

@@ -16,26 +16,43 @@ import {ResponseThanksComponent} from "./responseThanks.component";
 })
 export class HomeComponent {
 
-    public slideIndex = 0;
-    public emojis: string[] = ["./assets/happy.png",  "./assets/meh.png",
-        "./assets/sad.png", "./assets/angry.png","./assets/anxious.png"];
-
-    public emojisString: string[] = ["Happy", "Normal", "Sad", "Angry", "Anxious"];
-    public image = this.emojis[this.slideIndex];
-    public emojiExplain = this.emojisString[this.slideIndex];
     public emojiRating: number = 3;
+    public emojiString:string = "";
+
+
 
 
     constructor(public trackerListService: TrackerListService, public dialog: MatDialog) {
     }
 
-    public addEmotion(emojiIndex: number): void {
+    public lightHappy(){
+        this.emojiString = "happy";
+    }
 
-        console.log("emojiString:"+this.emojisString[emojiIndex]);
+    public lightMeh(){
+        this.emojiString = "normal";
+    }
+
+    public lightSad(){
+        this.emojiString = "sad";
+    }
+
+    public lightAngry(){
+        this.emojiString = "angry";
+    }
+
+    public lightAnxious(){
+        this.emojiString = "anxious";
+    }
+
+
+    public addEmotion(): void {
+
+        console.log("emojiString:"+this.emojiString);
         console.log("emojiRating: " + this.emojiRating);
         const newTracker: Tracker = {_id: '',
             rating:this.emojiRating,
-            emoji: this.emojisString[emojiIndex],
+            emoji: this.emojiString,
             date: '',
             email:''};
         this.trackerListService.addNewEmoji(newTracker).subscribe(
@@ -48,20 +65,6 @@ export class HomeComponent {
     }
 
 
-    public plusSlides(n: number): void{
-        this.slideIndex = this.slideIndex + n;
-        if(this.slideIndex == -1){
-            this.slideIndex = 0;
-        }
-        if(this.slideIndex == this.emojis.length){
-            this.slideIndex = this.emojis.length - 1;
-        }
-        console.log(this.slideIndex + ' index');
-        console.log(this.image);
-        console.log(this.emojiExplain);
-        this.image = this.emojis[this.slideIndex];
-        this.emojiExplain = this.emojisString[this.slideIndex];
-    }
 
     openThanks():void{
         const dialogRef = this.dialog.open(ResponseThanksComponent,{
@@ -70,29 +73,29 @@ export class HomeComponent {
         })
     }
 
-    openDialog(n: number): void {
-        console.log(n);
-        if (n == 0){
+    openDialog(): void {
+
+        if (this.emojiString == "happy"){
             const dialogRef = this.dialog.open(ResponseComponent,{
                 width: '855px',
                 height: '485px'
             });
         }
-        else if(n == 1){
+        else if(this.emojiString == "normal"){
             const dialogRef = this.dialog.open(ResponseComponent2,{
                 width: '855px',
                 height: '485px'
             });
         }
 
-        else if(n == 2){
+        else if(this.emojiString == "sad"){
             const dialogRef = this.dialog.open(ResponseComponent3,{
                 width: '855px',
                 height: '485px'
             });
         }
 
-        else if(n == 3){
+        else if(this.emojiString == "angry"){
             const dialogRef = this.dialog.open(ResponseComponent4,{
                 width: '855px',
                 height: '485px'
