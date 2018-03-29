@@ -1,7 +1,9 @@
-/*
+
+
 import {TrackerPage} from './tracker-list.po';
 import {browser, protractor, element, by} from 'protractor';
 import {Key} from 'selenium-webdriver';
+import {Tracker} from "../src/app/trackers/tracker";
 
 const origFn = browser.driver.controlFlow().execute;
 
@@ -31,24 +33,60 @@ describe('Tracker list', () => {
 
 
 
+
     it('should gt and highlight Trackers title attribute ', () => {
         TrackerPage.navigateTo();
-        expect(page.getTrackerTitle()).toEqual('MoodTracker');
+        page.clickDropdown();
+        element(by.css('.mat-option[value="happy"]')).click();
     });
 
-    it('Should open a dropdown menu when status button is clicked', () => {
+    it('It should select the dropdown and click on normal', () => {
         TrackerPage.navigateTo();
-        element(by.id('dropdown')).click();
+        page.clickDropdown();
         element(by.css('.mat-option[value="normal"]')).click();
-
-        expect(page.getUniqueTracker('5aa1902a4cd5a50733f4f1f7')).toEqual('Fri Mar 01 17:28:28 CST 2018');
-
-        element(by.id('dropdown')).click();
-        element(by.css('.mat-option[value="sad"]')).click();
-
-        expect(page.getUniqueTracker('5aa18ede4cd5a50733f4f1f3')).toEqual('Fri Feb 27 17:58:28 CST 2018');
-
     });
+
+    it('It should select the dropdown and click on anxious', () => {
+        TrackerPage.navigateTo();
+        page.clickDropdown();
+        element(by.css('.mat-option[value="anxious"]')).click();
+    });
+
+    it('It should select the dropdown and click on sad', () => {
+        TrackerPage.navigateTo();
+        page.clickDropdown();
+        element(by.css('.mat-option[value="sad"]')).click();
+    });
+
+    it('It should select the dropdown and click on angry', () => {
+        TrackerPage.navigateTo();
+        page.clickDropdown();
+        element(by.css('.mat-option[value="angry"]')).click();
+    });
+
+    it('It should select the dropdown and click on a blank entry', () => {
+        TrackerPage.navigateTo();
+        page.clickDropdown();
+        element(by.css('.mat-option[value=""]')).click();
+    });
+
+    // it('Should actually click the navigation buttons and still have 10 journals on page everytime', () => {
+    //     TrackerPage.navigateTo();
+    //     page.clickFirstIndexButton();
+    //     expect(page.getTrackers()).toEqual(10);
+    //     page.clickLastIndexButton();
+    //     expect(page.getTrackers()).toEqual(10);
+    //     page.clickPrevIndexButton();
+    //     page.clickPrevIndexButton();
+    //     expect(page.getTrackers()).toEqual(10);
+    //     page.clickNextIndexButton();
+    //     page.clickNextIndexButton();
+    //     expect(page.getTrackers()).toEqual(10);
+    // });
+
+
+
+
 
 });
-*/
+

@@ -10,7 +10,7 @@
                     <textarea matInput #input id="bodyField" matTextareaAutosize placeholder="Body" [(ngModel)]="data.journal.body"></textarea>
                 </mat-form-field>
             </mat-card-content>
-        <button mat-raised-button id="confirmAddJournalButton" [mat-dialog-close]="data.journal" type="button" (click)="openSnackBar('Journal Added')">Confirm</button>
+        <button mat-raised-button id="confirmAddJournalButton" [mat-dialog-close]="data.journal" type="button" (click)="openSnackBar('Journal Added','')">Confirm</button>
         <button mat-raised-button id="exitWithoutAddingButton" (click)="onNoClick()" type="button">Cancel</button>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { MATERIAL_COMPATIBILITY_MODE } from '@angular/material';
@@ -23,6 +23,7 @@ import {TrackerListService} from './trackers/tracker-list.service';
 import {GoalsComponent} from "./goals/goals.component";
 import {GoalsService} from "./goals/goals.service";
 import {AddGoalComponent} from "./goals/add-goal.component";
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import {JournalListComponent} from "./journals/journal-list.component";
 import {JournalListService} from "./journals/journal-list.service";
@@ -49,6 +50,7 @@ import {ReportChartService} from "./reports/report-chart.service";
         Routing,
         CustomModule,
         MatSelectModule,
+        MatProgressBarModule
     ],
     declarations: [
         AppComponent,
@@ -98,6 +100,10 @@ import {ReportChartService} from "./reports/report-chart.service";
         EditJournalComponent,
         ReportChartComponent,
         ResponseThanksComponent
+    ],
+    schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
+        NO_ERRORS_SCHEMA
     ],
     bootstrap: [AppComponent]
 })

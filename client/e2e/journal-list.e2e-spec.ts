@@ -19,9 +19,9 @@ describe('Journal list', () => {
         expect(page.buttonExists()).toBeTruthy();
     });
 
-    it('Total number of journals should be 23', () => {
+    it('Total number of journals should be 10', () => {
         page.navigateTo();
-        expect(page.getJournals()).toEqual(23);
+        expect(page.getJournals()).toEqual(10);
     });
 
     it('Should type something in filter subject box and check that it returned correct element', () => {
@@ -61,6 +61,20 @@ describe('Journal list', () => {
         element(by.id('subjectField')).sendKeys('Sad day');
         element(by.id('bodyField')).sendKeys('Today was sad because my pet rock got hit by a car.');
         element(by.id('confirmAddJournalButton')).click();
+    });
+
+    it('Should actually click the navigation buttons and still have 10 journals on page everytime', () => {
+        page.navigateTo();
+        page.clickFirstIndexButton();
+        expect(page.getJournals()).toEqual(10);
+        page.clickLastIndexButton();
+        expect(page.getJournals()).toEqual(10);
+        page.clickPrevIndexButton();
+        page.clickPrevIndexButton();
+        expect(page.getJournals()).toEqual(10);
+        page.clickNextIndexButton();
+        page.clickNextIndexButton();
+        expect(page.getJournals()).toEqual(10);
     });
 
 });
