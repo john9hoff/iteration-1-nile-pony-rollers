@@ -1,17 +1,25 @@
 <body>
     <div *ngIf="showPage; else askToLogin" class="container text-center">
-        <div class="mood-buttons text-center">
-            <button >
-                <img [attr.src]="image" height=30% width=30%>
+
+
+        <h2>Hey there!</h2>
+        <p>Are you feeling  {{this.emojiString}}?</p>
+
+
+
+        <div>
+            <button type="radio" mat-fab class="happyEmoji" matTooltip="happy" (click)="lightHappy();">
             </button>
+            <button mat-fab class="mehEmoji" matTooltip="normal" (click)="lightMeh()">
+            </button>
+            <button mat-fab class="sadEmoji" matTooltip="sad" (click)="lightSad()">
+            </button>
+            <button mat-fab class="angryEmoji" matTooltip="angry" (click)="lightAngry()">
+            </button>
+            <button mat-fab class="anxiousEmoji" matTooltip="anxious" (click)="lightAnxious()">
+            </button>
+
         </div>
-        <br/>
-
-<!--
-        <a mat-raised-button type="button" class="next" (click)="plusSlides(-1)"><mat-icon>chevron_left</mat-icon></a>
-        <a mat-raised-button type="button" class="previous" (click)="plusSlides(1)"><mat-icon>chevron_right</mat-icon></a>
--->
-
 
         <p>How would you rate the intensity of your feelings?</p>
         <p style="font-size:70%">(1 means a little, 5 means extremely)</p>
@@ -27,11 +35,11 @@
             </mat-slider>
 
         <div>
-            <button type="button" id="addEmotionWithIntensity" (click)="addEmotion(slideIndex); openThanks();">
+            <button mat-raised-button  id="submitAndThanks" (click)="addEmotion(); openThanks();">
             submit
             </button>
 
-            <button type="button" id="thanks" (click)="openDialog(slideIndex);">
+            <button mat-raised-button  id="videos" (click)="openDialog();">
                 relaxing videos
             </button>
         </div>

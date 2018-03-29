@@ -68,7 +68,8 @@ export class ReportChartComponent implements OnInit {
                             // Just naively convert to string for now
                             let dataString = dataset.data[index].toString();
 
-                            // alignment properties for the numbers above each bar
+                            // alignment properties for the numbers above
+                            // each bar
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'middle';
 

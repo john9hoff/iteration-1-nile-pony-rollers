@@ -3,6 +3,7 @@ import {EmergencyComponent} from "./home/emergency.component";
 import {MatDialog} from '@angular/material';
 import {gapi} from 'gapi-client';
 import {GoogleSignInSuccess} from 'angular-google-signin';
+import {MatRadioModule} from '@angular/material/radio';
 
 @Component({
     selector: 'app-root',

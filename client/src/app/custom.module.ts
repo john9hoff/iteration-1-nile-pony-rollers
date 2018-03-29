@@ -8,7 +8,7 @@ import {
     MatInputModule, MatMenuModule, MatSidenavModule, MatToolbarModule,
 
     MatExpansionModule, MatTooltipModule, MatDialogModule, MatGridListModule,
-    MatSnackBarModule, MatSliderModule, MatProgressBarModule,
+    MatSnackBarModule, MatSliderModule,MatRadioModule, MatProgressBarModule
 
 } from '@angular/material';
 
@@ -43,7 +43,8 @@ const MATERIAL_MODULES: any[] = [
     MatGridListModule,
     MatSnackBarModule,
     MatSliderModule,
-    MatProgressBarModule
+    MatRadioModule,
+    MatProgressBarModule,
 ];
 
 const COVALENT_MODULES: any[] = [
