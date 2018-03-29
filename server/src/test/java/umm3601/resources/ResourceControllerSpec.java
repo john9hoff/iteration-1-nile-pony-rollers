@@ -135,20 +135,13 @@ public class ResourceControllerSpec {
         String newId = resourceController.addNewResource("Self defense from Bobs", "Injury", "Kick Bob", "232-678-2358");
 
         assertNotNull("Add new resource should return true when resource is added,", newId);
+
         Map<String, String[]> argMap = new HashMap<>();
-        argMap.put("category", new String[] { "Injury" });
         String jsonResult = resourceController.getResources(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        List<String> purpose = docs
-            .stream()
-            .map(ResourceControllerSpec::getPurpose)
-            .sorted()
-            .collect(Collectors.toList());
-        // name.get(0) says to get the name of the first person in the database,
-        // so "Bob" will probably always be first because it is sorted alphabetically.
-        // 3/4/18: Not necessarily: it is likely that that is how they're stored but we don't know. Find a different way of doing this.
-        assertEquals("Should return purpose of new resource", "Self defense from Bobs", purpose.get(3));
+
+        assertEquals("Should be 4 resource", 5, docs.size());
     }
 
     @Test
